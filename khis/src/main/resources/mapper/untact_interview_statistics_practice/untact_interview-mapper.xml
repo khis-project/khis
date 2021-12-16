@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UntactInterview">
+  <select id="selectZoomList" resultType="Zoom">
+  	select
+  		*
+  	from
+  		zoom
+
+  </select>
+  
+  <insert id="insertZoom">
+  	insert into
+  	<!-- 후에는 zoom_no 부분은 sequence로 변경 -->
+  		zoom(zoom_no, member_no, co_code, api_key, api_secret, jwt_token)
+  	values(
+  		#{zoom_no},
+  		#{member_no},
+  		#{co_code},
+  		#{api_key},
+  		#{api_secret},
+  		#{jwt_token}
+  	)
+  </insert>
+
+  
+</mapper>
