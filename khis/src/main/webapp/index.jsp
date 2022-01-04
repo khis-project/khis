@@ -18,9 +18,20 @@
 
 </head>
 <body>
-	<h1>khis</h1>
-<jsp:include page="/WEB-INF/views/untact_interview_statistics_practice/untact_interview/zoomEnroll.jsp">
+<%-- <jsp:include page="/WEB-INF/views/untact_interview_statistics_practice/untact_interview/zoomEnroll.jsp">
 	<jsp:param value="안녕 스프링" name="title"/>
+</jsp:include> --%>
+<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+<jsp:param value="헤더" name="ti"/>
+</jsp:include> 
+
+<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/test.jsp">
+<jsp:param value="메인페이지" name="ti"/>
+</jsp:include> 
+
+
+<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp">
+<jsp:param value="푸터" name="titl"/>
 </jsp:include>
 </body>
 </html>
