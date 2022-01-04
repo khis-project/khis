@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+* {
+	margin: 3px;
+	font-family: 'GmarketSansMedium';
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	background: #34495e;
+}
+
+
+h3 {
+	margin-right: 330px;
+	font-size: 20px;
+	font-family: 'GmarketSansMedium';
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'GmarketSansMedium';
+	background: #34495e;
+}
+
+.joinForm {
+	margin-top: 100px;
+	margin-bottom: 40px;
+	width: 450px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'GmarketSansMedium';
+	background: white;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+h2 {
+	color: black;
+	font-size: 35px;
+	font-family: 'GmarketSansMedium';
+}
+
+.memberId-container {
+	margin-top: 5px;
+	width: 80%;
+	font-family: 'GmarketSansMedium';
+}
+
+.memberId-container input {
+	width: 95%;
+	height: 45px;
+	border-radius: 0px;
+	margin-top: 5px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+	border-radius: 6px;
+	font-family: 'GmarketSansMedium';
+}
+
+.content {
+	margin-top: 5px;
+	width: 80%;
+	font-family: 'GmarketSansMedium';
+}
+
+.memberId-container span.guide.ok {
+	width: 95%;
+	height: 45px;
+	margin-top: 5px;
+	padding: 0px 20px;
+	font-size: 12px;
+	outline: none;
+	margin-left: 200px;
+	color: green;
+	display: none;
+	position: absolute;
+	font-family: 'GmarketSansMedium';
+}
+
+.memberId-container span.guide.error {
+	width: 95%;
+	height: 45px;
+	margin-top: 5px;
+	padding: 0px 20px;
+	font-size: 12px;
+	outline: none;
+	margin-left: 200px;
+	color: red;
+	display: none;
+	position: absolute;
+	font-family: 'GmarketSansMedium';
+}
+
+.content#btnContent {
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+
+.content input {
+	width: 95%;
+	height: 45px;
+	border-radius: 0px;
+	margin-top: 5px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+	border-radius: 6px;
+	font-family: 'GmarketSansMedium';
+}
+
+.content input#coCode {
+	width: 70%;
+	height: 45px;
+	border-radius: 0px;
+	margin-top: 5px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+	border-radius: 6px;
+	font-family: 'GmarketSansMedium';
+}
+.content input#coCode.Btn {
+	width: 95px; 
+	background: cornflowerblue; 
+	color: white; 
+	font-size: 14px; 
+	font-weight: bold;
+	font-family: 'GmarketSansMedium';
+}
+
+.content input#email {
+	width: 95%;
+	height: 45px;
+	border-radius: 0px;
+	margin-top: 5px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+	border-radius: 6px;
+	font-family: 'GmarketSansMedium';
+}
+
+.content input#email.sendEmail {
+	width: 95px;
+	background: #34495E;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'GmarketSansMedium';
+}
+
+/* .content input#companyNo > #search{
+	width: 95px;
+	background: dimgray;
+}
+ */
+select#gender, select#kind {
+	width: 95%;
+	height: 35px;
+	text-align: center;
+	border-radius: 6px;
+	font-family: 'GmarketSansMedium';
+}
+
+.signupBtn {
+	background: black;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	font-family: 'GmarketSansMedium';
+}
+
+.signupBtn:hover {
+	background: #34495E;
+}
+
+input.signupBtn {
+	width: auto;
+	font-family: 'Y_Spotlight';
+	width: 70px;
+    outline: none;
+    height: 45px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: 'GmarketSansMedium';
+}
+
+.cancelBtn {
+	background: black;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-left: 20px;
+	font-family: 'GmarketSansMedium';
+}
+
+.cancelBtn:hover {
+	background: #34495E;
+}
+
+input.cancelBtn {
+	width: auto;
+	width: 70px;
+    outline: none;
+    height: 45px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: 'GmarketSansMedium';
+}
+
+.aggrement {
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+	padding-bottom: 16px;
+	padding-top: 15px;
+	font-family: 'GmarketSansMedium';
+}

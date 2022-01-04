@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	font-family: 'GmarketSansMedium';
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+   	background: #34495e;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'GmarketSansMedium';
+	background: #34495e;
+}
+
+.findIdForm {
+	margin-top: 150px;
+	margin-bottom: 100px;
+	width: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'GmarketSansMedium';
+	border-radius: 10px;
+	background: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border: 1px solid white;
+	border: none;
+}
+
+h2 {
+	color: black;
+	font-size: 30px;
+	margin-bottom: 15px;
+	font-family: 'GmarketSansMedium';
+}
+
+.line {
+	width: 420px;
+	border-top: 2px solid #bbb;
+	margin-top: 15px;
+}
+
+p {
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'GmarketSansMedium';
+}
+
+.content {
+	margin-left: 50px;
+	margin-top: 20px;
+	width: 80%;
+	font-family: 'GmarketSansMedium';
+}
+
+.content input {
+	width: 85%;
+	height: 50px;
+	border-radius: 10px;
+	margin-top: 10px;
+	padding: 0px 20px;
+	border: 1px solid lightgray;
+	outline: none;
+	font-family: 'GmarketSansMedium';
+}
+
+.submit {
+	margin-top: 40px;
+	width: 80%;
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+
+.submit input {
+	width: 35%;
+	height: 50px;
+	border: 0;
+	outline: none;
+	border-radius: 10px;
+	background: black;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 5px;
+	font-family: 'GmarketSansMedium';
+}
+
+.submit input:hover {
+	background: #34495E;
+}

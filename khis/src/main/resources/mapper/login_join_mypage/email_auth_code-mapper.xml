@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emailAuthCode">
+  <insert id="insertEmailAuthCode">
+<!--   	<selectKey keyProperty="memberNo" resultType="int">
+			select seq_member_no.nextval FROM DUAL
+	</selectKey> -->
+   
+	insert into 
+		email_auth_code
+	values(
+		seq_email_auth_code_no.nextval,
+		#{email},
+		#{memberId},
+		#{authCode}
+	)
+  </insert>
+
+<select id="findEmailAuthCode" resultType="emailAuthCode">
+  	select
+  		*
+  	from
+  		email_auth_code
+  	where
+  		email = #{email} and memberId = #{memberId} and authCode = #{authCode}
+  </select>
+
+ 
+</mapper>
