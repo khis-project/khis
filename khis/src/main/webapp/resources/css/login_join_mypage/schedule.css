@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+/* * {
+  margin: 0;
+  font-family: 'GmarketSansMedium';
+}
+ */
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src:
+    url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+	font-family: 'GmarketSansMedium';
+	font-size: 14px;
+	background: #34495E;
+}
+/* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
+.fc-header-toolbar {
+	font-family: 'GmarketSansMedium';
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+#schedule {
+	font-family: 'GmarketSansMedium';
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+}
+
+h1 {
+	color: white;
+	margin-right: 27px;
+	text-align: center;
+	font-family: 'GmarketSansMedium';
+}
+
+.button input {
+	font-family: 'GmarketSansMedium';
+	margin-right: 260px;
+  margin-bottom: 10px;
+  height: 25px;
+  border-radius: 3px;
+  border: none;
+  background: rgb(118, 130, 142);
+  color: white;
+  letter-spacing: 1.5px;
+}
+
+h2.fc-toolbar-title{
+	margin-left: 30px;
+}

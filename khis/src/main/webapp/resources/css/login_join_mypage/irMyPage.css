@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	font-family: 'GmarketSansMedium';
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	background: #34495e;
+	font-family: 'GmarketSansMedium';
+}
+
+.container {
+	display: inline;
+	text-align: center;
+	width: 90%;
+	margin: auto;
+    font-family: 'GmarketSansMedium';
+}
+
+.w1280 {
+	width: 1500px;
+	margin: 0 auto;
+	font-weight: bolder;
+	font-size: 17px;
+	font-family: 'GmarketSansMedium';
+}
+
+h1 {
+	font-weight: bolder;
+	font-size: 40px;
+	font-family: 'GmarketSansMedium';
+	text-align: justify;
+	color: white;
+}
+
+p {
+	margin-top: 30px;
+	font-size: 13px;
+	font-family: 'GmarketSansMedium';
+}
+
+p2 {
+  font-size: 13px;
+  font-weight: bolder;
+  text-decoration:underline;
+  text-underline-position:under;
+  color: orangered;
+  font-family: 'GmarketSansMedium';
+}
+
+.box {
+	display: flex;
+	justify-content: space-around;
+	font-family: 'GmarketSansMedium';
+}
+
+.information {
+	display: block;
+	width: 220px;
+	height: 310px;
+	border: 5px solid white;
+	border-radius: 10px;
+	font-weight: bolder;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium';
+	background: white;
+}
+
+/* .information a:visited {
+	color: #34495E;
+	font-family: 'GmarketSansMedium';
+} */
+
+/* .information a:hover {
+	color: #34497E !important;
+	font-family: 'GmarketSansMedium';
+} */
+
+.unregister {
+	display: block;
+	width: 220px;
+	height: 310px;
+	border: 5px solid white;
+	border-radius: 10px;
+	font-weight: bolder;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium';
+	background: white;
+}
+
+/* .unregister>span>i:hover {
+	color: #34495E !important;
+	font-family: 'GmarketSansMedium';
+}
+ */
+.schedule {
+	display: block;
+	width: 220px;
+	height: 310px;
+	border: 5px solid white;
+	border-radius: 10px;
+	font-weight: bolder;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium';
+	background: white;
+}
+
+/* .schedule>span>i:hover {
+	color: #34495E !important;
+	font-family: 'GmarketSansMedium';
+} */
+
+.Interview {
+	display: block;
+	width: 220px;
+	height: 310px;
+	border: 5px solid white;
+	border-radius: 10px;
+	font-weight: bolder;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium';
+	background: white;
+}
+
+/* .Interview>span>i:hover {
+	color: #34495E !important;
+	font-family: 'GmarketSansMedium';
+} */
+
+.InYNCo {
+	display: block;
+	width: 220px;
+	height: 310px;
+	border: 5px solid white;
+	border-radius: 10px;
+	font-weight: bolder;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium';
+	background: white;
+	
+}
+
+/* .InYNCo>span>i:hover {
+	color: #34495E !important;
+	font-family: 'GmarketSansMedium';
+} */
+
+.InterviewP {
+	display: block;
+	width: 220px;
+	height: 310px;
+	border: 5px solid white;
+	border-radius: 10px;
+	font-weight: bolder;
+	font-size: 18px;
+	font-family: 'GmarketSansMedium';
+	background: white;
+	
+}
+
+/* .InterviewP>span>i:hover {
+	color: #34495E !important;
+	font-family: 'GmarketSansMedium';
+} */

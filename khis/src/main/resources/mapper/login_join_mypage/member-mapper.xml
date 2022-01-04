@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+<insert id="insertMember">
+   
+  insert into 
+    member 
+  values(
+    seq_member_no.nextval,
+    #{coCode},
+    #{password},
+    #{name},
+    #{birthday},
+    #{email},
+    #{phone},
+    #{address},
+    #{gender},
+    #{kind},
+    sysdate,
+    #{id},
+    #{interviewerNo}
+  )
+</insert>
+
+<select id="selectOneMember" resultType="member">
+    select
+      *
+    from
+      member
+    where
+      id = #{id}
+  </select>
+
+<update id="updateMember">
+  update 
+    member 
+  set 
+    co_code = #{coCode},
+    name = #{name},
+    gender = #{gender},
+    email = #{email},
+    phone = #{phone},
+    address = #{address},
+    kind = #{kind}
+    <if test="interviewerNo != null">
+      , interviewer_no = #{interviewerNo}
+    </if>
+  where 
+    id = #{id}
+ </update>
+ 
+  <!-- <parameterMap type="hashmap" id="paging">
+    <parameter property="count" jdbcType="number"/>
+    <parameter property="offset" jdbcType="number"/>
+  </parameterMap> -->
+
+  <select id="selectAdminMemberList" parameterType="pagingDto" resultType="joinFormDto">
+    select m.*, mc.* from member m left join member_company mc on m.co_code = mc.co_code
+    <!-- <if test="true">
+      OFFSET #{offset, jdbcType=INTEGER} ROWS FETCH FIRST #{count, jdbcType=INTEGER} ROWS ONLY
+    </if> -->
+  </select>
+  
+   <select id="selectMemberList" resultType="joinFormDto">
+    select m.*, mc.* from member m left join member_company mc on m.co_code = mc.co_code
+   
+  </select> 
+  
+  <delete id="deleteOneMember">
+    delete
+      member
+    where 
+      id = #{id}
+  </delete>
+  
+  <insert id="insertMemberCompany">
+<!--     <selectKey keyProperty="memberNo" resultType="int">
+      select seq_member_no.nextval FROM DUAL
+  </selectKey>
+   
+  insert into 
+    member_company 
+  values(
+    #{coCode},
+    #{coName}
+  ) -->
+  
+  merge into 
+      member_company
+  using dual 
+      on (co_code = #{coCode}) 
+      when matched then     
+          update set
+                co_name = #{coName},
+                co_address = #{coAddress}
+          
+      when not matched then
+          insert (co_code, co_name, co_address)
+          values (
+        #{coCode},
+        #{coName},
+        #{coAddress}
+      )
+  </insert>
+  
+  <select id="findMemberByPhoneAndEmail" resultType="member">
+  select * from member where phone = #{phone} and email = #{email}
+  </select>
+  
+  <select id="findMemberByIdAndEmail" resultType="member">
+  select * from member where id = #{id} and email = #{email}
+  </select>
+  
+  <select id="findInfo" resultType="member">
+    select name, phone, co_code from ir_info
+    where name = #{name}
+      and ssn like #{birthday}||'%'
+      and phone = #{phone}
+      and co_code = #{coCode}
+      and email = #{email}
+    <if test="interviewerNo != null">
+      and interviewer_no = #{interviewerNo}
+    </if>
+  </select>
+
+<select id="selectScheduleList" resultType="map">
+    select ir.member_info_no as "groupId"
+      , co_name || ' ' || t.job_posting_name as "title"
+      , cast(t.start_time AS DATE) as "start"
+      , cast(t.end_time AS DATE) as "end"
+    from interview_time t, ir_info ir, member_company co
+    where ir.member_info_no = t.member_info_no
+      and ir.co_code=co.co_code
+      <choose>
+      <when test="kind == 'ADMIN'">
+        <!-- 조건 없음 -->
+      </when>
+      <when test="kind == 'IR_HAED'">
+        and co.co_code = #{coCode}
+      </when>
+      <otherwise>
+        and member_no = #{memberNo}  </otherwise>
+    </choose>
+      
+<!--       <if  test="kind = 'IR_HAED'">
+      select a.co_code from member a
+      inner join member_company b on a.co_code = b.co_code
+      inner join interview_time c on b.co_code = c.co_code
+      where a.co_code = b.co_code and b.co_code = c.co_code
+      </if>
+      <if  test="kind = 'ADMIN'">
+      select a.co_code from member_company a
+      inner join interview_time b on a.co_code = b.co_code
+      where a.co_code = b.co_code
+      </if> -->
+</select>
+
+<select id="countMember" resultType="int">
+select count(*) from member
+</select>
+
+  
+<select id="selectOneMemberCompany" resultType="memberCompany">
+  select
+    *
+  from
+    member_company
+  where
+    co_code = #{id}
+</select>
+
+<update id="updateMemberCompany">
+  update member_company set co_name = #{coName}, co_address = #{coAddress} where co_code = ${coCode}
+
+
+</update>
+  
+</mapper>
