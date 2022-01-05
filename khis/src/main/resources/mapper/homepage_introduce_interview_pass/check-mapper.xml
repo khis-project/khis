@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="check">
+	<select id="selectCheckList" resultType="check">
+		select 
+			pass_comment.comment_no, interview.reg_date, interview.title, interview.writer, pass_comment.passcheck
+		from 
+			pass_comment inner join interview
+		on 
+			pass_comment.member_info_no = interview.member_info_no
+		where 
+			pass_comment.member_info_no=21
+		    
+	</select>
+		
+	<select id="selectComment">
+		select  
+			interview_evaluate.evaluate_comment
+		from 
+			pass_comment inner join interview_evaluate
+		on 
+		pass_comment.member_info_no = interview_evaluate.member_info_no
+		where 
+			pass_comment.member_info_no=21
+	</select>
+	<select id="selectCheckTotalCount" resultType="_int">
+		select
+			count(*)
+		from 
+			pass_comment
+		where 
+			pass_comment.member_info_no=21
+	</select>
+	<select id="selectMemeberName">
+		select 
+			ir_info.name, ir_info.member_info_no
+		from 
+			pass_comment inner join ir_info
+		on 
+			pass_comment.member_info_no = ir_info.member_info_no
+		where 
+			pass_comment.member_info_no=21
+	</select>
+</mapper>
