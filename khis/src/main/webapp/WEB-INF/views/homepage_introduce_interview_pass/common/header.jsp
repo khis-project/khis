@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.kh.khis.login_join_mypage.model.service.MemberService"%>    
+<%@page import="com.kh.khis.login_join_mypage.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -13,6 +15,8 @@
 
 <!-- css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/homepage_introduce_interview_pass/common.css" />
+<script>
+</script>
 
 <%
   /* User loginUser = (User)session.getAttribute("loginUser"); */
@@ -24,10 +28,10 @@
 <div id="wrap">
         <!--wrap-->
         <header id="header1" class="clearfix">
-                <a href="#" class="logo"><img src="<%=request.getContextPath()%>/resources/images/khis_logo2.png" alt="로고"></a>
+                <a href="<%=request.getContextPath()%>/" class="logo"><img src="<%=request.getContextPath()%>/resources/images/khis_logo2.png" alt="로고"></a>
             <div id="container">
         <ul class="myMenu">
-          <li class="menu1"><a href="#">홈</a></li>
+          <li class="menu1"><a href="<%=request.getContextPath()%>/">홈</a></li>
           <li class="menu2" name=""><a >면접 연습</a>
             <ul class="submenu">
               <li><a href="#">테스트</a></li>

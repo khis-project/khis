@@ -170,3 +170,15 @@ p2 {
 	color: #34495E !important;
 	font-family: 'GmarketSansMedium';
 } */
+
+.mainBtn {
+  height: 35px;
+  width: 350px;
+  border: none;
+  letter-spacing: 3px;
+  border-radius: 5px;
+  background: white;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'GmarketSansMedium';
+}

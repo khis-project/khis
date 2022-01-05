@@ -6,6 +6,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login_join_mypage/findPassword.css"/>
 
+<title>비밀번호 찾기</title>
 <body>
 <div id="findPasswordForm">
 	<form name="findPasswordForm"  action="<%=request.getContextPath()%>/adminApi/requestEmailAuthCode" method="post">

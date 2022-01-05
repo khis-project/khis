@@ -16,6 +16,7 @@
 <c:remove var="msg" />
 </c:if>
 
+<title>회원 정보 업데이트</title>
 <body>
 <form name="updateForm"
 id="updateForm"

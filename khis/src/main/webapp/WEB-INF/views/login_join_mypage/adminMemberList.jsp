@@ -14,6 +14,7 @@
 </c:if>
 <html>
 <head>
+<title>회원관리 리스트</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login_join_mypage/memberList.css" />
 </head>

@@ -6,6 +6,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login_join_mypage/irSKind.css"/>
 
+<html>
+<head>
+<title>면접관 정보확인</title>
+</head>
 <form name="irSKind" action="<%=request.getContextPath()%>/join/irSKind" method="GET">
 	<div class="container">
 		<div class="loginForm">
@@ -74,3 +78,4 @@ $(document).ready(function(){
   });
 })
 </script>
+</html>

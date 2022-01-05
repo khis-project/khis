@@ -15,7 +15,8 @@
 </script>
 <c:remove var="msg" />
 </c:if>
-
+<html>
+<title>아이디 찾기</title>
 <body>
 <form name="findIdForm" action="<%=request.getContextPath()%>/admin/findId.do"
 	method="post">
@@ -39,3 +40,4 @@
 	</div>
 </form>
 </body>
+</html>

@@ -15,7 +15,7 @@
 </c:if>
 
 <html>
-<title>회원가입</title>
+<title>면접자 마이페이지</title>
 <head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -62,6 +62,8 @@
 					<p>면접 연습하시면서 필요하다고 <br />생각하는 질문들을 적어주세요. </p>
 				</div>
 			</div> 
+			<br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="← 메인 페이지로 돌아가기" onClick="mainBtn()">
+    </div>
 		</div>
 	</div>
 </body>
@@ -88,4 +90,8 @@ $('.unregister').click(function() {
 		$.ajax(args);
 	}
 });
+
+function mainBtn(){
+	  location.href = "${pageContext.request.contextPath}/";
+	} 
 </script>

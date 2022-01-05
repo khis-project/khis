@@ -15,6 +15,7 @@
 <c:remove var="msg" />
 </c:if>
 
+<title>로그인</title>
 <form name="loginForm" action="<%=request.getContextPath()%>/login/loginmember" method="POST">
 	<div class="container">
 		<div class="loginForm">
