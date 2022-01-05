@@ -65,26 +65,17 @@ public class LoginController {
 			if(redirect != null) {
 				location = redirect;
 				session.removeAttribute("redirect");
-			} else {
-				switch (member.getKind()) {
-				case "IR":
-					location =  "/member/irMyPage.do";
-					break;
-				case "USER":
-					location =  "/member/userMyPage.do";
-					break;
-				case "IR_SUPERVISOR":
-					location =  "/member/irSMyPage.do";
-					break;
-				case "IR_HAED":
-					location =  "/member/irHMyPage.do";
-					break;
-				case "ADMIN":
-					location =  "/member/adminMyPage.do";
-					break;
-				}
-
-			}
+				return "redirect:/";
+			} /*
+				 * else { switch (member.getKind()) { case "IR": location =
+				 * "/member/irMyPage.do"; break; case "USER": location =
+				 * "/member/userMyPage.do"; break; case "IR_SUPERVISOR": location =
+				 * "/member/irSMyPage.do"; break; case "IR_HAED": location =
+				 * "/member/irHMyPage.do"; break; case "ADMIN": location =
+				 * "/member/adminMyPage.do"; break; }
+				 *
+				 * }
+				 */
 		}
 		else {
 			// 로그인 실패
