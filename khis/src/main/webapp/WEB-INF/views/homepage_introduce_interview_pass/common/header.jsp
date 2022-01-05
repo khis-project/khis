@@ -33,9 +33,9 @@
 							<li><a href="#">테스트</a></li>
 						</ul>
 					</li>
-					<li class="menu3" name=""><a href="#">면접 후기</a>
+					<li class="menu3" name=""><a href="${pageContext.request.contextPath}/Interview_review_board/boardList.do">면접 후기</a>
 						<ul class="submenu">
-							<li><a href="#">글쓰기</a></li>
+							<li><a href="${pageContext.request.contextPath}/Interview_review_board/boardForm.do">글쓰기</a></li>
 						</ul>
 					</li>
 					<li class="menu4">
