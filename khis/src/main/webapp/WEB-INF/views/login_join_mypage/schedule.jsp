@@ -28,7 +28,7 @@
 <script
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <script
-  src='${pageContext.request.contextPath}/resources/js/schedule.js'></script>
+  src='${pageContext.request.contextPath}/resources/js/login_join_mypage/schedule.js'></script>
 
 </head>
 <body>
@@ -48,12 +48,26 @@
 $(function(){
 	$.get(`${pageContext.request.contextPath}/member/scheduleList.do`, function(data){
 		console.log(data);
-	  initCalendar(data);
+    initCalendar(data);
 	})
 })
 
 function returnBtn(){
-  location.href = "${pageContext.request.contextPath}/member/adminMyPage.do/"
+	  if('${loginMember.kind}' == "IR_SUPERVISOR"){
+		  location.href = "${pageContext.request.contextPath}/member/irSMyPage.do/";
+	  }
+	  else if('${loginMember.kind}' == "IR"){
+	      location.href = "${pageContext.request.contextPath}/member/irMyPage.do/";
+	    }
+	  else if('${loginMember.kind}' == "USER"){
+	        location.href = "${pageContext.request.contextPath}/member/userMyPage.do/";
+	      }
+	  else if('${loginMember.kind}' == "IR_HAED"){
+	        location.href = "${pageContext.request.contextPath}/member/irHMyPage.do/";
+	      }
+	  else if('${loginMember.kind}' == "ADMIN"){
+          location.href = "${pageContext.request.contextPath}/member/adminMyPage.do/";
+        }
 }
 </script>
 </html>

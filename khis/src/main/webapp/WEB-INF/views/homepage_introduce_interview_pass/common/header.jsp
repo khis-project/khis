@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/homepage_introduce_interview_pass/common.css" />
 
 <%
-	/* User loginUser = (User)session.getAttribute("loginUser"); */
+  /* User loginUser = (User)session.getAttribute("loginUser"); */
 %>
 
 </head>
@@ -26,32 +26,32 @@
         <header id="header1" class="clearfix">
                 <a href="#" class="logo"><img src="<%=request.getContextPath()%>/resources/images/khis_logo.png" alt="로고"></a>
             <div id="container">
-				<ul class="myMenu">
-					<li class="menu1"><a href="#">홈</a></li>
-					<li class="menu2" name=""><a >면접 연습</a>
-						<ul class="submenu">
-							<li><a href="#">테스트</a></li>
-						</ul>
-					</li>
-					<li class="menu3" name=""><a href="${pageContext.request.contextPath}/Interview_review_board/boardList.do">면접 후기</a>
-						<ul class="submenu">
-							<li><a href="${pageContext.request.contextPath}/Interview_review_board/boardForm.do">글쓰기</a></li>
-						</ul>
-					</li>
-					<li class="menu4">
-						<a href="#"><img src="<%=request.getContextPath()%>/resources/images/user.png"	></a>
-						<ul class="submenu">
-						<%-- <% if(loginUser == null){ %> --%>
-							<li><a href="#">로그인</a></li>
-							<li><a href="#">회원가입</a></li>
-						<%-- <% }else{ %> --%>
-							<li><a href="#">My</a></li>
-							<li><a href="#">로그아웃</a></li>
-						<%-- <% } %> --%>
-						</ul>
-					</li>
-				</ul>
-			</div>
+        <ul class="myMenu">
+          <li class="menu1"><a href="#">홈</a></li>
+          <li class="menu2" name=""><a >면접 연습</a>
+            <ul class="submenu">
+              <li><a href="#">테스트</a></li>
+            </ul>
+          </li>
+          <li class="menu3" name=""><a href="${pageContext.request.contextPath}/Interview_review_board/boardList.do">면접 후기</a>
+            <ul class="submenu">
+              <li><a href="${pageContext.request.contextPath}/Interview_review_board/boardForm.do">글쓰기</a></li>
+            </ul>
+          </li>
+          <li class="menu4">
+            <a href="#"><img src="<%=request.getContextPath()%>/resources/images/user.png"  ></a>
+            <ul class="submenu">
+            <%-- <% if(loginUser == null){ %> --%>
+              <li><a href="#">로그인</a></li>
+              <li><a href="#">회원가입</a></li>
+            <%-- <% }else{ %> --%>
+              <li><a href="#">My</a></li>
+              <li><a href="#">로그아웃</a></li>
+            <%-- <% } %> --%>
+            </ul>
+          </li>
+        </ul>
+      </div>
         </header>
 </div>
 
