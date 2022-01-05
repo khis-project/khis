@@ -6,8 +6,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login_join_mypage/join.css" />
-<body>
 
+<title>회원가입</title>
+<body>
 <form name="joinForm"
 	action="<%=request.getContextPath()%>/join/joinForm.do"
 	method="POST">

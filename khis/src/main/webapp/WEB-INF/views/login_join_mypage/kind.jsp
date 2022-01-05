@@ -6,6 +6,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login_join_mypage/kind.css"/>
 
+<title>면접자 정보확인</title>
 <form name="kind" action="<%=request.getContextPath()%>/join/kind" method="GET">
 	<div class="container">
 		<div class="loginForm">

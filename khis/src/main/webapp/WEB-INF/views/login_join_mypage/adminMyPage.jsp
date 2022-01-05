@@ -3,9 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <html>
-<title>회원가입</title>
+<title>관리자 마이페이지</title>
 <head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -38,7 +39,13 @@
             <p>회원들의 면접 질문에 대한 <br />요청 내역 입니다. </p>
         </div>
 			</div>
+			<br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="← 메인 페이지로 돌아가기" onClick="mainBtn()">
 		</div>
 	</div>
 </body>
+<script>
+function mainBtn(){
+	location.href = "${pageContext.request.contextPath}/";
+}	
+</script>
 </html>

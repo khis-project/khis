@@ -8,6 +8,7 @@
 
 <html>
 <head>
+<title>사업자등록번호 조회</title>
 </head>
 <body>
 <form name="companyForm" action="<%=request.getContextPath()%>/join/companyNo.do" method="GET">

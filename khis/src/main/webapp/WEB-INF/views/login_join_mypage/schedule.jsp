@@ -14,7 +14,7 @@
 <c:remove var="msg" />
 </c:if>
 <meta charset="UTF-8">
-<title>면접 스케줄</title>
+<title>면접 일정</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login_join_mypage/schedule.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>

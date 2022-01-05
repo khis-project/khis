@@ -15,7 +15,7 @@
 </c:if>
 
 <html>
-<title>회원가입</title>
+<title>예비 면접자 마이 페이지</title>
 <head>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
@@ -34,7 +34,7 @@
 					<span><br>회원정보</span><br><br> 
 					<span><a href="http://localhost:9090/khis/member/updateForm.do">
 						<i class="fas fa-user-lock fa-9x"></i></a></span>
-					<p>소중한 개인 정보, 확인 및 수정이 가능해요.</p>
+					<p>소중한 개인 정보, 확인 및 수정이 가능해요.</p><p2>* [ 면접자로 변경 가능해요 :) ]</p2>
 				</div>
 				<div class="unregister">
 					<span><br>회원탈퇴</span><br><br>
@@ -47,6 +47,7 @@
 					<p>면접 연습하시면서 필요하다고 <br />생각하는 질문들을 적어주세요. </p>
 				</div>			
 			</div>
+			<br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="← 메인 페이지로 돌아가기" onClick="mainBtn()">
 		</div>
 	</div>
 </body>
@@ -73,4 +74,8 @@ $('.unregister').click(function() {
 		$.ajax(args);
 	}
 });
+
+function mainBtn(){
+    location.href = "${pageContext.request.contextPath}/";
+  } 
 </script>

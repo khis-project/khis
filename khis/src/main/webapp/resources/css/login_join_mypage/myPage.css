@@ -6,10 +6,12 @@
 }
 
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 body {
@@ -47,12 +49,12 @@ p {
 }
 
 p2 {
-  font-size: 13px;
-  font-weight: bolder;
-  text-decoration:underline;
-  text-underline-position:under;
-  color: orangered;
-  font-family: 'GmarketSansMedium';
+	font-size: 13px;
+	font-weight: bolder;
+	text-decoration: underline;
+	text-underline-position: under;
+	color: orangered;
+	font-family: 'GmarketSansMedium';
 }
 
 .box {
@@ -82,7 +84,6 @@ p2 {
 	color: #34497E !important;
 	font-family: 'GmarketSansMedium';
 } */
-
 .unregister {
 	display: block;
 	width: 250px;
@@ -99,7 +100,6 @@ p2 {
 	color: #34497E !important;;
 	font-family: 'GmarketSansMedium';
 }  */
-
 .schedule {
 	display: block;
 	width: 250px;
@@ -116,7 +116,6 @@ p2 {
 	color: #34495E !important;
 	font-family: 'GmarketSansMedium';
 } */
-
 .Interview {
 	display: block;
 	width: 250px;
@@ -150,7 +149,6 @@ p2 {
 	color: #34495E !important;
 	font-family: 'GmarketSansMedium';
 } */
-
 .InterviewP {
 	display: block;
 	width: 250px;
@@ -167,3 +165,15 @@ p2 {
 	color: #34495E !important;
 	font-family: 'GmarketSansMedium';
 } */
+
+.mainBtn {
+	height: 35px;
+	width: 350px;
+	border: none;
+	letter-spacing: 3px;
+	border-radius: 5px;
+	background: white;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: 'GmarketSansMedium';
+}

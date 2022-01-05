@@ -8,6 +8,7 @@
 
 <html>
 <head>
+<title>개인정보 수집ㆍ이용 동의</title>
 </head>
 <body>
 <form name="companyForm" action="<%=request.getContextPath()%>/join/aggrement.do" method="GET">
