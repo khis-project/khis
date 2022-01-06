@@ -37,6 +37,7 @@ public class Member implements Serializable {
 	private Date joinDate;
 	private String id;
 	private Integer interviewerNo; //Integer null을 쓸수있다.
+	private Integer memberInfoNo;
 
 	/*
 	 * public Member(long coCode, String password, String name, Date birthday,

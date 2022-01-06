@@ -26,11 +26,10 @@
 
 <select id="selectOneMember" resultType="member">
     select
-      *
+      m.*, i.member_info_no
     from
-      member
-    where
-      id = #{id}
+      member m
+       left join IR_INFO i on i.member_no = m.member_no where m.id = #{id}
   </select>
 
 <update id="updateMember">
