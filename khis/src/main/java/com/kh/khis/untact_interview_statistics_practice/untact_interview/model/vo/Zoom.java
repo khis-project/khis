@@ -14,12 +14,17 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class Zoom implements Serializable {
 	
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	int zoom_no;
-	int member_no;
-	int co_code;
-	String api_key;
-	String api_secret;
-	String jwt_token;
+	private int zoomNo;
+	private int memberNo;
+    private	long coCode;
+    private	String apiKey;
+	private	String apiSecret;
+	private	String zoomNumber;
+	private	String zoomPassword;
 
 }

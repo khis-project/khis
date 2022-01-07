@@ -43,7 +43,7 @@
 				</div>
 				<div class="management">
           <span><br>면접 정보 관리</span><br><br>
-            <span><a href="">
+            <span><a href="${pageContext.request.contextPath }/irmanagement/irIndex.do">
             <i class="fas fa-paste fa-9x" style="color: #34495E;"></i></a></span>
           <p> 면접 진행을 위해 <br/>면접관 / 면접자 정보를 입력해 주세요.</p>
         </div>

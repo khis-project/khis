@@ -63,9 +63,9 @@ public class UntactInterviewController {
 	@PostMapping("zoomEnroll.do")
 	public String insertZoom(@ModelAttribute Zoom zoom, RedirectAttributes redirectAttributes) {
 		//test 데이터
-		zoom.setZoom_no(1);
-		zoom.setMember_no(1);
-		zoom.setCo_code(1);
+//		zoom.setZoom_no(1);
+//		zoom.setMember_no(1);
+//		zoom.setCo_code(1);
 		log.debug("zoom = {}",zoom);
 		try {
 			int result = untactInterviewService.insertZoom(zoom);
