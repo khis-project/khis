@@ -96,6 +96,18 @@ p2 {
 	background: white;
 }
 
+.management {
+  display: block;
+  width: 250px;
+  height: 330px;
+  border: 5px solid white;
+  border-radius: 10px;
+  font-weight: bolder;
+  font-size: 18px;
+  font-family: 'GmarketSansMedium';
+  background: white;
+}
+
 /* .unregister span i:hover {
 	color: #34497E !important;;
 	font-family: 'GmarketSansMedium';
@@ -127,6 +139,7 @@ p2 {
 	font-family: 'GmarketSansMedium';
 	background: white;
 }
+
 
 /* .Interview>span>i:hover {
 	color: #34495E !important;

@@ -41,6 +41,12 @@
 					<span><i class="far fa-hand-paper fa-9x" style="color: #34495E;"></i></span>
 					<p>khis 이용을 그만 두시겠어요?</p>
 				</div>
+				<div class="management">
+          <span><br>면접 정보 관리</span><br><br>
+            <span><a href="">
+            <i class="fas fa-paste fa-9x" style="color: #34495E;"></i></a></span>
+          <p> 면접 진행을 위해 <br/>면접관 / 면접자 정보를 입력해 주세요.</p>
+        </div>
 				<div class="schedule">
 					<span><br>면접 일정</span><br><br>
 				    <span><a href="http://localhost:9090/khis/member/schedule.do">
