@@ -21,6 +21,7 @@ public class BoardMemberCompany implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int board_no;
+	private int pass_no;
 	private String co_code;
 	private String co_name;
 	private String co_address; 

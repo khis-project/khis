@@ -55,7 +55,8 @@
         </div>
 				<div class="InterviewP">
 					<span><br>면접 연습 질문 요청하기</span><br><br>
-				    <span><i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></span>
+				    <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
+				    <i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></a></span>
 					   <p>면접 연습하시면서 필요하다고 <br /> 생각하는 질문들을 적어주세요. </p>
 				</div>					
 			</div>

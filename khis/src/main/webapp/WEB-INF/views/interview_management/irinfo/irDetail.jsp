@@ -18,32 +18,7 @@
 	text-align: center;
 }
 </style>
-<div id="sidebar">
-	<ul>
-		<li>
-		면접자/면접관 관련
-			<ul class = "sub">
-				<li><a href="${pageContext.request.contextPath }/irmanagement/insertInterviewer.do">면접자 추가</a></li>
-				<li><a href="${pageContext.request.contextPath }/irmanagement/insertRater.do">면접관 추가</a></li>
-				<li><a href="${pageContext.request.contextPath }/irmanagement/irList.do">면접자/면접관 목록</a></li>
-			</ul>
-		</li>
-		<li>
-		면접 질문 관련
-			<ul class = "sub">
-				<li><a href="${pageContext.request.contextPath }/interview/insertInterview.do">면접 질문 추가</a></li>
-				<li><a href="${pageContext.request.contextPath }/interview/interviewList.do">면접 질문 목록</a></li>
-			</ul>
-		</li>
-		<li>
-		회의실 관련
-			<ul class = "sub">
-				<li><a href="#">회의실 추가</a></li>
-				<li><a href="#">회의실 목록</a></li>
-			</ul>
-		</li>
-	</ul>
-</div>
+<jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 <%-- content --%>
 	<div id="content">
 		<h2>${irInfo.name} (${irInfo.role eq "I" ? "면접자" : "면접관"})</h2>

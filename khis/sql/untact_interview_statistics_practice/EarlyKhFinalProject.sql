@@ -1,0 +1,694 @@
+--drop table zoom;
+CREATE TABLE  zoom  (
+	 zoom_no 	number		NOT NULL,
+	 MEMBER_NO 	number		NOT NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 api_key 	varchar2(100)		NULL,
+	 api_secret 	varchar2(100)		NULL,
+	 jwt_token 	varchar2(1000)		NULL
+);
+
+COMMENT ON COLUMN  zoom . zoom_no  IS '줌 번호';
+
+COMMENT ON COLUMN  zoom . MEMBER_NO  IS '회원번호(SEQ 적용 필요)';
+
+COMMENT ON COLUMN  zoom . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  zoom . api_key  IS '줌 zpi kwy';
+
+COMMENT ON COLUMN  zoom . api_secret  IS '줌 api secret';
+
+COMMENT ON COLUMN  zoom . jwt_token  IS 'zoom jwt token';
+
+CREATE TABLE  MEMBER  (
+	 MEMBER_NO 	number		NOT NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 PASSWORD 	VARCHAR2(250)		NULL,
+	 NAME 	VARCHAR2(40)		NULL,
+	 BIRTHDAY 	DATE		NULL,
+	 EMAIL 	VARCHAR2(40)		NULL,
+	 PHONE 	VARCHAR2(20)		NULL,
+	 ADDRESS 	VARCHAR2(200)		NULL,
+	 GENDER 	VARCHAR2(2)		NULL,
+	 KIND 	VARCHAR2(20)		NULL,
+	 JOIN_DATE 	DATE		NULL,
+	 ID 	VARCHAR2(40)		NOT NULL,
+	 INTERVIEW_NO 	NUMBER		NULL -- 해당 부분은 면접자의 번호부분
+);
+
+--insert into 
+--MEMBER (MEMBER_NO, CO_CODE, PASSWORD, NAME, BIRTHDAY, EMAIL, PHONE, ADDRESS, GENDER, KIND, JOIN_DATE, ID,INTERVIEW_NO)
+--values (1,1,111,'김정현',sysdate,'kimbh666' ,'01012341234','서울','F','C', sysdate,'test0',null)
+--;
+--insert into 
+--MEMBER_COMPANY (CO_CODE,co_name)
+--values (1,'sk')
+--;
+--commit;
+delete from zoom;
+commit;
+
+COMMENT ON COLUMN  MEMBER . MEMBER_NO  IS '회원번호(SEQ 적용 필요)';
+
+COMMENT ON COLUMN  MEMBER . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  MEMBER . PASSWORD  IS '비밀번호';
+
+COMMENT ON COLUMN  MEMBER . NAME  IS '이름';
+
+COMMENT ON COLUMN  MEMBER . BIRTHDAY  IS '생년월일';
+
+COMMENT ON COLUMN  MEMBER . EMAIL  IS '이메일';
+
+COMMENT ON COLUMN  MEMBER . PHONE  IS '휴대폰';
+
+COMMENT ON COLUMN  MEMBER . ADDRESS  IS '주소';
+
+COMMENT ON COLUMN  MEMBER . GENDER  IS '성별';
+
+COMMENT ON COLUMN  MEMBER . KIND  IS '가입자 유형';
+
+COMMENT ON COLUMN  MEMBER . JOIN_DATE  IS '가입 날짜';
+
+COMMENT ON COLUMN  MEMBER . ID  IS '아이디';
+
+COMMENT ON COLUMN  MEMBER . INTERVIEW_NO  IS '면접번호';
+
+CREATE TABLE  IR_INFO  (
+	 MEMBER_INFO_NO 	number		NOT NULL,
+	 MEMBER_NO 	number		NOT NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 INTERVIEW_NO 	NUMBER		NOT NULL,
+	 NAME 	VARCHAR2(40)		NOT NULL,
+	 EMAIL 	VARCHAR2(40)		NOT NULL,
+	 PHONE 	VARCHAR2(20)		NOT NULL,
+	 CATETORY 	CHAR(1)		NULL,
+	 ROLE 	CHAR(1)		NOT NULL,
+	 zoom_no 	number		NULL,
+	 IR_PATH_CODE 	number		NULL, -- 면접자 지원경로
+	 INTERVIEWER_INFO_NO 	NUMBER		NULL -- 면접자 이력서
+);
+
+COMMENT ON COLUMN  IR_INFO . MEMBER_INFO_NO  IS '회원 번호 (SEQ 적용 필요)';
+
+COMMENT ON COLUMN  IR_INFO . MEMBER_NO  IS '회원번호';
+
+COMMENT ON COLUMN  IR_INFO . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  IR_INFO . INTERVIEW_NO  IS '면접자 번호';
+
+COMMENT ON COLUMN  IR_INFO . NAME  IS '면접자 이름';
+
+COMMENT ON COLUMN  IR_INFO . EMAIL  IS '면접자 이메일';
+
+COMMENT ON COLUMN  IR_INFO . PHONE  IS '면접자 전화번호';
+
+COMMENT ON COLUMN  IR_INFO . CATETORY  IS '면접 방법 분류';
+
+COMMENT ON COLUMN  IR_INFO . ROLE  IS '면접자/면접관 분류';
+
+COMMENT ON COLUMN  IR_INFO . zoom_no  IS '면접 회의실 번호';
+
+COMMENT ON COLUMN  IR_INFO . IR_PATH_CODE  IS '면접지원 경로 번호';
+
+COMMENT ON COLUMN  IR_INFO . INTERVIEWER_INFO_NO  IS '면접자 정보 번호';
+
+CREATE TABLE  INTERVIEW  (
+	 interview_NO 	number		NOT NULL,
+	 MEMBER_NO 	number		NOT NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 NAME 	VARCHAR2(40)		NOT NULL,
+	 TITLE 	VARCHAR2(100)		NOT NULL,
+	 CONTENT 	VARCHAR2(1000)		NULL,
+	 REG_DATE 	DATE	DEFAULT SYSDATE	NOT NULL,
+     member_info_no   number not null -- 해당 부분은 면접관의 번호
+);
+
+COMMENT ON COLUMN  INTERVIEW . interview_NO  IS '질문 번호';
+
+COMMENT ON COLUMN  INTERVIEW . MEMBER_NO  IS '회원번호';
+
+COMMENT ON COLUMN  INTERVIEW . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  INTERVIEW . NAME  IS '작성자 이름';
+
+COMMENT ON COLUMN  INTERVIEW . TITLE  IS '면접 질문 제목';
+
+COMMENT ON COLUMN  INTERVIEW . REG_DATE  IS '작성일자';
+
+COMMENT ON COLUMN INTERVIEW.member_info_no IS '평가 면접관';
+
+CREATE TABLE  BOARD  (
+	 BOARD_NO 	NUMBER		NOT NULL,
+	 OCCUPATION_CODE 	NUMBER		NOT NULL,
+	 MEMBER_NO 	number		NOT NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 RANK 	VARCHAR2(50)		NOT NULL,
+	 EMPLOYMENT_TYPE 	VARCHAR2(50)		NOT NULL,
+	 TITLE 	VARCHAR2(500)		NULL,
+	 REG_DATE 	DATE		DEFAULT sysdate	NULL,
+	 INTERVIEW_DIFFICULTY 	VARCHAR2(30)		NULL,
+	 INTERVIEW_PATH 	VARCHAR2(30)		NULL,
+	 INTERVIEW_DATE 	DATE		NULL,
+	 INTERVIEW_EXPERIENCE 	VARCHAR2(20)		NULL,
+	 RECLUITMENT_METHOD 	VARCHAR2(50)		NULL,
+	 ANNOUNCEMENT_TIME 	VARCHAR2(50)		NULL,
+	 PASSCHECK 	CHAR(1)		NULL
+);
+
+COMMENT ON COLUMN  BOARD . BOARD_NO  IS '게시글 번호';
+
+COMMENT ON COLUMN  BOARD . OCCUPATION_CODE  IS '직종코드';
+
+COMMENT ON COLUMN  BOARD . MEMBER_NO  IS '회원번호(sequence)';
+
+COMMENT ON COLUMN  BOARD . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  BOARD . RANK  IS '직급';
+
+COMMENT ON COLUMN  BOARD . EMPLOYMENT_TYPE  IS '고용형태';
+
+COMMENT ON COLUMN  BOARD . TITLE  IS '게시글 제목';
+
+COMMENT ON COLUMN  BOARD . REG_DATE  IS '게시글 등록일자';
+
+COMMENT ON COLUMN  BOARD . INTERVIEW_DIFFICULTY  IS '면접 난이도';
+
+COMMENT ON COLUMN  BOARD . INTERVIEW_PATH  IS '면접경로';
+
+COMMENT ON COLUMN  BOARD . INTERVIEW_DATE  IS '면접일자';
+
+COMMENT ON COLUMN  BOARD . INTERVIEW_EXPERIENCE  IS '면접경험(긍정적/보통/부정적)';
+
+COMMENT ON COLUMN  BOARD . RECLUITMENT_METHOD  IS '채용방식';
+
+COMMENT ON COLUMN  BOARD . ANNOUNCEMENT_TIME  IS '발표시기';
+
+COMMENT ON COLUMN  BOARD . PASSCHECK  IS '합격여부';
+
+CREATE TABLE  MEMBER_COMPANY  (
+	 CO_CODE 	NUMBER		NULL,
+	 CO_NAME 	VARCHAR(50)		NULL
+);
+
+COMMENT ON COLUMN  MEMBER_COMPANY . CO_CODE  IS '회사코드(법인등록번호)';
+
+COMMENT ON COLUMN  MEMBER_COMPANY . CO_NAME  IS '회사명';
+
+CREATE TABLE  OCCUPATION  (
+	 OCCUPATION_CODE 	NUMBER		NOT NULL,
+	 OCCUPATION_NAME 	VARCHAR2(100)		NULL
+);
+
+COMMENT ON COLUMN  OCCUPATION . OCCUPATION_CODE  IS '직종코드';
+
+COMMENT ON COLUMN  OCCUPATION . OCCUPATION_NAME  IS '직종이름';
+
+--drop  TABLE  INTERVIEW_evaluat;
+CREATE TABLE  INTERVIEW_evaluate  (
+	 evaluate_NO 	number		NOT NULL,
+	 interview_NO 	number		NULL,
+	 MEMBER_NO 	number		NOT NULL,
+	 evaluate_VALUE 	number		NULL,
+	 evaluate_COMMENT 	VARCHAR2(2000)		NULL
+);
+
+COMMENT ON COLUMN  INTERVIEW_evaluate . evaluate_NO  IS '평가 번호';
+
+COMMENT ON COLUMN  INTERVIEW_evaluate . interview_NO  IS '질문 번호';
+
+COMMENT ON COLUMN  INTERVIEW_evaluate . MEMBER_NO  IS '회원번호';
+
+COMMENT ON COLUMN  INTERVIEW_evaluate . evaluate_VALUE  IS '면접 평가 값';
+
+COMMENT ON COLUMN  INTERVIEW_evaluate . evaluate_COMMENT  IS '면접에 대한 평가자의 코멘트';
+
+CREATE TABLE  BOARD_COMPANY_QUESTION  (
+	 Question_no 	number		NOT NULL,
+	 INTERVIEW_QUESTION 	varchar2(1000)		NULL,
+	 INTERVIEW_ANSWER 	varchar2(4000)		NULL
+);
+
+COMMENT ON COLUMN  BOARD_COMPANY_QUESTION . Question_no  IS '질문번호';
+
+COMMENT ON COLUMN  BOARD_COMPANY_QUESTION . INTERVIEW_QUESTION  IS '면접 질문';
+
+COMMENT ON COLUMN  BOARD_COMPANY_QUESTION . INTERVIEW_ANSWER  IS '면접 답변(느낀점)';
+
+CREATE TABLE  interview_time  (
+	 ITIME_NO 	number		NOT NULL,
+	 MEMBER_INFO_NO 	number		NOT NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 start_time DATE		default sysdate		NULL,
+	 end_titme DATE		default sysdate		NULL,
+	 job_posting_NAME 	VARCHAR2(100)		NULL
+);
+
+COMMENT ON COLUMN  interview_time . ITIME_NO  IS '면접시간번호';
+
+COMMENT ON COLUMN  interview_time . MEMBER_INFO_NO  IS '회원번호';
+
+COMMENT ON COLUMN  interview_time . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  interview_time . start_time  IS '면접시작시간';
+
+COMMENT ON COLUMN  interview_time . end_titme  IS '면접종료시간';
+
+COMMENT ON COLUMN  interview_time . job_posting_NAME  IS '채용공고이름';
+
+CREATE TABLE  BOARD_Question  (
+	 BOARD_NO 	NUMBER		NOT NULL,
+	 Question_no 	number		NOT NULL
+);
+
+COMMENT ON COLUMN  BOARD_Question . BOARD_NO  IS '게시글 번호';
+
+COMMENT ON COLUMN  BOARD_Question . Question_no  IS '질문번호';
+
+CREATE TABLE  COMPANY_SCORE  (
+	 COMPANY_SCORE_NO 	number		NULL,
+	 BOARD_NO 	NUMBER		NULL,
+	 MEMBER_NO 	number		NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 SCORE 	number		NULL
+);
+
+COMMENT ON COLUMN  COMPANY_SCORE . COMPANY_SCORE_NO  IS '회사 점수 번호';
+
+COMMENT ON COLUMN  COMPANY_SCORE . BOARD_NO  IS '게시글 번호';
+
+COMMENT ON COLUMN  COMPANY_SCORE . MEMBER_NO  IS '회원번호(sequence)';
+
+COMMENT ON COLUMN  COMPANY_SCORE . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  COMPANY_SCORE . SCORE  IS '회사 점수';
+
+CREATE TABLE  IR_PATH  (
+	 IR_PATH_CODE 	number		NOT NULL,
+	 IR_PATH_NAME 	varchar2(100)		NULL
+);
+
+COMMENT ON COLUMN  IR_PATH . IR_PATH_CODE  IS '면접지원 경로 번호';
+
+COMMENT ON COLUMN  IR_PATH . IR_PATH_NAME  IS '면접 지원 경로명';
+
+CREATE TABLE  DELETE_MEMBER  (
+	 MEMBER_NO 	number		NOT NULL,
+	 PASSWORD 	VARCHAR2(250)		NULL,
+	 NAME 	VARCHAR2(40)		NULL,
+	 BIRTHDAY 	DATE		NULL,
+	 EMAIL 	VARCHAR2(40)		NULL,
+	 PHONE 	VARCHAR2(20)		NULL,
+	 ADDRESS 	VARCHAR2(200)		NULL,
+	 GENDER 	VARCHAR2(2)		NULL,
+	 KIND 	VARCHAR2(20)		NULL,
+	 JOIN_DATE 	DATE		NULL,
+	 ID 	VARCHAR2(40)		NOT NULL,
+	 INTERVIEW_NO 	NUMBER		NULL,
+	 CO_CODE 	NUMBER		NOT NULL
+);
+
+COMMENT ON COLUMN  DELETE_MEMBER . MEMBER_NO  IS '회원번호(sequence)';
+
+COMMENT ON COLUMN  DELETE_MEMBER . PASSWORD  IS '비밀번호';
+
+COMMENT ON COLUMN  DELETE_MEMBER . NAME  IS '이름';
+
+COMMENT ON COLUMN  DELETE_MEMBER . BIRTHDAY  IS '생년월일';
+
+COMMENT ON COLUMN  DELETE_MEMBER . EMAIL  IS '이메일';
+
+COMMENT ON COLUMN  DELETE_MEMBER . PHONE  IS '휴대폰';
+
+COMMENT ON COLUMN  DELETE_MEMBER . ADDRESS  IS '주소';
+
+COMMENT ON COLUMN  DELETE_MEMBER . GENDER  IS '성별';
+
+COMMENT ON COLUMN  DELETE_MEMBER . KIND  IS '가입자 유형';
+
+COMMENT ON COLUMN  DELETE_MEMBER . JOIN_DATE  IS '가입 날짜';
+
+COMMENT ON COLUMN  DELETE_MEMBER . ID  IS '아이디';
+
+COMMENT ON COLUMN  DELETE_MEMBER . INTERVIEW_NO  IS '면접번호';
+
+COMMENT ON COLUMN  DELETE_MEMBER . CO_CODE  IS '회사코드';
+
+CREATE TABLE  Interviewer_Info  (
+	 INTERVIEWER_INFO_NO 	NUMBER		NULL,
+	 self_introduction 	VARCHAR2(2000)		NULL,
+	 image 	varchar2(200)		NULL
+);
+
+COMMENT ON COLUMN  Interviewer_Info . INTERVIEWER_INFO_NO  IS '면접자 정보 번호';
+
+COMMENT ON COLUMN  Interviewer_Info . self_introduction  IS '자기소개서';
+
+COMMENT ON COLUMN  Interviewer_Info . image  IS '면접자 사진';
+
+CREATE TABLE  INTERVIEWER_certificate  (
+	 certificate_NO 	NUMBER		NULL,
+	 certificate_NAME 	VARCHAR2(100)		NULL,
+	 certificate_issuer 	VARCHAR2(100)		NULL,
+	 certificate_DATE 	DATE		NULL
+);
+
+COMMENT ON COLUMN  INTERVIEWER_certificate . certificate_NO  IS '자격증 번호';
+
+COMMENT ON COLUMN  INTERVIEWER_certificate . certificate_NAME  IS '자격증 이름';
+
+COMMENT ON COLUMN  INTERVIEWER_certificate . certificate_issuer  IS '자격증 발행처';
+
+COMMENT ON COLUMN  INTERVIEWER_certificate . certificate_DATE  IS '자격증 발행 날짜';
+
+CREATE TABLE  Interviewer_Info_CERTIFICATE  (
+	 certificate_NO 	NUMBER		NULL,
+	 INTERVIEWER_INFO_NO 	NUMBER		NULL
+);
+
+COMMENT ON COLUMN  Interviewer_Info_CERTIFICATE . certificate_NO  IS '자격증 번호';
+
+COMMENT ON COLUMN  Interviewer_Info_CERTIFICATE . INTERVIEWER_INFO_NO  IS '면접자 정보 번호';
+
+CREATE TABLE  INTERVIEWER_career  (
+	 career_NO 	NUMBER		NOT NULL,
+	 company_NAME 	VARCHAR2(100)		NULL,
+	 CAREER_term 	number		NULL,
+	 CAREER_START_TIME 	DATE			NULL,
+	 CAREER_END_TIME 	DATE			NULL
+);
+
+COMMENT ON COLUMN  INTERVIEWER_career . career_NO  IS '경력 번호';
+
+COMMENT ON COLUMN  INTERVIEWER_career . company_NAME  IS '회사 이름';
+
+COMMENT ON COLUMN  INTERVIEWER_career . CAREER_term  IS '경력 기간';
+
+COMMENT ON COLUMN  INTERVIEWER_career . CAREER_START_TIME  IS '활동시작일';
+
+COMMENT ON COLUMN  INTERVIEWER_career . CAREER_END_TIME  IS '활동 종료일';
+
+CREATE TABLE  Interviewer_Info_CAREER  (
+	 career_NO 	NUMBER		NOT NULL,
+	 INTERVIEWER_INFO_NO 	NUMBER		NULL
+);
+
+COMMENT ON COLUMN  Interviewer_Info_CAREER . career_NO  IS '경력 번호';
+
+COMMENT ON COLUMN  Interviewer_Info_CAREER . INTERVIEWER_INFO_NO  IS '면접자 정보 번호';
+
+CREATE TABLE  pass_comment  (
+	 Comment_NO 	number		NOT NULL,
+	 MEMBER_INFO_NO 	number		NOT NULL,
+	 MEMBER_NO 	number		NULL,
+	 CO_CODE 	NUMBER		NOT NULL,
+	 PASSCHECK 	char(1)		NULL
+);
+
+COMMENT ON COLUMN  pass_comment . Comment_NO  IS '합격여부확인';
+
+COMMENT ON COLUMN  pass_comment . MEMBER_INFO_NO  IS '회원 번호 (SEQ 적용 필요)';
+
+COMMENT ON COLUMN  pass_comment . MEMBER_NO  IS '회원번호';
+
+COMMENT ON COLUMN  pass_comment . CO_CODE  IS '회사코드';
+
+COMMENT ON COLUMN  pass_comment . PASSCHECK  IS '면접합격여부';
+
+
+
+
+ALTER TABLE  zoom  ADD CONSTRAINT  PK_ZOOM  PRIMARY KEY (
+	 zoom_no 
+);
+
+ALTER TABLE  MEMBER  ADD CONSTRAINT  PK_MEMBER  PRIMARY KEY (
+	 MEMBER_NO
+);
+
+ALTER TABLE  IR_INFO  ADD CONSTRAINT  PK_IR_INFO  PRIMARY KEY (
+	 MEMBER_INFO_NO
+);
+
+ALTER TABLE  INTERVIEW  ADD CONSTRAINT  PK_INTERVIEW  PRIMARY KEY (
+	 interview_NO
+);
+
+ALTER TABLE  BOARD  ADD CONSTRAINT  PK_BOARD  PRIMARY KEY (
+	 BOARD_NO
+);
+
+ALTER TABLE  MEMBER_COMPANY  ADD CONSTRAINT  PK_MEMBER_COMPANY  PRIMARY KEY (
+	 CO_CODE 
+);
+
+ALTER TABLE  OCCUPATION  ADD CONSTRAINT  PK_OCCUPATION  PRIMARY KEY (
+	 OCCUPATION_CODE 
+);
+
+ALTER TABLE  INTERVIEW_evaluate  ADD CONSTRAINT  PK_INTERVIEW_EVALUATE  PRIMARY KEY (
+	 evaluate_NO
+);
+
+ALTER TABLE  BOARD_COMPANY_QUESTION  ADD CONSTRAINT  PK_BOARD_COMPANY_QUESTION  PRIMARY KEY (
+	 Question_no 
+);
+
+ALTER TABLE  interview_time  ADD CONSTRAINT  PK_INTERVIEW_TIME  PRIMARY KEY (
+	 ITIME_NO
+);
+
+ALTER TABLE  BOARD_Question  ADD CONSTRAINT  PK_BOARD_Question  PRIMARY KEY (
+	 BOARD_NO ,
+	 Question_no 
+);
+
+ALTER TABLE  COMPANY_SCORE  ADD CONSTRAINT  PK_COMPANY_SCORE  PRIMARY KEY (
+	 COMPANY_SCORE_NO
+);
+
+ALTER TABLE  IR_PATH  ADD CONSTRAINT  PK_IR_PATH  PRIMARY KEY (
+	 IR_PATH_CODE 
+);
+
+ALTER TABLE  DELETE_MEMBER  ADD CONSTRAINT  PK_DELETE_MEMBER  PRIMARY KEY (
+	 MEMBER_NO 
+);
+
+ALTER TABLE  Interviewer_Info  ADD CONSTRAINT  PK_INTERVIEWER_INFO  PRIMARY KEY (
+	 INTERVIEWER_INFO_NO 
+);
+
+ALTER TABLE  INTERVIEWER_certificate  ADD CONSTRAINT  PK_INTERVIEWER_CERTIFICATE  PRIMARY KEY (
+	 certificate_NO 
+);
+
+ALTER TABLE  Interviewer_Info_CERTIFICATE  ADD CONSTRAINT  PK_INTERVIEWER_INFO_CERTIFICATE  PRIMARY KEY (
+	 certificate_NO ,
+	 INTERVIEWER_INFO_NO 
+);
+
+ALTER TABLE  INTERVIEWER_career  ADD CONSTRAINT  PK_INTERVIEWER_CAREER  PRIMARY KEY (
+	 career_NO 
+);
+
+ALTER TABLE  Interviewer_Info_CAREER  ADD CONSTRAINT  PK_INTERVIEWER_INFO_CAREER  PRIMARY KEY (
+	 career_NO 
+);
+
+ALTER TABLE  pass_comment  ADD CONSTRAINT  PK_PASS_COMMENT  PRIMARY KEY (
+	 Comment_NO
+);
+
+ALTER TABLE  zoom  ADD CONSTRAINT  FK_MEMBER_TO_zoom_1  FOREIGN KEY (
+	 MEMBER_NO 
+)
+REFERENCES  MEMBER  (
+	 MEMBER_NO 
+)ON delete CASCADE;
+
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  zoom  ADD CONSTRAINT  FK_MEMBER_TO_zoom_2  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  MEMBER  (
+--	 CO_CODE 
+--);
+
+ALTER TABLE  MEMBER  ADD CONSTRAINT  FK_MEMBER_COMPANY_TO_MEMBER_1  FOREIGN KEY (
+	 CO_CODE 
+)
+REFERENCES  MEMBER_COMPANY  (
+	 CO_CODE 
+);
+
+-- 해당부분은 면접자 탈퇴하고 나서 테이터 충돌 날까봐 삭제함
+--ALTER TABLE  IR_INFO  ADD CONSTRAINT  FK_MEMBER_TO_IR_INFO_1  FOREIGN KEY (
+--	 MEMBER_NO 
+--)
+--REFERENCES  MEMBER  (
+--	 MEMBER_NO 
+--);
+
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  IR_INFO  ADD CONSTRAINT  FK_MEMBER_TO_IR_INFO_2  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  MEMBER  (
+--	 CO_CODE 
+--);
+
+-- 해당부분은 면접자 탈퇴하고 나서 테이터 충돌 날까봐 삭제함
+--ALTER TABLE  INTERVIEW  ADD CONSTRAINT  FK_IR_INFO_TO_INTERVIEW_2  FOREIGN KEY (
+--	 MEMBER_NO 
+--)
+--REFERENCES  IR_INFO  (
+--	 MEMBER_NO 
+--);
+
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  INTERVIEW  ADD CONSTRAINT  FK_IR_INFO_TO_INTERVIEW_3  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  IR_INFO  (
+--	 CO_CODE 
+--);
+
+ALTER TABLE  BOARD  ADD CONSTRAINT  FK_OCCUPATION_TO_BOARD_1  FOREIGN KEY (
+	 OCCUPATION_CODE 
+)
+REFERENCES  OCCUPATION  (
+	 OCCUPATION_CODE 
+);
+
+-- 해당부분은 면접자 탈퇴하고 나서 테이터 충돌 날까봐 삭제함
+--ALTER TABLE  BOARD  ADD CONSTRAINT  FK_MEMBER_TO_BOARD_1  FOREIGN KEY (
+--	 MEMBER_NO 
+--)
+--REFERENCES  MEMBER  (
+--	 MEMBER_NO 
+--);
+
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  BOARD  ADD CONSTRAINT  FK_MEMBER_TO_BOARD_2  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  MEMBER  (
+--	 CO_CODE 
+--);
+
+ALTER TABLE  INTERVIEW_evaluate  ADD CONSTRAINT  FK_INTERVIEW_TO_INTERVIEW_evaluate_1  FOREIGN KEY (
+	 interview_NO 
+)
+REFERENCES  INTERVIEW  (
+	 interview_NO 
+);
+
+-- 해당부분은 면접자 탈퇴하고 나서 테이터 충돌 날까봐 삭제함
+--ALTER TABLE  INTERVIEW_evaluate  ADD CONSTRAINT  FK_INTERVIEW_TO_INTERVIEW_evaluate_3  FOREIGN KEY (
+--	 MEMBER_NO 
+--)
+--REFERENCES  INTERVIEW  (
+--	 MEMBER_NO 
+--);
+
+-- 해당부분은 면접자 탈퇴하고 나서 테이터 충돌 날까봐 삭제함
+--ALTER TABLE  interview_time  ADD CONSTRAINT  FK_IR_INFO_TO_interview_time_1  FOREIGN KEY (
+--	 MEMBER_INFO_NO 
+--)
+--REFERENCES  IR_INFO  (
+--	 MEMBER_NO 
+--);
+
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  interview_time  ADD CONSTRAINT  FK_IR_INFO_TO_interview_time_2  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  IR_INFO  (
+--	 CO_CODE 
+--);
+
+ALTER TABLE  BOARD_Question  ADD CONSTRAINT  FK_BOARD_TO_BOARD_Question_1  FOREIGN KEY (
+	 BOARD_NO 
+)
+REFERENCES  BOARD  (
+	 BOARD_NO 
+);
+
+ALTER TABLE  BOARD_Question  ADD CONSTRAINT  FK_BOARD_COMPANY_QUESTION_TO_BOARD_Question_1  FOREIGN KEY (
+	 Question_no 
+)
+REFERENCES  BOARD_COMPANY_QUESTION  (
+	 Question_no 
+);
+
+ALTER TABLE  COMPANY_SCORE  ADD CONSTRAINT  FK_BOARD_TO_COMPANY_SCORE_1  FOREIGN KEY (
+	 BOARD_NO 
+)
+REFERENCES  BOARD  (
+	 BOARD_NO 
+);
+
+-- 해당부분은 면접자 탈퇴하고 나서 테이터 충돌 날까봐 삭제함
+--ALTER TABLE  COMPANY_SCORE  ADD CONSTRAINT  FK_BOARD_TO_COMPANY_SCORE_2  FOREIGN KEY (
+--	 MEMBER_NO 
+--)
+--REFERENCES  BOARD  (
+--	 MEMBER_NO 
+--);
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  COMPANY_SCORE  ADD CONSTRAINT  FK_BOARD_TO_COMPANY_SCORE_3  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  BOARD  (
+--	 CO_CODE 
+--);
+
+--복합키로 pk로 들어가므로 제거
+--ALTER TABLE  Interviewer_Info_CERTIFICATE  ADD CONSTRAINT  FK_INTERVIEWER_certificate_TO_Interviewer_Info_CERTIFICATE_1  FOREIGN KEY (
+--	 certificate_NO 
+--)
+--REFERENCES  INTERVIEWER_certificate  (
+--	 certificate_NO 
+--);
+--
+--ALTER TABLE  Interviewer_Info_CERTIFICATE  ADD CONSTRAINT  FK_Interviewer_Info_TO_Interviewer_Info_CERTIFICATE_1  FOREIGN KEY (
+--	 INTERVIEWER_INFO_NO 
+--)
+--REFERENCES  Interviewer_Info  (
+--	 INTERVIEWER_INFO_NO 
+--);
+
+--ALTER TABLE  Interviewer_Info_CAREER  ADD CONSTRAINT  FK_INTERVIEWER_career_TO_Interviewer_Info_CAREER_1  FOREIGN KEY (
+--	 career_NO 
+--)
+--REFERENCES  INTERVIEWER_career  (
+--	 career_NO 
+--);
+
+-- 어자피 면접자 정보는삭제하지 않으므로 남겨둠
+ALTER TABLE  pass_comment  ADD CONSTRAINT  FK_IR_INFO_TO_pass_comment_1  FOREIGN KEY (
+	 MEMBER_INFO_NO 
+)
+REFERENCES  IR_INFO  (
+	 MEMBER_INFO_NO 
+);
+
+--해당 부분 pk등록이 누락되어서 오류뜸. 그래서 그냥 추가하지 않음
+--ALTER TABLE  pass_comment  ADD CONSTRAINT  FK_IR_INFO_TO_pass_comment_3  FOREIGN KEY (
+--	 CO_CODE 
+--)
+--REFERENCES  IR_INFO  (
+--	 CO_CODE 
+--);
+
+update ir_info set member_no = 111 where member_info_no = 111;
+commit;
+
+update occupation set occupation_img_url = 'https://firebasestorage.googleapis.com/v0/b/khis-project.appspot.com/o/img%2Foccupation%2F1231641224288393?alt=media&token=fa06bb41-8284-480f-a60d-19ba72425420' where occupation_code = 1;
+
+update occupation set occupation_img_url = 'https://firebasestorage.googleapis.com/v0/b/khis-project.appspot.com/o/img%2Foccupation%2F1231641224393329?alt=media&token=62f235eb-a2cc-41bb-99ee-5eae753a64d2' where occupation_code = 2;
+
+update occupation set occupation_img_url = 'https://firebasestorage.googleapis.com/v0/b/khis-project.appspot.com/o/img%2Foccupation%2F1231641224424303?alt=media&token=f6fa03de-dfac-4f0d-805c-5f948e754c77' where occupation_code = 3;
+&token
+update occupation set occupation_img_url = 'https://firebasestorage.googleapis.com/v0/b/khis-project.appspot.com/o/img%2Foccupation%2F1231641224606238?alt=media&token=f99e0611-6cc4-4a26-ba3f-abfcc106f17a' where occupation_code = 10;
