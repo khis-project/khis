@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="irinfo">
+	<insert id="insertInterviewer">
+		insert into ir_info (member_info_no, co_code, interviewer_no, name, email, phone, category, role, ir_path_code, zoom_no, interviewer_info_no, ssn, member_ir_haed_no) values (
+		seq_member_info_no.nextval,
+		#{coCode},
+		to_number(to_char(sysdate, 'yymmdd') || to_char(seq_interviewer_no.nextval, 'FM0000')),
+		#{name},
+		#{email},
+		#{phone},
+		#{category},
+		#{role},
+		#{irPathCode},
+		#{zoomNo},
+		#{interviewerInfoNo},
+		#{ssn},
+		#{memberIrHaedNo}
+		)
+		<selectKey keyProperty="memberInfoNo" resultType="_int" order="AFTER">
+			select seq_member_info_no.currval from dual
+		</selectKey>
+	</insert>
+	<insert id="insertRater">
+		insert into ir_info (member_info_no, co_code, name, email, phone, role, ssn, member_ir_haed_no) values (
+		seq_member_info_no.nextval,
+		#{coCode},
+		#{name},
+		#{email},
+		#{phone},
+		#{role},
+		#{ssn},
+		#{memberIrHaedNo}
+		)
+		<selectKey keyProperty="memberInfoNo" resultType="_int" order="AFTER">
+			select seq_member_info_no.currval from dual
+		</selectKey>
+	</insert>
+	<select id="selectInfoList" resultType="irinfo">
+		select * from ir_info
+		order by member_info_no desc
+	</select>
+	<select id="selectOneIRInfo" resultType="irinfo">
+		select * from ir_info
+		where member_info_no = #{memberInfoNo}
+	</select>
+	
+	<delete id="deleteIRInfo">
+		delete from ir_info
+		where member_info_no = #{memberInfoNo}
+	</delete>
+	<update id="updateIRInfo">
+		update ir_info set
+		name = #{name},
+		email = #{email},
+		phone = #{phone},
+		category = #{category}
+		where member_info_no = #{memberInfoNo}
+	</update>
+	<select id="selectIRInfoTotalCount" resultType="_int">
+		select count(*) from ir_info
+	</select>
+	<select id="selectZoomList" resultType="zoom">
+		select * from zoom
+		where member_no = #{memberNo}
+	</select>
+	<select id="selectInterviewerList" resultType = "irinfo">
+		select * from ir_info
+		where member_ir_haed_no = #{memberNo}
+		and role = 'I'
+	</select>
+	<insert id="insertAssignedInfo">
+		insert into assigned_info values (
+			seq_assigned_info_no.nextval,
+			#{memberInfoNo},
+			#{assignedInterviewer}
+		)
+	</insert>
+	<select id="selectIRPathList" resultType = "irpath">
+		select * from ir_path
+	</select>
+	<insert id= "insertInterviewTime">
+		<selectKey keyProperty="coCode" resultType="_long" order="BEFORE">
+			select co_code from ir_info where member_info_no = #{memberInfoNo}
+		</selectKey>
+		insert into interview_time values(
+			seq_itime_no.nextval,
+			#{memberInfoNo},
+			#{coCode},
+			#{startTime},
+			#{endTime},
+			#{jobPostingName}
+		)
+	</insert>
+	<select  id="selectInterviewerName" resultType ="string">
+		select b.name
+   		from assigned_info a  left join ir_info b
+  	  	on a.member_info_no = b.member_info_no
+    	where a.assigned_interviewer = #{memberInfoNo}
+	</select>
+	<select id="selectOneInterviewTime" resultType = "interviewTime">
+		select * from interview_time
+		where member_info_no = #{memberInfoNo}
+	</select>
+	<update id="updateInterviewer">
+		update ir_info set
+		name = #{name},
+		email = #{email},
+		phone = #{phone},
+		category = #{category},
+		ir_path_code = #{irPathCode}
+		where member_info_no = #{memberInfoNo}
+	</update>
+	<update id = "updateInterviewTime">
+		update interview_time set
+		start_time = #{startTime},
+		end_time = #{endTime},
+		job_posting_name = #{jobPostingName}
+		where member_info_no = #{memberInfoNo}
+	</update>
+	<select id="selectAssignedInfoList" resultType = "assignedinfo">
+		select * from assigned_info
+		where assigned_interviewer = #{memberInfoNo}
+	</select>
+	<update id="updateRater">
+		update ir_info set
+		name = #{name},
+		email = #{email},
+		phone = #{phone}
+		where member_info_no = #{memberInfoNo}
+	</update>
+	<select id="checkDuplicate" resultType = "_int">
+		select count(*) from ir_info
+		where name = #{name}
+		and email = #{email}
+		and phone = #{phone}
+	</select>
+	<insert id = "insertInterviewerInfo">
+		insert into interviewer_info values (
+			seq_interviewer_info_no.nextval,
+			#{selfIntroduction},
+			#{image}
+		)
+		<selectKey keyProperty="interviewerInfoNo" resultType="_int" order="AFTER">
+			select seq_interviewer_info_no.currval from dual
+		</selectKey>
+	</insert>
+	<insert id="insertInterviewerCareer">
+		insert into interviewer_career (career_no, interviewer_info_no, company_name, career_term, career_start_time, career_end_time)
+		select seq_interviewer_career_no.nextval, a.* from (
+        <foreach collection="careerList" item="career" separator="UNION ALL "> 
+        select
+			#{interviewerInfoNo} as interviewer_info_no,
+			#{career.companyName} as company_name,		
+			to_number(#{career.careerTerm}) as career_term,		
+			to_date(#{career.careerStartTime}, 'yyyy-mm-dd') as career_start_time,		
+			to_date(#{career.careerEndTime}, 'yyyy-mm-dd') as career_end_time
+		from dual
+        </foreach>) a
+    </insert>
+    <insert id="insertInterviewerCertificate">
+		insert into interviewer_certificate (certificate_no, interviewer_info_no, certificate_name, certificate_issuer, certificate_date)
+		select seq_interviewer_certificate_no.nextval, a.* from (
+        <foreach collection="certificateList" item="certificate" separator="UNION ALL "> 
+        select
+			#{interviewerInfoNo} as interviewer_info_no,
+			#{certificate.certificateName} as certificate_name,		
+			#{certificate.certificateIssuer} as certificate_issuer,		
+			to_date(#{certificate.certificateDate}, 'yyyy-mm-dd') as certificate_date	
+		from dual
+        </foreach>) a
+    </insert>
+    <select id="selectOneInterviewerInfo" resultType = "interviewerInfo">
+    	select * from interviewer_info
+    	where interviewer_info_no = #{interviewerInfoNo}
+    </select>    
+    <select id="selectCareerList" resultType = "interviewerCareer">
+    	select * from interviewer_career
+    	where interviewer_info_no = #{interviewerInfoNo}
+    </select>    
+    <select id="selectCertificateList" resultType = "interviewerCertificate">
+    	select * from interviewer_certificate
+    	where interviewer_info_no = #{interviewerInfoNo}
+    </select>    
+    <select  id="selectOneIRInfoByInterviewerInfoNo" resultType = "irInfo">
+    	select * from ir_info
+    	where interviewer_info_no = #{interviewerInfoNo}
+    </select>
+    <delete id="deleteAssignedInfo">
+    	delete from assigned_info
+    	where assigned_interviewer = #{assignedInterviewer}
+    </delete>
+</mapper>

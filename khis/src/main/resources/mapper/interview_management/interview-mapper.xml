@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interview">
+ <select id="selectInterviewList" resultType = "interview">
+ 	select * from interview
+ 	order by interview_no desc
+ </select>
+ <insert id="insertInterview">
+ 	insert into interview values (
+ 		seq_interview_no.nextval,
+ 		#{memberInfoNo},
+ 		#{coCode},
+ 		#{writer},
+ 		#{title},
+ 		#{content},
+ 		default,
+ 		#{iMemberInfoNo}
+ 	)
+ </insert>
+ <select id="selectOneInterview" resultMap = "interviewVO">
+ 	select * from interview i left join ir_info ir
+	on i.imember_info_no = ir.member_info_no
+ 	where i.interview_no = #{interviewNo}
+ </select>
+<update id="updateInterview">
+	update interview set 
+	title = #{title},
+	content = #{content},
+	reg_date = default,
+	imember_info_no = #{iMemberInfoNo}
+	where interview_no = #{interviewNo}
+</update>
+<delete id="deleteInterview">
+	delete from interview
+	where interview_no = #{interviewNo}
+</delete>
+<select  id="selectInterviewTotalCount" resultType = "_int">
+	select count(*) from interview
+</select>
+<select id="selectInterviewerList" resultType="irinfo">
+	select a.interview_count, b.* from
+	(select imember_info_no, count(*) as interview_count from interview
+	group by imember_info_no) a right outer join ir_info b
+	on a.imember_info_no = b.member_info_no
+	where member_ir_haed_no = #{memberNo}
+	and role = 'I'
+	and (interview_count <![CDATA[<]]>3 or interview_count is null)
+	order by b.member_info_no
+</select>
+<resultMap type="interview" id="interviewVO">
+	<result column="interview_no" property="interviewNo" />
+	<result column="member_info_no" property="memberInfoNo" />
+	<result column="co_code" property="coCode" />
+	<result column="writer" property="writer" />
+	<result column="title" property="title" />
+	<result column="content" property="content" />
+	<result column="reg_date" property="regDate" />
+	<result column="imember_info_no" property="iMemberInfoNo" />
+
+	<collection property="irInfo" ofType="irInfo">
+		<result column="member_info_no" property="memberInfoNo" />
+		<result column="member_no" property="memberNo" />
+		<result column="co_code" property="coCode" />
+		<result column="inteview_no" property="interviewNo" />
+		<result column="name" property="name" />
+		<result column="email" property="email" />
+		<result column="phone" property="phone" />
+		<result column="category" property="category" />
+		<result column="role" property="role" />
+		<result column="zoom_no" property="zoomNo" />
+		<result column="ir_path_code" property="irPathCode" />
+		<result column="interviewer_info_no" property="interviewerInfoNo" />
+		<result column="ssn" property="ssn" />
+		<result column="member_ir_haed_no" property="memberIrHaedNo" />
+	</collection> 
+</resultMap>
+</mapper>
