@@ -49,7 +49,7 @@
 					<p>나의 면접 일정을 한눈에 볼 수 있어요.</p>
 				</div>
 				<div class="Interview">
-          <span><br>면접 진행</span><br><br>
+          <span><br>평가 진행</span><br><br>
             <span><i class="fas fa-chalkboard-teacher fa-9x" style="color: #34495E;"></i></span>
              <p>좋은 인재를 찾을 수 있는 <br /> 면접이 되시길 바랍니다. :)</p>
         </div>
