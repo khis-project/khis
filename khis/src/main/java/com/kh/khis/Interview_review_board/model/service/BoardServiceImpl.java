@@ -42,10 +42,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardMemberCompany> selectCompanyList() {
-		return boardDao.selectCompanyList();
+	public List<BoardMemberCompany> selectCompanyList(int member_info_no) {
+		return boardDao.selectCompanyList(member_info_no);
 	}
 
+	/*
+	 * @Override public List<BoardMemberCompany> selectCompanyList() { return
+	 * boardDao.selectCompanyList(); }
+	 */
 	@Override
 	public int selectBoardTotalCount(String occupationCd) {
 		return boardDao.selectBoardTotalCount(occupationCd);
@@ -88,6 +92,5 @@ public class BoardServiceImpl implements BoardService {
 	public int deleteBoard(int boardNo) {
 		return boardDao.deleteBoard(boardNo);
 	}
-
 
 }

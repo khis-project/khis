@@ -18,9 +18,9 @@
   <div class="board-container">
   	<form 
 		name="boardFrm" 
-		action="boardEnroll.do" 
-		method="GET"
-		enctype="multipart/form-data">
+		action="${pageContext.request.contextPath}/Interview_review_board/boardEnroll.do" 
+		method="POST"
+		>
 		<div class="header">
 			<img src="https://i.ibb.co/FqRVJqk/premium-icon-communication-3663457.png"/>
 			<span class="title">면접 후기 작성</span>
@@ -31,9 +31,15 @@
 				<tr>
 					<td><label for="co_name">기업명</label></td>
 					<td>
-						<input type="text" id="co_name" name="co_name" placeholder="기업명" readonly required/>
-						<input type="text" id="co_code" name="co_code" style="display:none;" readonly/>
-						<input type="text" id="co_addr" name="co_addr" style="display:none;" readonly/>
+						<select name="co_code" required>
+							<option value="" disabled selected>직종</option>
+							<c:forEach items="${list}" var="vo">
+								<option value="${vo.co_code}" data-sub="${vo.co_address},${vo.pass_no}">${vo.co_name}</option>
+							</c:forEach>
+						</select>
+						<input type="text" id="co_name" name="co_name" placeholder="기업명" style="display:none;" readonly required/>
+						<input type="text" name="co_addr" value="후기를 작성할 기업을 선택해주세요." style="height:20px; border:0; color : #7c7c7c;"readonly/>
+						<input type="text" name="pass_no" value="" style="display:none;" readonly/>
 					
 						<%-- <input type="text" id ="coName" class="coName" name="coName" list ="coList"/>
 						<select id="companyList" name="coCode">
@@ -51,7 +57,7 @@
 						</datalist> --%>
 					</td>
 					<td>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-what="hello">검색</button>
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-what="hello" style="margin-top: -30px;">전체기업조회</button>
 					</td>
 				</tr>
 
@@ -251,12 +257,13 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
+				                <!-- 무슨 회사가 있는지 확인만 할수있게 진행 -->
 					              <c:forEach items="${companyList}" var="vo">
 				                  <tr>
 				                    <td style="display:none;">${vo.co_code}</td>
 				                    <td>${vo.co_name}</td>
 				                    <td>${vo.co_address}</td>
-				                    <td><button class="chooseCompany" type = "button" data-dismiss="modal">선택</button></td>
+				                    <td></td>
 				                  </tr>
 					              </c:forEach>
 				                </tbody>
@@ -266,7 +273,7 @@
 					      </form>
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" >취소</button>
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" >취소</button>
 					        <!-- <button type="button" class="btn btn-primary">등록</button> -->
 					      </div>
 					 </div>
@@ -294,14 +301,14 @@ $(document).ready(function(){
                   			 +'<td style="display:none;">'+data[i].CO_CODE+'</td>'	
                   			 +'<td>'+data[i].CO_NAME+'</td>'	
                   			 +'<td></td>'	
-                  			 + '<td><button class="chooseCompany" type = "button" data-dismiss="modal">선택</button></td>'
+                  			 + '<td></td>'
                   	   +'</tr>');
             	   }else{
             		   $('.tb2 > tbody').append('<tr>'
                   			 +'<td style="display:none;">'+data[i].CO_CODE+'</td>'	
                   			 +'<td>'+data[i].CO_NAME+'</td>'	
                   			 +'<td>'+data[i].CO_ADDRESS+'</td>'	
-                  			 + '<td><button class="chooseCompany" type = "button" data-dismiss="modal">선택</button></td>'
+                  			 + '<td></td>'
                   	   +'</tr>');
             	   }
             	 
@@ -346,8 +353,23 @@ $(document).on('click', '.tb2 tbody tr', function(){
  		console.log("coAddr = " + coAddr);
 	});
 
-	
-	
-	
+//전송하기 전에 확인 작업하는 코드
+/* function check_code(){
+	let co_code = document.boardFrm.co_code.value;
+	if(co_code == ""){
+		document.boardFrm.co_code.focus();
+	}
+}
+ */
+//
+//주소를 보여주기 위함
+	$("[name=co_code]").on("change", function () { 
+		var value = $(this).val(); 
+		var subValue = $(this).find("option:selected").data("sub").split(","); 
+		console.log(subValue[0]);
+		console.log(subValue[1]);
+		$("[name=co_addr]").val(subValue[0] == "" ? "회사주소가 없습니다." : subValue[0]);
+		$("[name=pass_no]").val(subValue[1]);
+	});
 </script>
 <jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>

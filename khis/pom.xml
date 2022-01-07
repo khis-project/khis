@@ -247,7 +247,11 @@
 		    <artifactId>spring-messaging</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
-				
+		<dependency>
+		  <groupId>com.google.cloud</groupId>
+		  <artifactId>google-cloud-vision</artifactId>
+		  <version>1.14.0</version>
+		</dependency>
 		<!-- 이메일 발송 관련 의존 등록-1 -->		
 		<dependency>
    			 <groupId>javax.mail</groupId>

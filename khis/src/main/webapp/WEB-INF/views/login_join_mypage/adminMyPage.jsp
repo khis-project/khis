@@ -35,7 +35,8 @@
 				</div>
 			  <div class="InterviewP">
           <span><br>면접 연습 질문 승인하기</span><br><br>
-            <span><i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></span>
+            <span><a href="${pageContext.request.contextPath}/interviewPractice/interviewPracticeAdmin.do">
+            <i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></a></span>
             <p>회원들의 면접 질문에 대한 <br />요청 내역 입니다. </p>
         </div>
 			</div>

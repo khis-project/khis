@@ -10,7 +10,11 @@
 
 <!-- 사용자 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Interview_review_board/boardList.css"/>
-
+<script>
+<c:if test="${not empty msg}">
+	alert("${msg}");
+</c:if>
+</script>
 <section id="board-container" class="container">
 	<div id="occupation-container">
 		<h4>산업군</h4>
@@ -28,7 +32,7 @@
 		</ul>
 	</div>
 	<c:if test="${totalContent eq '0'}">
-		<div class="company-container">하잉
+		<div class="company-container">
 		</div>
 	</c:if>
 	<c:if test="${totalContent ne '0'}">

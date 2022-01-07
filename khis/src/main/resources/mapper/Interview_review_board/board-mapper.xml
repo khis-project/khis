@@ -77,7 +77,8 @@
 			 announcement_time, 
 			 passcheck,
 			 interview_question,
-			 interview_answer)
+			 interview_answer,
+			 pass_no)
 		values(
 			seq_board_no.nextval,
 			#{occupationCode},
@@ -94,7 +95,8 @@
 			#{announcementTime},
 			#{passcheck},
 			#{interviewQuestion},
-			#{interviewAnswer}
+			#{interviewAnswer},
+			#{pass_no}
 		)
 	</insert>
 	
@@ -114,7 +116,8 @@
 			 interview_question = #{interviewQuestion},
 			 interview_answer = #{interviewAnswer}
 		where
-			board_no = #{boardNo}
+			board_no = #{boardNo} and
+			pass_no = #{pass_no}
 	</update>
 	<delete id="deleteBoard">
 		delete from
@@ -128,7 +131,11 @@
 	</select>
 	
 	<select id="selectCompanyList" resultMap="memberCompanyType">
-		select co_address, co_name, co_code from member_company
+		<!-- select co_address, co_name, co_code from member_company -->
+		
+		select py.*, mc.*
+		from pass_yn py  left join  member_company mc on mc.co_code = py.co_code
+		where py.board_write_yn = 'n' and member_info_no = #{member_info_no}
 	</select>
 	
 	<select id="selectBoardTotalCount" resultType="_int" parameterType = "map">
@@ -200,6 +207,7 @@
     		b.passcheck,
     		b.interview_evaluation,
             m.co_name,
+            m.co_code,
             o.occupation_img_url,
             o.occupation_name
     	from 
@@ -221,6 +229,7 @@
 	
 	<resultMap id="memberCompanyType" type="BoardMemberCompany">
 		<id property="board_no" column="board_no"></id>
+		<result property="pass_no" column="pass_no"></result>
 		<result property="co_code" column="co_code"></result>
 		<result property="co_name" column="co_name"></result>
 		<result property="co_address" column="co_address"></result>

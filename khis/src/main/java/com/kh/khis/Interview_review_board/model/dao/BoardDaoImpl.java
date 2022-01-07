@@ -29,10 +29,15 @@ public class BoardDaoImpl implements BoardDao {
 		return session.selectList("board.getCompanyNm", coName);
 	}
 
+	/*
+	 * @Override public List<BoardMemberCompany> selectCompanyList() {
+	 * 
+	 * return session.selectList("board.selectCompanyList"); }
+	 */
 	@Override
-	public List<BoardMemberCompany> selectCompanyList() {
+	public List<BoardMemberCompany> selectCompanyList(int member_info_no) {
 		
-		return session.selectList("board.selectCompanyList");
+		return session.selectList("board.selectCompanyList",member_info_no);
 	}
 
 	@Override

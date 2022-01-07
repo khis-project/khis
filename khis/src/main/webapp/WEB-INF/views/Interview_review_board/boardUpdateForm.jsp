@@ -19,9 +19,8 @@
   <c:forEach items="${list}" var="co">
   	<form 
 		name="boardFrm" 
-		action="boardEnroll.do" 
-		method="GET"
-		enctype="multipart/form-data">
+		action="${pageContext.request.contextPath}/Interview_review_board/boardEnroll.do" 
+		method="POST">
 		<div class="header">
 			<img src="https://i.ibb.co/FqRVJqk/premium-icon-communication-3663457.png"/>
 			<span class="title">면접 후기 수정</span>
@@ -37,9 +36,7 @@
 						<input type="text" id="co_code" name="co_code" style="display:none;" value="${co.CO_CODE}" readonly/>
 						<input type="text" id="co_addr" name="co_addr" style="display:none;" readonly/>
 						<input type="text" id="boardNo" name="boardNo" style="display:none;" value="${co.BOARD_NO}" readonly/>
-					</td>
-					<td>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-what="hello">검색</button>
+						<input type="text" id="pass_no" name="pass_no" value="${co.pass_no}" readonly/>
 					</td>
 				</tr>
 

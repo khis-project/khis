@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "kh-finalproject-khis-335902",
+  "private_key_id": "e44a075d4e2f5de361bcaa09faad1a7ddd529f4b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8dFXBXAmEE+FN\n0v+3eN/BltIhxInFJUiyPbRvH8c5vmwXLgv+TQ3/coImtJ4Wid3k7xc3lvu0pXRf\nCIWAPrLnAf2LcoIfXWUS4AxLmCDlPz5fYq6KWkTcIhCnCCoKZn25+BphVpfR+oVF\nRhBlk0aPbccxMLl7hEBrSPKIsd9LuHAPgmVwzyzNy1ulhBGAN2AiAQHtMNTDb17x\nfhMpjeNLvOjI/E7pukZYrjsQH/Z5GouEW8ILAUf8AUo7PCLpAUwd2Jv5FiNK1j7H\nZCWFFNYVQj+C6BETsWlmn07Vf6qpV6wcTgQL3748NmQOwj8mHed0X3OYKitM9v9z\nvRBGXqHJAgMBAAECggEAVdiwz9o7Q31C3w7FCjD3zNoFcvhywenQCdHuBcj2GinS\nV2TUdc1oGPtyqmsQsLew6v63Fs2ib5IHRts85USqfmz7sLBC8kK7LjP9pdnw8j0z\nDoSHeeLRB25FI7GmZQJ3N2X7rmeh1TdHyly2T28db2zUlmXZuJhwN+8M/JP6YiUi\nLamXk7pXlFnZhwKXnSkHrDmDRU/bAmnu8QRtELrSXnbEItzd7b9NUIxr0makSB5o\n3RA1P3wYPNJ8e6OCHPy27t2SeZq4z7huLaCmUD0492PDrzxE6xoM9lHU0+lncKxl\ns0EJTge/LORiyE5wmBi/ko5eb9m25wcJOMYszamWWQKBgQD+ffaEDs48+RQU9vYm\nzWcSUyR0oN8Tx5xoQVS8PavAOupJ+xSlL1+vyE9A/eibHiW3dqbXZ7hRV09Rp74/\nAw09KuRX8E23FXPfLTpy8uDFVp9+w/r6LdbbgW4H2HbrZwX6JSGrAw6PT23lYwxD\nkYzaTzv+dXUBXMthx4KOQKkIZwKBgQC9kjM4guX3MxSxo8zaOCaCsDQ+sScHtWFi\nQ0N5wrT0QIHsf2IOg5U7g+NSO6E8ZI30E82PAd+lmeJor3sYzVpcD0PDJBfBcN4P\noXHQeSsNHukKxjuEAywRfCzpTKkFSEnsR2mRp6/Zqok2r4rBthEC5S+o8bnA6+rs\naSAQ5sRmTwKBgQCbp0djtfqGaIHT4MjlKrRkDN47Rzmpy2jqiyrch4vI4z/xR9R0\nw+juhsGSqrneRi4jbDrXfOTLO2+ULdi6iY9LXjSTZLLjzAc29V7Od6bqi/S5f/y9\nj9PeJee6fLcfe7+4I4XYJuJ83MQGjPIvUZKo49V56TVLRApRH8nGX94C+QKBgEXP\n/Ir4McZaimltADjw6sXALE1WIiCFnIp6aPQDT26P/wjgVHUx4hhb1rBnA1bhVSGo\n1U+wCfPLewTAcx3MKlWyzWqk9RapAS5Sbz6uELuxQXNVU3+nR2hdCZEVST2HxKl+\nFxOr5GfNlOCNvxTdfuBJFMcr1hOFDivn/wYaZgOjAoGBAPR8RLKUex9sUXYfm5q6\nbcD9YgBWbZdDYKyqJ622FkhZ9fFSpvti1d1Y/BFVpaHaphBudxh1uU/sRA97ImnO\nwMqvslNo2sW/kJ0W/H/WkVKEJgd6lvF2hIdauIz7mCeBsvvK2zzaAxGjEm07nB81\nbq+Bp+uCPSR1dQ8IDvqEKuMC\n-----END PRIVATE KEY-----\n",
+  "client_email": "khis-final-project@kh-finalproject-khis-335902.iam.gserviceaccount.com",
+  "client_id": "114873415842581809438",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/khis-final-project%40kh-finalproject-khis-335902.iam.gserviceaccount.com"
+}

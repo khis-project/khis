@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Statistics">
+	<select id="selectStatisticsList" resultMap="selectStatisticsKindList">
+		select 
+			i.member_info_no, i.member_no, i.co_code, i.interview_no, 
+			(mod((EXTRACT(YEAR FROM SYSDATE) - (DECODE(SUBSTR(i.ssn,8,1),'1', '19','2','19','20') || SUBSTR(i.ssn,1,2))+1),10)*10)  as age,
+			nvl(a.career_sum,0), pc.final_pass_check
+		from 
+			ir_info i left join pass_yn pc 
+				on i.member_info_no = pc.member_info_no
+			left join (select interviewer_info_no, sum(round(career_end_time - career_start_time,2)) as career_sum from interviewer_career group by interviewer_info_no) a 
+				on i.interviewer_info_no = a.interviewer_info_no
+	</select>
+	
+	<select id="selectStatisticsKind" resultMap="selectStatisticsKindList">
+	select
+	*
+	from(
+		select 
+			i.co_code, 
+		<if test='"age".equals(satisticsKind)'><!--나이일 때  -->
+			(mod((EXTRACT(YEAR FROM SYSDATE) - (DECODE(SUBSTR(i.ssn,8,1),'1', '19','2','19','20') || SUBSTR(i.ssn,1,2))+1),10)*10) as age, 
+		</if>
+		<if test='"career".equals(satisticsKind)'><!--경력일 때  -->
+			nvl(a.career_sum,0) as career_sum,
+		</if>
+			nvl(pc.final_pass_check,'yn') as passcheck,
+			count(*) as count
+		
+		from ir_info i left join pass_yn pc 
+			on i.member_info_no = pc.member_info_no
+			left join (select interviewer_info_no, sum(round(career_end_time - career_start_time,0)) as career_sum from interviewer_career group by interviewer_info_no
+			) a on i.interviewer_info_no = a.interviewer_info_no
+		where i.co_code = #{co_code}
+		group by
+		<if test='"age".equals(satisticsKind)'><!--나이일 때  -->
+			(mod((EXTRACT(YEAR FROM SYSDATE) - (DECODE(SUBSTR(i.ssn,8,1),'1', '19','2','19','20') || SUBSTR(i.ssn,1,2))+1),10)*10),           
+		</if>
+		<if test='"career".equals(satisticsKind)'><!--경력일 때  -->
+			career_sum,
+		</if>
+			pc.final_pass_check, i.co_code
+		)
+		<if test='"age".equals(satisticsKind)'><!--나이일 때  -->
+		order by age
+		</if>
+		<if test='"career".equals(satisticsKind)'><!--경력일 때  -->
+		order by career_sum
+		</if>
+	</select>
+	
+  <resultMap id="selectStatisticsKindList" type="Statistics">
+	  	<id property="co_code" column="co_code"/>
+	  	<result property="career_sum" column="career_sum"/>
+	  	<result property="age" column="age"/>
+	  	<result property="passcheck" column="passcheck"/>
+	  	<result property="count" column="count"/>
+
+  </resultMap>
+</mapper>

@@ -21,6 +21,7 @@ public class Board implements Serializable {
 	private int boardNo;
 	private int occupationCode;
 	private int memberNo;
+	private int pass_no;
 	private String coCode;
 	private String coAddr;
 	private int interviewEvaluation;
