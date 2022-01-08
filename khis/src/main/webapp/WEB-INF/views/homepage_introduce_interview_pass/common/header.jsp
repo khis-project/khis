@@ -52,6 +52,8 @@
           <li class="menu3" name=""><a href="#">면접 후기</a>
             <ul class="submenu">
               <li><a href="#">글쓰기</a></li>
+              <li><a href="${pageContext.request.contextPath}/evaluation/evaluation.do">면접 평가</a></li>
+              <li><a href="${pageContext.request.contextPath}/evaluation/evaluation.do">면접 평가</a></li>
             </ul>
           </li>
           <li class="menu4">

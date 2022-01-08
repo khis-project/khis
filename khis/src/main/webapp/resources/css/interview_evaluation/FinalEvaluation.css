@@ -1,0 +1,38 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.inlinediv {
+	padding: 10;
+	display: inline-table;
+	text-align: left;
+	
+}
+h3 {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+#totalradio {
+	text-align: center;
+}
+#interviewer {
+	text-align: center;
+}
+#interviewer th {
+	background-color: #007bff;
+	border: 1px solid #007bff;
+}
+#colortd {
+	color: red;
+}
+#interviewertable {
+	margin-top: -11px;
+	text-align: center;
+}
+#interviewer-info {
+	width: 80%;
+	text-align: center;
+}

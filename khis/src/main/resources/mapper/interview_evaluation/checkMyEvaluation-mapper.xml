@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="checkMyEvaluation">
+  <select id="selectResults" resultMap="ResultsMap">
+  	select
+  		pa.member_info_no,
+	    mc.co_name,
+	    it.job_posting_name,
+	    nvl(pa.final_pass_check, '평가중') as final_pass_check,
+	    it.end_time
+	from
+	    ir_info ir left join pass_yn pa
+	    on ir.member_info_no = pa.member_info_no
+	    left join interview_time it
+	    on ir.member_info_no = it.member_info_no
+	    left join member_company mc
+	    on pa.co_code = mc.co_code
+	where
+	    ir.member_no = #{member_no}
+  </select>
+  <select id="selectInfoDetail" resultMap="DetailMap">
+  	select
+  		i.imember_info_no,
+	    i.title,
+	    ie.evaluate_comment,
+	    ie.member_info_no
+	from
+	    interview i left join interview_evaluate ie
+	    on i.interview_no = ie.interview_no
+	where
+	    i.imember_info_no = #{member_info_no}
+  </select>
+  <resultMap type="Results" id="ResultsMap">
+  <id column="member_info_no" property="member_info_no"/>
+  	<result column="co_name" property="co_name"/>
+  	<result column="job_posting_name" property="job_posting_name"/>
+  	<result column="final_pass_check" property="final_pass_check"/>
+  	<result column="end_time" property="interview_time"/>
+  </resultMap>
+  
+  <resultMap type="Detail" id="DetailMap">
+  <id column="imember_info_no" property="imember_info_no"/>
+  	<result column="title" property="title"/>
+  	<result column="evaluate_comment" property="evaluate_comment"/>
+  	<result column="member_info_no" property="member_info_no"/>
+  </resultMap>
+</mapper>

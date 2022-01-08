@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="evaluation">
+  <select id="selectMemberList" resultMap="interviewerMap">
+  	select
+        ir.*,
+        pc.passcheck
+     from
+        ir_info ir left join assigned_info ass
+        on ir.member_info_no = ass.member_info_no
+        left join pass_comment pc on ass.assigned_interviewer = pc.imember_info_no 
+        and ass.member_info_no = pc.member_info_no
+  	where
+  		ass.assigned_interviewer = #{assigned_interviewer}
+  </select>
+  <select id="selectMemberCount" resultType="_int">
+  	select
+  		count(*)
+  	from
+  		ir_info ir left join assigned_info ass
+  		on ir.member_info_no = ass.member_info_no
+  	where
+  		ass.assigned_interviewer = #{assigned_interviewer}
+  </select>
+  <select id="selectOneMember" resultMap="interviewerMap">
+  	select
+	    ir.member_info_no,
+	    ir.co_code,
+	    ir.interviewer_no,
+	    ir.name,
+	    ir.email,
+	    ir.phone,
+	    ir.category,
+	    ir.zoom_no,
+	    ir.ir_path_code,
+	    ir.interviewer_info_no,
+	    rpad(substr(ssn, 1, 8), length(ssn), '*') as ssn,
+	    decode(substr(ssn, 8, 1), '1', '남', '3', '남', '여') as gender,
+	    EXTRACT(YEAR FROM SYSDATE) - (DECODE(SUBSTR(ssn,8,1),'1', '19','2','19','20') || SUBSTR(ssn,1,2)) +1 as age,
+        nvl(ii.self_introduction, '없음') as self_introduction,
+        ii.image,
+        it.job_posting_name
+	from
+	    ir_info ir left join interviewer_info ii
+        on ir.member_info_no = ii.interviewer_info_no
+        left join interview_time it on ir.member_info_no = it.member_info_no
+	where
+		ir.member_info_no = #{interviewer_info_no}
+  </select>
+  
+  <!-- interviewer_info_no이 값은 변수 명이 interviewer_info_no 되어있지만 member_no의 값이다. -->
+  <select id="selectOneCertificate" resultMap="certificateMap">
+  	select
+  		*
+  	from
+  		interviewer_certificate
+    where
+        interviewer_info_no = #{interviewer_info_no}
+  </select>
+  <select id="selectCareerList" resultMap="careerMap">
+  	select
+  		*
+  	from
+  		interviewer_career
+  	where
+  		interviewer_info_no = #{interviewer_info_no}
+  </select>
+  <select id="selectQuestionList" resultMap="interviewsMap">
+    select
+  		i.interview_no as interview_no,
+        i.title as title,
+        i.content as content,
+  		ie.member_info_no as interviewer_no,
+  		ie.evaluate_no as evaluate_no,
+        nvl(ie.evaluate_value, 0) as evaluate_value,
+        nvl(ie.evaluate_comment, '') as evaluate_comment,
+        pc.passcheck as passcheck
+  	from
+  		interview i left join interview_evaluate ie
+        on i.interview_NO = ie.interview_NO 
+        left join pass_comment pc
+        on ie.member_info_no = pc.imember_info_no
+  	<where>
+  		i.imember_info_no = #{imember_info_no} <!-- 면접자 번호 -->
+		<if test= "member_info_no != null">
+			and ie.member_info_no = #{member_info_no}
+		</if>  		
+  	</where>
+  </select>
+  <select id="selectQuestionList2" resultMap="interviewsMap">
+  	select 
+  		interview_no, co_code, title, content, imember_info_no  
+  	from 
+  		interview 
+	where 
+		imember_info_no = #{imember_info_no}
+  </select>
+  <select id="selectEvaluationList" resultMap="interviewsMap">
+  	select 
+  		*
+	from 
+		interview i left join interview_evaluate ie 
+		on i.interview_no = ie.interview_no	
+        left join pass_comment pa 
+        on ie.member_info_no = pa.imember_info_no
+	<where>
+		ie.MEMBER_info_NO = #{member_info_no}
+		<if test='questionList != null'>
+			and i.interview_no in
+			<foreach collection="questionList" item = "item" index="index" separator="," open="(" close=")">
+				#{item.interview_no}
+			</foreach>
+		</if>
+	</where>	
+  </select>
+  <insert id="insertEvaluation">
+  	insert into
+  		interview_evaluate
+  	values (
+  		evaluate_sequence.nextval,
+  		#{interview_no},
+  		#{member_info_no},
+  		#{evaluate_value},
+  		#{evaluate_comment}  	
+  	)
+  	
+  </insert>
+  <update id="updateEvaluation">
+  	update
+  		interview_evaluate
+  	set
+  		evaluate_value = #{evaluate_value},
+  		evaluate_comment = #{evaluate_comment}
+  	where
+  		interview_no = #{interview_no}
+  </update>
+  
+  <select id="selectApplyList" resultMap="ApplyMap">
+  	select
+  		member_info_no,
+  		start_time,
+  		end_time,
+  		job_posting_name
+  	from
+  		interview_time
+  	where
+  		member_info_no = #{member_info_no}
+  		and co_code = #{co_code}
+  </select>
+  <select id="selectAssignedList" resultMap="AssignedMap">
+  	select
+  		*
+  	from
+  		assigned_info
+  	where
+  		member_info_no = #{member_info_no}
+  		and assigned_interviewer not in (#{assigned_interviewer})
+  </select>
+  
+  <select id="selectOtherInterviewerEvaluation" resultMap="interviewsMap">
+  	select
+	    i.title,
+	    ie.interview_no,
+	    ie.member_info_no,
+	    ie.evaluate_value,
+	    ie.evaluate_comment
+	from    
+	    interview i left join interview_evaluate ie
+	    on i.interview_no = ie.interview_no
+	where
+	    ie.member_info_no = #{member_no}
+  </select>
+  
+  <select id="calculateSumValue" resultType="_int">
+  	select 
+	    sum(evaluate_value) 
+	from 
+	    interview_evaluate 
+	<where>
+		member_info_no = #{member_info_no}
+		<if test='evaluate_no != null'>
+			and evaluate_no in 
+			<foreach collection="evaluate_no" item="item" index="index" separator="," open="(" close=")">
+				#{item}
+			</foreach>
+		</if>
+	</where>
+  </select>
+  <insert id="passnonpass">
+  	insert into
+  		pass_comment
+  	values (
+  		#{comment_no},
+  		#{member_info_no},
+  		#{imember_info_no},
+  		#{co_code},
+  		#{passcheck}
+  	)
+  </insert>
+  <select id="selectInterviewerList" resultMap="interviewerMap">
+  	select 
+		a.member_info_no, i.name
+	from 
+		assigned_info a left join ir_info i 
+	    on a.member_info_no = i.member_info_no
+	where
+		i.co_code = #{co_code}
+	group by 
+		a.member_info_no,i.name
+  </select>
+  <select id="selectInterviewerCount" resultType="_int">
+  	select
+		count(*)
+	from(
+		select
+			a.member_info_no, i.name
+		from assigned_info a left join ir_info i 
+			on a.member_info_no = i.member_info_no
+		where
+			i.co_code = #{co_code}
+		group by a.member_info_no,i.name)
+  </select>
+  <select id="selectInterviewerDetail" resultMap="AssignedMap">
+  	SELECT 
+    	a.*, i.co_code, nvl(p.passcheck, '미평가') as passcheck, py.FINAL_PASS_CHECK
+    FROM 
+    	assigned_Info a 
+    	left join ir_info i on a.member_info_no = i.member_info_no
+    	left join pass_comment p on a.member_info_no = p.member_info_no 
+        and a.assigned_interviewer = p.imember_info_no
+    	left join pass_yn py on py.member_info_no = p.member_info_no
+    where a.member_info_no = #{member_info_no} and i.co_code = #{co_code}
+  </select>
+  <insert id="insertPassYn">
+  	insert into
+  		pass_yn
+  	values (
+  		seq_pass_no.nextval,
+  		#{member_info_no},
+  		#{co_code},
+  		#{final_pass_check},
+  		sysdate,
+  		#{board_write_yn}
+  	)
+  </insert>
+  <resultMap type="interviewer" id="interviewerMap">
+  <id column="member_info_no" property="member_info_no" jdbcType="CLOB" javaType="java.lang.Integer"/>
+  	<result column="member_no" property="member_no"/>
+  	<result column="co_code" property="co_code"/>
+  	<result column="interviewer_no" property="interviewer_no"/>
+  	<result column="name" property="name"/>
+  	<result column="email" property="email"/>
+  	<result column="phone" property="phone"/>
+  	<result column="category" property="category"/>
+  	<result column="role" property="role"/>
+  	<result column="gender" property="gender"/>
+  	<result column="resident_no" property="resident_no"/>
+  	<result column="age" property="age"/>
+  	<result column="ssn" property="ssn"/>
+  	<result column="zoom_no" property="zoom_no"/>
+  	<result column="ir_path_code" property="ir_path_code"/>
+  	<result column="interviewer_info_no" property="interviewer_info_no"/>
+  	<result column="self_introduction" property="self_introduction"/>
+  	<result column="image" property="image"/>
+  	<result column="passcheck" property="passcheck"/>
+  	<result column="job_posting_name" property="job_posting_name"/>
+  </resultMap>
+  
+  <resultMap type="certificate" id="certificateMap">
+  <id column="certificate_no" property="certificate_no"/>
+  	<result column="interviewer_info_no" property="interviewer_info_no"/>
+  	<result column="certificate_name" property="certificate_name"/>
+  	<result column="certificate_issuer" property="certificate_issuer"/>
+  	<result column="certificate_date" property="certificate_date"/>
+  </resultMap>
+  
+  <resultMap type="career" id="careerMap">
+  <id column="career_no" property="career_no"/>
+  	<result column="interviewer_info_no" property="interviewer_info_no"/>
+  	<result column="company_name" property="company_name"/>
+  	<result column="career_term" property="career_term"/>
+  	<result column="career_start_time" property="career_start_time"/>
+  	<result column="career_end_time" property="career_end_time"/>
+  </resultMap>
+  
+  <resultMap type="interviews" id="interviewsMap">
+  <id column="evaluate_no" property="evaluate_no"/>
+  	<result column="member_no" property="member_no"/>
+  	<result column="co_code" property="co_code"/>
+  	<result column="name" property="name"/>
+  	<result column="title" property="title"/>
+  	<result column="content" property="content"/>
+  	<result column="reg_date" property="reg_date"/>
+  	<result column="member_info_no" property="member_info_no"/>
+  	<result column="interview_no" property="interview_no"/>
+  	<result column="evaluate_value" property="evaluate_value"/>
+  	<result column="evaluate_comment" property="evaluate_comment"/>
+  	<result column="passcheck" property="passcheck"/>
+  </resultMap>
+  
+  <resultMap type="Apply" id="ApplyMap">
+  <id column="member_info_no" property="member_info_no"/>
+  	<result column="co_code" property="co_code"/>
+  	<result column="start_time" property="start_time"/>
+  	<result column="end_time" property="end_time"/>
+  	<result column="job_posting_name" property="job_posting_name"/>
+  </resultMap>
+  
+  <resultMap type="Assigned" id="AssignedMap">
+  <id column="assigned_no" property="assigned_no"/>
+  	<result column="member_info_no" property="member_info_no"/>
+  	<result column="assigned_interviewer" property="assigned_interviewer"/>
+  	<result column="passcheck" property="passcheck"/>
+  	<result column="co_code" property="co_code"/>
+  	<result column="FINAL_PASS_CHECK" property="final_pass_check"/>
+  </resultMap>
+  
+  <resultMap type="Evaluation" id="EvaluationMap">
+  <id column="evaluate_no" property="evaluate_no"/>
+  	<result column="interview_no" property="interview_no"/>
+  	<result column="member_no" property="member_no"/>
+  	<result column="evaluate_value" property="evaluate_value"/>
+  	<result column="evaluate_comment" property="evaluate_comment"/>
+  	<result column="Rmember_info_no" property="Rmember_info_no"/>
+  </resultMap>
+</mapper>

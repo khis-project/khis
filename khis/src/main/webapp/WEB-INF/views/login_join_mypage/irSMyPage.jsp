@@ -50,7 +50,8 @@
 				</div>
 				<div class="Interview">
           <span><br>평가 진행</span><br><br>
-            <span><i class="fas fa-chalkboard-teacher fa-9x" style="color: #34495E;"></i></span>
+            <span><a href="http://localhost:9090/khis/evaluation/evaluation.do">
+            <i class="fas fa-chalkboard-teacher fa-9x" style="color: #34495E;"></i></a></span>
              <p>좋은 인재를 찾을 수 있는 <br /> 면접이 되시길 바랍니다. :)</p>
         </div>
 				<div class="InterviewP">
