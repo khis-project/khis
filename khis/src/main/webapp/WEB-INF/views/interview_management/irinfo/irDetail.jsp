@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/interview_management/main.css" />
 <style>
 #detailForm {
-	width: 450px;
+	width: 500px;
 	padding:30px;
 }
 
@@ -26,11 +26,11 @@
 			<form name = "irDeleteFrm" action="${pageContext.request.contextPath }/irmanagement/irDelete.do" method = "post">
 			<input type="hidden" name="memberInfoNo" value = "${irInfo.memberInfoNo}" />
 			</form>
-				<table class="table table-hover" style="text-align: center;">
+				<table class="table table-hover" style="text-align: center; table-layout: fixed;">
 						<tr>
 							<th scope = "row">회원번호</th>
 							
-							<td>${irInfo.memberInfoNo}</td>
+							<td style = "width: 300px;">${irInfo.memberInfoNo}</td>
 						</tr>
 						<tr>
 							<th scope = "row">이름</th>
