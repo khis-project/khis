@@ -1,5 +1,10 @@
 package com.kh.khis.untact_interview_statistics_practice.untact_interview.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,27 +135,59 @@ public class UntactInterviewController {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
 			return "redirect:/";
 		}else {		
-			int member_no = member.getMemberNo(); // 나중에는 해당 클릭했을때 클릭한 member_no 가져오기
-			Zoom zoomInfo = untactInterviewService.selectZoomIr_Info(member_no);
-			String name = "R".equals(kind) ? "면접관" : zoomInfo.getName(); 
-			String role = "R".equals(kind) ? "1" : "0";
+			int member_info_no = member.getMemberInfoNo(); // 나중에는 해당 클릭했을때 클릭한 member_no 가져오기
 			
+			Zoom zoomInfo = untactInterviewService.selectZoomIr_Info(member_info_no);
+//			원래는 controller에서 시간 비교를 하려고 했으나 그냥 oracle query문에서 체크
+//			LocalDateTime now = LocalDateTime.now(); // 현재 날짜/시간 2021-12-02T18:19:36.897421300 // 포맷팅 
+//			String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); 
+//			// 포맷팅 현재 날짜/시간 출력 
+//
+//			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
+//			String dateToStr1 = dateFormat.format(zoomInfo.getStart_time());
+//			String dateToStr2 = dateFormat.format(zoomInfo.getEnd_time());
 			
-			log.debug("zoomConnect = {}", "/zoomConnect.do 요청!");
-			log.debug("joinUrl = {}", "/joinUrl.do 요청!");
+//			log.debug("time = {}", dateToStr1);
+//			log.debug("time = {}", dateToStr2);
+//			Boolean bValid = getValidDate(dateToStr1, dateToStr2, formatedNow);
+//			log.debug("시간 포함 여부 = {}", bValid);
+			if(zoomInfo == null) {
+				redirectAttr.addFlashAttribute("msg","현재 볼 수 있는 면접이 없습니다.");
+				if("IR".equals(member.getKind()))
+					return "redirect:/member/irMyPage.do";
+				else					
+					return "redirect:/member/irHMyPage.do";
+			}else {
+				if(zoomInfo.getApi_key() == null) { // 회의실 연결이 되어 있지 않음
+					redirectAttr.addFlashAttribute("msg","회의실 연결이 되어있지 않습니다.<br>면접 관리자에게 연락하시길 바랍니다.");
+				}else {
+					if("IR".equals(member.getKind()))
+						return "redirect:/member/irMyPage.do";
+					else					
+						return "redirect:/member/irHMyPage.do";
+				}
+				String name = "R".equals(kind) ? "면접관" : zoomInfo.getName(); 
+				String role = "R".equals(kind) ? "1" : "0";
+				
+				
+				log.debug("zoomConnect = {}", "/zoomConnect.do 요청!");
+				log.debug("joinUrl = {}", "/joinUrl.do 요청!");
+				
+				Map<String,String> map = new HashMap<String, String>();
+				map.put("name",name);
+				map.put("mn", zoomInfo.getZoom_number());
+				map.put("pwd",zoomInfo.getZoom_password());
+				map.put("role",role);
+				map.put("lang","ko-KO");
+				map.put("china","0");
+				map.put("apiKey",zoomInfo.getApi_key());
+				map.put("apiSec",zoomInfo.getApi_secret());
+				
+				model.addAttribute("ZoomUrl", map);
+//				return "";
+				return  "untact_interview_statistics_practice/CDN/meeting";
+			}
 			
-			Map<String,String> map = new HashMap<String, String>();
-			map.put("name",name);
-			map.put("mn", zoomInfo.getZoom_number());
-			map.put("pwd",zoomInfo.getZoom_password());
-			map.put("role",role);
-			map.put("lang","ko-KO");
-			map.put("china","0");
-			map.put("apiKey",zoomInfo.getApi_key());
-			map.put("apiSec",zoomInfo.getApi_secret());
-			
-			model.addAttribute("ZoomUrl", map);
-			return  "untact_interview_statistics_practice/CDN/meeting";
 		}
 	}
 
@@ -320,6 +357,34 @@ public class UntactInterviewController {
 		}
 	}
 	
+	
+		// 시간 쪼개기
+	   private Calendar getDateTime(String strDatetime) {
+		      Calendar cal = Calendar.getInstance();
+		      String[] strSplitDateTime = strDatetime.split(" ");
+		      String[] strSplitDate = strSplitDateTime[0].split("-");
+		      String[] strSplitTime = strSplitDateTime[1].split(":");
+		      cal.set(Integer.parseInt(strSplitDate[0]), Integer.parseInt(strSplitDate[1]) - 1,
+		            Integer.parseInt(strSplitDate[2]), Integer.parseInt(strSplitTime[0]), Integer.parseInt(strSplitTime[1]),
+		            Integer.parseInt(strSplitTime[2]));
+		      return cal;
+
+		   }
+
+
+
+		// 비교 함수
+	   private Boolean getValidDate(String strStart, String strEnd, String strValue) {
+	      Calendar calStart = getDateTime(strStart);
+	      Calendar calEnd = getDateTime(strEnd);
+	      Calendar calValue = getDateTime(strValue);
+
+	      Boolean bValid = false;
+	      if (calStart.before (calValue) && calEnd.after(calValue)) {
+	         bValid = true;
+	      }
+	      return bValid;
+	   }
 	
 	/**
 	 * URL Resource

@@ -25,7 +25,7 @@ public interface UntactInterviewDao {
 
 	List<Zoom> selectZoomIRList(int member_no);
 
-	Zoom selectZoomIr_Info(int member_no);
+	Zoom selectZoomIr_Info(int member_info_no);
 
 
 }

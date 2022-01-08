@@ -715,7 +715,7 @@ begin
                             where py.pass_no = :old.pass_no);
 end;
 
-create or replace trigger trg_board_insert
+create or replace trigger trg_board_insertbos
     after
         insert on board /*board에서 데이터가 삭제된 후에 실행*/
         for each row
@@ -779,3 +779,24 @@ commit;
 select *
  from zoom
 		where member_no = 121
+;
+
+select *
+from ir_info ii 
+        left join zoom z on ii.zoom_no = z.zoom_no
+        left join interview_time it on ii.member_info_no = it.member_info_no    
+where ii.member_info_no = #{member_info_no}
+;
+select * from ir_info ii left join member m on ii.member_no = m.member_no 
+left join interview_time it on it.member_info_no = ii.member_info_no
+where ii.co_code = 2998600021
+and sysdate between it.start_time and it.end_time
+
+	select 
+		*
+	from 
+		ir_info ii 
+	        left join zoom z on ii.zoom_no = z.zoom_no
+	        left join interview_time it on ii.member_info_no = it.member_info_no
+	where 
+		ii.member_info_no = 38

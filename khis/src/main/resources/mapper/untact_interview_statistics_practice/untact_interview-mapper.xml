@@ -12,13 +12,27 @@
 			member_no = #{member_no}
   </select>
   <select id="selectZoomIr_Info" resultMap="selectZoomApiType">
-    select
+<!--     select
         z.zoom_no, z.member_no, z.co_code, z.api_key, 
         z.api_secret, z.zoom_number, z.zoom_password, m.name, m.role, m.interviewer_no
     from
         ir_info m join zoom z on z.zoom_no = m.zoom_no
     where
-        m.member_no = #{member_no}
+        m.member_no = #{member_no} -->
+	<!--  select * from ir_info ii left join member m on ii.member_no = m.member_no 
+	left join interview_time it on it.member_info_no = ii.member_info_no
+	where ii.co_code = 2998600021
+	and sysdate between it.start_time and it.end_time -->
+        
+	select 
+		*
+	from 
+		ir_info ii 
+	        left join zoom z on ii.zoom_no = z.zoom_no
+	        left join interview_time it on ii.member_info_no = it.member_info_no    
+	where 
+		ii.member_info_no = #{member_info_no}
+		and sysdate between it.start_time and it.end_time
   </select>
   
   <insert id="insertZoom">
@@ -117,6 +131,8 @@
   	<result property="zoom_password" column="zoom_password"/>
   	<result property="name" column="name"/>
   	<result property="role" column="role"/>
+  	<result property="end_time" column="end_time"/>
+  	<result property="start_time" column="start_time"/>
   	<result property="interviewer_no" column="interviewer_no"/>
   </resultMap>
   <resultMap id="selectZoomType" type="Zoom">
