@@ -19,13 +19,13 @@ public interface IRInfoService {
 
 	int insertRater(IRInfo irInfo, String[] assignedInfoNo);
 
-	List<IRInfo> selectInfoList(int offset, int limit);
+	List<IRInfo> selectInfoList(int offset, int limit, long co_code);
 
 	IRInfo selectOneIRInfo(int memberInfoNo);
 
 	int deleteIRInfo(int memberInfoNo);
 
-	int selectIRInfoTotalCount();
+	int selectIRInfoTotalCount(long co_code);
 
 	List<Zoom> selectZoomList(int memberNo);
 

@@ -772,3 +772,10 @@ left join interview_evaluate ie on ie.interview_no = i.interview_no
 left join pass_comment pc on ie.member_info_no = pc.imember_info_no and pc.imember_info_no = ai.assigned_interviewer
 where ai.member_info_no = 21
 and ai.assigned_interviewer = 79;
+
+update zoom set zoom_number = 9836117076, zoom_password = '3hqQXE' where member_no = 121;
+commit;
+
+select *
+ from zoom
+		where member_no = 121
