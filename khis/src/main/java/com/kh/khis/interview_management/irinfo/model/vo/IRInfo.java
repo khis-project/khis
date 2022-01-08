@@ -18,7 +18,7 @@ public class IRInfo {
 	private String phone;
 	private String category;
 	private String role;
-	private int zoom_no;
+	private int zoomNo;
 	private String irPathCode;
 	private int interviewerInfoNo;
 	private String ssn;
