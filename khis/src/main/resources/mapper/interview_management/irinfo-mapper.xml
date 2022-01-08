@@ -14,7 +14,7 @@
 		#{category},
 		#{role},
 		#{irPathCode},
-		#{zoomNo},
+		#{zoom_no},
 		#{interviewerInfoNo},
 		#{ssn},
 		#{memberIrHaedNo}

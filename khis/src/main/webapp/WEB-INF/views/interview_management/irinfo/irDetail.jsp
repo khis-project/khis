@@ -61,10 +61,10 @@
 							<th scope = "row">면접 방법</th>
 							<td>${irInfo.category eq "C" ? "대면" : "비대면"}</td>
 						</tr>
-							<c:if test = "${not empty irInfo.zoomNo}">
+							<c:if test = "${not empty irInfo.zoom_no}">
 								<tr>
 									<th scope = "row">회의실 번호</th>
-									<td>${irInfo.zoomNo}번 회의실</td>
+									<td>${irInfo.zoom_no}번 회의실</td>
 								</tr>
 							</c:if>
 							<c:if test = "${irInfo.interviewerInfoNo > 0}">
