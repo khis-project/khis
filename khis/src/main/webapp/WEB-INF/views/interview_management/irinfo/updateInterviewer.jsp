@@ -59,14 +59,14 @@ div.interviewTime {
 					</div>
 					<%-- 회의실 번호 : zoom 테이블에서 불러온 뒤 foreach문 활용할 것 --%>
 					<div class="mb-4" id = "zoomNo">
-						<label for="zoom_no" class="form-label">회의실 선택</label> <br />
+						<label for="zoomNo" class="form-label">회의실 선택</label> <br />
 						<div class="form-check">
   							<!-- input class="form-check-input" type="checkbox" value="zoomNo" id="zoomClass1">
   							<label class="form-check-label" for="zoomClass1">회의실1</label>
 						</div> -->
 							<c:forEach items = "${zoomList}" var="zoom" varStatus = "vs">
-								<input class ="form-check-input" type="radio" name="zoom_no" id="${vs.count}" value="${zoom.zoom_no}" ${irInfo.zoom_no eq zoom.zoom_no ? "checked" : "" } />
-								<label class="form-check-label" for="${vs.count}" >${vs.count}. ${zoom.zoom_no}번 회의실</label><br />
+								<input class ="form-check-input" type="radio" name="zoomNo" id="${vs.count}" value="${zoom.zoomNo}" ${irInfo.zoomNo eq zoom.zoomNo ? "checked" : "" } />
+								<label class="form-check-label" for="${vs.count}" >${vs.count}. ${zoom.zoomNo}번 회의실</label><br />
 							</c:forEach>
  						</div> 
 					</div>
