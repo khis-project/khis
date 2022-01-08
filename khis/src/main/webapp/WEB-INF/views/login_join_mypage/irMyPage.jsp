@@ -54,7 +54,8 @@
 				</div>
 				<div class="InYNCo">
 					<span><br>면접결과 및 코멘트</span><br><br>
-					<span><i class="far fa-handshake fa-7x" style="color: #34495E;"></i></span>
+					<span><a href="http://localhost:9090/khis/info/checkMyEvaluation.do">
+						<i class="far fa-handshake fa-7x" style="color: #34495E;"></i></a></span>
 					<p>나와 함께할 회사는 어디일까요? <br />중요한 정보가 될 수 있는 면접관님의 코멘트를 볼 수 있어요.</p>
 				</div>
 				<div class="InterviewP">
