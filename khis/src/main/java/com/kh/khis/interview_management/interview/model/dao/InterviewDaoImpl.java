@@ -17,9 +17,9 @@ public class InterviewDaoImpl implements InterviewDao {
 	private SqlSession session;
 
 	@Override
-	public List<Interview> selectInterviewList(int offset, int limit) {
+	public List<Interview> selectInterviewList(int offset, int limit, long co_code) {
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return session.selectList("interview.selectInterviewList", null, rowBounds);
+		return session.selectList("interview.selectInterviewList", co_code, rowBounds);
 	}
 
 	@Override
@@ -47,9 +47,9 @@ public class InterviewDaoImpl implements InterviewDao {
 	}
 
 	@Override
-	public int selectInterviewTotalCount() {
+	public int selectInterviewTotalCount(long co_code) {
 		// TODO Auto-generated method stub
-		return session.selectOne("interview.selectInterviewTotalCount");
+		return session.selectOne("interview.selectInterviewTotalCount",co_code);
 	}
 
 	@Override

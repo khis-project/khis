@@ -5,6 +5,7 @@
 <mapper namespace="interview">
  <select id="selectInterviewList" resultType = "interview">
  	select * from interview
+ 	where co_code = #{co_code}
  	order by interview_no desc
  </select>
  <insert id="insertInterview">
@@ -38,6 +39,7 @@
 </delete>
 <select  id="selectInterviewTotalCount" resultType = "_int">
 	select count(*) from interview
+ 	where co_code = #{co_code}
 </select>
 <select id="selectInterviewerList" resultType="irinfo">
 	select a.interview_count, b.* from

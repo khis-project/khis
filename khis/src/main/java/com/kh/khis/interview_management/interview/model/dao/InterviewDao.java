@@ -7,7 +7,7 @@ import com.kh.khis.interview_management.irinfo.model.vo.IRInfo;
 
 public interface InterviewDao {
 
-	List<Interview> selectInterviewList(int offset, int limit);
+	List<Interview> selectInterviewList(int offset, int limit, long co_code);
 
 	int insertInterview(Interview interview);
 
@@ -17,7 +17,7 @@ public interface InterviewDao {
 
 	int deleteInterview(int interviewNo);
 
-	int selectInterviewTotalCount();
+	int selectInterviewTotalCount(long co_code);
 
 	List<IRInfo> selectInterviewerList(int memberNo);
 

@@ -51,28 +51,57 @@ public class IRInfoController {
 	}
 	
 	@GetMapping("/insertInterviewer.do")
-	public String insertInterviewer(HttpSession session, Model model) {
+	public String insertInterviewer(HttpSession session, Model model, RedirectAttributes redirectAttr ) {
 		Member member = (Member) session.getAttribute("loginMember");
 		log.debug("member = {}", member);
-		int memberNo = member.getMemberNo();
-		// 1. 면접자 insert시 필요한 zoom 회의실 정보 담아서 보내기 : 회의실 정보 있어야 view에서 확인 후 처리 가능
-		List<Zoom> zoomList = irinfoService.selectZoomList(memberNo);
-		log.debug("zoomList = {}", zoomList);
-		model.addAttribute("zoomList", zoomList);
-		
-		List<IRPath> irPathList = irinfoService.selectIRPathList();
-		log.debug("irPathList = {}", irPathList);
-		model.addAttribute("irPathList", irPathList);
- 		return "/interview_management/irinfo/insertInterviewer";
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+			
+			int memberNo = member.getMemberNo();
+			// 1. 면접자 insert시 필요한 zoom 회의실 정보 담아서 보내기 : 회의실 정보 있어야 view에서 확인 후 처리 가능
+			List<Zoom> zoomList = irinfoService.selectZoomList(memberNo);
+			log.debug("zoomList = {}", zoomList);
+			model.addAttribute("zoomList", zoomList);
+			
+			List<IRPath> irPathList = irinfoService.selectIRPathList();
+			log.debug("irPathList = {}", irPathList);
+			model.addAttribute("irPathList", irPathList);
+	 		return "/interview_management/irinfo/insertInterviewer";
+		}
 	}
 
 	@PostMapping("/insertInterviewer.do")
-	public String insertInterviewer(IRInfo irInfo, HttpServletRequest request, RedirectAttributes redirectAttr)
+	public String insertInterviewer(
+			IRInfo irInfo,
+//			@RequestParam String coCode,
+//			@RequestParam String name,
+//			@RequestParam String email,
+//			@RequestParam String phone,
+//			@RequestParam String category,
+//			@RequestParam String role,
+//			@RequestParam String zoomNo,
+//			@RequestParam String interviewerInfoNo,
+//			@RequestParam String memberIrHaedNo,
+			
+			HttpServletRequest request, RedirectAttributes redirectAttr)
 			throws ParseException {
+//		IRInfo irInfo = new IRInfo();
+//		irInfo.setCoCode(Integer.parseInt(coCode));
+//		irInfo.setName(name);
+//		irInfo.setEmail(email);
+//		irInfo.setPhone(phone);
+//		irInfo.setCategory(category);
+//		irInfo.setRole(role);
+//		irInfo.setZoomNo(Integer.parseInt(zoomNo));
+//		irInfo.setInterviewerInfoNo(Integer.parseInt(interviewerInfoNo));
+//		irInfo.setMemberIrHaedNo(Integer.parseInt(memberIrHaedNo));
+		
 		String msg = null;
 		int checkDuplicate = irinfoService.checkDuplicate(irInfo);
 		String location = null;
-
+		
 		if (checkDuplicate == 0) {
 			String ssn1 = request.getParameter("ssn1");
 			String ssn2 = request.getParameter("ssn2");
@@ -190,7 +219,7 @@ public class IRInfoController {
 			int totalContent = irinfoService.selectIRInfoTotalCount(co_code);
 			
 			String url = request.getRequestURI(); // /spring/board/boardList.do
-			String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent,url);		
+			String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent, url);		
 			
 			model.addAttribute("pagebar", pagebar);
 			return "/interview_management/irinfo/irList";
@@ -213,46 +242,51 @@ public class IRInfoController {
 	}
 	
 	@GetMapping("/irUpdate.do")
-	public String irUpdate(@RequestParam int memberInfoNo, Model model, HttpSession session) {
+	public String irUpdate(@RequestParam int memberInfoNo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		log.debug("memberInfoNo = {}", memberInfoNo);
 		IRInfo irInfo = irinfoService.selectOneIRInfo(memberInfoNo);
 		String location = null;
 		log.debug("irInfo = {}", irInfo);
 		model.addAttribute("irInfo", irInfo);
 		Member member = (Member) session.getAttribute("loginMember"); 
-		int memberNo = member.getMemberNo();
-		
-		if("I".equals(irInfo.getRole())) {
-			// 회의실 리스트 : 세션의 loginMember객체에서 회원번호로 불러오기
-			List<Zoom> zoomList = irinfoService.selectZoomList(memberNo);
-			log.debug("zoomList = {}", zoomList);
-			model.addAttribute("zoomList", zoomList);
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+			int memberNo = member.getMemberNo();
 			
-			List<IRPath> irPathList = irinfoService.selectIRPathList();
-			log.debug("irPathList = {}", irPathList);
-			model.addAttribute("irPathList", irPathList);
+			if("I".equals(irInfo.getRole())) {
+				// 회의실 리스트 : 세션의 loginMember객체에서 회원번호로 불러오기
+				List<Zoom> zoomList = irinfoService.selectZoomList(memberNo);
+				log.debug("zoomList = {}", zoomList);
+				model.addAttribute("zoomList", zoomList);
+				
+				List<IRPath> irPathList = irinfoService.selectIRPathList();
+				log.debug("irPathList = {}", irPathList);
+				model.addAttribute("irPathList", irPathList);
+				
+				InterviewTime interviewTime = irinfoService.selectOneInterviewTime(memberInfoNo);
+				log.debug("interviewTime = {}", interviewTime);
+				model.addAttribute("interviewTime", interviewTime);
+				location = "/interview_management/irinfo/updateInterviewer";
+				
+			} else if("R".equals(irInfo.getRole())) {
+				
+				// 총 면접자 리스트 : 세션의 loginMember객체에서 회원번호로 불러오기
+				List<IRInfo> interviewerList = irinfoService.selectInterviewerList(memberNo);
+				log.debug("interviewerList = {}", interviewerList);
+				model.addAttribute("interviewerList", interviewerList);
+				
+				// 해당 면접관에게 배정된 면접자 리스트
+				List<AssignedInfo> assignedInfoList = irinfoService.selectAssignedInfoList(memberInfoNo);
+				log.debug("assignedInfoList = {}", assignedInfoList);
+				model.addAttribute("assignedInfoList", assignedInfoList);
+				location = "/interview_management/irinfo/updateRater";
+			}
 			
-			InterviewTime interviewTime = irinfoService.selectOneInterviewTime(memberInfoNo);
-			log.debug("interviewTime = {}", interviewTime);
-			model.addAttribute("interviewTime", interviewTime);
-			location = "/interview_management/irinfo/updateInterviewer";
-			
-		} else if("R".equals(irInfo.getRole())) {
-			
-			// 총 면접자 리스트 : 세션의 loginMember객체에서 회원번호로 불러오기
-			List<IRInfo> interviewerList = irinfoService.selectInterviewerList(memberNo);
-			log.debug("interviewerList = {}", interviewerList);
-			model.addAttribute("interviewerList", interviewerList);
-			
-			// 해당 면접관에게 배정된 면접자 리스트
-			List<AssignedInfo> assignedInfoList = irinfoService.selectAssignedInfoList(memberInfoNo);
-			log.debug("assignedInfoList = {}", assignedInfoList);
-			model.addAttribute("assignedInfoList", assignedInfoList);
-			location = "/interview_management/irinfo/updateRater";
+			log.debug("location = {}", location);
+			return location;
 		}
-		
-		log.debug("location = {}", location);
-		return location;
 	}
 	
 	

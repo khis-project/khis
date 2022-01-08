@@ -63,7 +63,7 @@
 	<select id="selectIRInfoTotalCount" resultType="_int">
 		select count(*) from ir_info where co_code = #{co_code}
 	</select>
-	<select id="selectZoomList" resultType="zoom">
+	<select id="selectZoomList" resultMap="selectZoomApiType">
 		select * from zoom
 		where member_no = #{memberNo}
 	</select>
@@ -193,4 +193,15 @@
     	delete from assigned_info
     	where assigned_interviewer = #{assignedInterviewer}
     </delete>
+    
+      <resultMap type="Zoom" id="selectZoomApiType">
+  	<id property="zoom_no" column="zoom_no"/>
+  	<result property="member_no" column="member_no"/>
+  	<result property="co_code" column="co_code"/>
+  	<result property="api_key" column="api_key"/>
+  	<result property="api_secret" column="api_secret"/>
+  	<result property="zoom_number" column="zoom_number"/>
+  	<result property="zoom_password" column="zoom_password"/>
+  </resultMap>
+
 </mapper>

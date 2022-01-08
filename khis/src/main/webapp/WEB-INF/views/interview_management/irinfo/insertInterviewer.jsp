@@ -90,7 +90,7 @@ div.interviewTime {
 							<select class="form-select" id ="zoomNo" name = "zoomNo">
 								<option selected disabled>회의실 선택</option>
   								<c:forEach items = "${zoomList }" var = "zoom" varStatus = "vs">
-  									<option value="${zoom.zoomNo}">${vs.count}. ${zoom.zoomNo}번 회의실</option>
+  									<option value="${zoom.zoom_no}">${vs.count}. ${zoom.zoom_no}번 회의실</option>
   								</c:forEach>
 							</select>
 					</div>
