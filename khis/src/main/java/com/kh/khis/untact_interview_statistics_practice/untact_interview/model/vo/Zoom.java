@@ -2,7 +2,7 @@ package com.kh.khis.untact_interview_statistics_practice.untact_interview.model.
 
 import java.io.Serializable;
 
-
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +24,8 @@ public class Zoom implements Serializable {
 	private String zoom_password; // 회의실 패스웓드
 	private String name;
 	private String role;
+	private Date end_time;
+	private Date start_time;
 	private String interviewer_no;
 	
 

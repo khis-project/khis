@@ -57,8 +57,8 @@ public class UntactInterviewDaoImpl implements UntactInterviewDao {
 	}
 
 	@Override
-	public Zoom selectZoomIr_Info(int member_no) {
-		return session.selectOne("UntactInterview.selectZoomIr_Info", member_no);
+	public Zoom selectZoomIr_Info(int member_info_no) {
+		return session.selectOne("UntactInterview.selectZoomIr_Info", member_info_no);
 	}
 
 	/*

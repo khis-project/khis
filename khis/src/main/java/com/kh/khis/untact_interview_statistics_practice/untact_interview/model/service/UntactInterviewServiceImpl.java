@@ -61,8 +61,8 @@ public class UntactInterviewServiceImpl implements UntactInterviewService {
 	}
 
 	@Override
-	public Zoom selectZoomIr_Info(int member_no) {
-		return untactInterviewDao.selectZoomIr_Info(member_no);
+	public Zoom selectZoomIr_Info(int member_info_no) {
+		return untactInterviewDao.selectZoomIr_Info(member_info_no);
 	}
 
 	/*
