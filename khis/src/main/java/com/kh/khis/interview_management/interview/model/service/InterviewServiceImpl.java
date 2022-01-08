@@ -18,9 +18,9 @@ public class InterviewServiceImpl implements InterviewService {
 	
 
 	@Override
-	public List<Interview> selectInterviewList(int offset, int limit) {
+	public List<Interview> selectInterviewList(int offset, int limit, long co_code) {
 		// TODO Auto-generated method stub
-		return interviewDao.selectInterviewList(offset, limit);
+		return interviewDao.selectInterviewList(offset, limit, co_code);
 	}
 
 	@Override
@@ -47,9 +47,9 @@ public class InterviewServiceImpl implements InterviewService {
 	}
 
 	@Override
-	public int selectInterviewTotalCount() {
+	public int selectInterviewTotalCount(long co_code) {
 		// TODO Auto-generated method stub
-		return interviewDao.selectInterviewTotalCount();
+		return interviewDao.selectInterviewTotalCount(co_code);
 	}
 
 	@Override

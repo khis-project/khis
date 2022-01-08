@@ -31,30 +31,43 @@ public class InterviewController {
 	private InterviewService interviewService;
 	
 	@GetMapping("/interviewList.do")
-	public String interviewList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request) {
+	public String interviewList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request, HttpSession session, RedirectAttributes redirectAttr) {
 		int limit = 10;
 		int offset = (cPage - 1) * limit;
-		List<Interview> list = interviewService.selectInterviewList(offset, limit);
-		model.addAttribute("list", list);
 		
-		int totalContent = interviewService.selectInterviewTotalCount();
-		
-		String url = request.getRequestURI(); // /khis/interview/interviewList.do
-		String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent,url);		
-		
-		model.addAttribute("pagebar", pagebar);
-	return "/interview_management/interview/interviewList";
+		Member member = (Member) session.getAttribute("loginMember"); 
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+			Long co_code = member.getCoCode();
+			List<Interview> list = interviewService.selectInterviewList(offset, limit, co_code);
+			model.addAttribute("list", list);
+			
+			int totalContent = interviewService.selectInterviewTotalCount(co_code);
+			
+			String url = request.getRequestURI(); // /khis/interview/interviewList.do
+			String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent,url);		
+			
+			model.addAttribute("pagebar", pagebar);
+			return "/interview_management/interview/interviewList";	
+		}
 	}
 	
 	@GetMapping("/insertInterview.do")
-	public String insertInterview(Model model, HttpSession session) {
+	public String insertInterview(Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		// 질문 등록 가능한 면접자 리스트 불러오기 : 세션의 #loginMember에서 회원번호로 불러오기
 		Member member = (Member) session.getAttribute("loginMember");
-		int memberNo = member.getMemberNo();
-		List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
-		return "interview_management/interview/insertInterview";
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+			int memberNo = member.getMemberNo();
+			List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+			return "interview_management/interview/insertInterview";
+		}
 	}
 	
 	@PostMapping("/insertInterview.do")
@@ -67,35 +80,45 @@ public class InterviewController {
 	}
 	
 	@GetMapping("/detailInterview.do")
-	public String detailInterview(@RequestParam int interviewNo, Model model, HttpSession session) {
+	public String detailInterview(@RequestParam int interviewNo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
-		int memberNo = member.getMemberNo();
-		log.debug("interviewNo = {}", interviewNo);
-		
-		List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
-		
-		Interview interview = interviewService.selectOneInterview(interviewNo);
-		log.debug("interview = {}", interview);
-		model.addAttribute("interview", interview);
-		
-		return "/interview_management/interview/detailInterview";
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+			int memberNo = member.getMemberNo();
+			log.debug("interviewNo = {}", interviewNo);
+			
+			List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+			
+			Interview interview = interviewService.selectOneInterview(interviewNo);
+			log.debug("interview = {}", interview);
+			model.addAttribute("interview", interview);
+			
+			return "/interview_management/interview/detailInterview";
+		}
 	}
 	
 	
 	@GetMapping("/updateInterview.do")
-	public String updateInterview(@RequestParam int interviewNo, Model model, HttpSession session) {
+	public String updateInterview(@RequestParam int interviewNo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
-		int memberNo = member.getMemberNo();
-		log.debug("interviewNo = {}", interviewNo);
-		List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
-		log.debug("lis {}", list);
-		model.addAttribute("list", list);
-		Interview interview = interviewService.selectOneInterview(interviewNo);
-		log.debug("interview = {}", interview);
-		model.addAttribute("interview", interview);
-		return "/interview_management/interview/updateInterview";
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
+			return "redirect:/";			
+		}else {
+			int memberNo = member.getMemberNo();
+			log.debug("interviewNo = {}", interviewNo);
+			List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
+			log.debug("lis {}", list);
+			model.addAttribute("list", list);
+			Interview interview = interviewService.selectOneInterview(interviewNo);
+			log.debug("interview = {}", interview);
+			model.addAttribute("interview", interview);
+			return "/interview_management/interview/updateInterview";
+		}
 	}
 	
 	@PostMapping("/updateInterview.do")
