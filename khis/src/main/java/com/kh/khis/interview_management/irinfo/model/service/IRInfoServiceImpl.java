@@ -85,9 +85,9 @@ public class IRInfoServiceImpl implements IRInfoService {
 	}
 
 	@Override
-	public List<IRInfo> selectInfoList(int offset, int limit) {
+	public List<IRInfo> selectInfoList(int offset, int limit, long co_code) {
 		// TODO Auto-generated method stub
-		return irinfoDao.selectInfoList(offset, limit);
+		return irinfoDao.selectInfoList(offset, limit, co_code);
 	}
 
 
@@ -105,9 +105,9 @@ public class IRInfoServiceImpl implements IRInfoService {
 	}
 
 	@Override
-	public int selectIRInfoTotalCount() {
+	public int selectIRInfoTotalCount(long co_code) {
 		// TODO Auto-generated method stub
-		return irinfoDao.selectIRInfoTotalCount();
+		return irinfoDao.selectIRInfoTotalCount(co_code);
 	}
 
 
@@ -272,7 +272,6 @@ public class IRInfoServiceImpl implements IRInfoService {
 		// TODO Auto-generated method stub
 		return irinfoDao.selectOneIRInfoByInterviewerInfoNo(interviewerInfoNo);
 	}
-	
 	
 	
 }

@@ -19,7 +19,7 @@ public interface IRInfoDao {
 
 	int insertRater(IRInfo irInfo);
 
-	List<IRInfo> selectInfoList(int offset, int limit);
+	List<IRInfo> selectInfoList(int offset, int limit, long co_code);
 
 	IRInfo selectOneIRInfo(int memberInfoNo);
 
@@ -27,7 +27,7 @@ public interface IRInfoDao {
 
 	int updateIRInfo(IRInfo irInfo);
 
-	int selectIRInfoTotalCount();
+	int selectIRInfoTotalCount(long co_code);
 
 	List<Zoom> selectZoomList(int memberNo);
 

@@ -171,20 +171,30 @@ public class IRInfoController {
 
 	
 	@GetMapping("/irList.do")
-	public String irList(@RequestParam(defaultValue = "1") int cPage, Model model, HttpServletRequest request) {
-		int limit = 10;
-		int offset = (cPage - 1) * limit;
-		List<IRInfo> list = irinfoService.selectInfoList(offset, limit);
+	public String irList(@RequestParam(defaultValue = "1") int cPage, 
+			Model model, HttpServletRequest request
+			,HttpSession session, RedirectAttributes redirectAttr) {
 		
-		log.debug("list = {}", list);
-		model.addAttribute("list", list);
-		int totalContent = irinfoService.selectIRInfoTotalCount();
-		
-		String url = request.getRequestURI(); // /spring/board/boardList.do
-		String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent,url);		
-		
-		model.addAttribute("pagebar", pagebar);
-		return "/interview_management/irinfo/irList";
+		Member member = (Member) session.getAttribute("loginMember");
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+			return "redirect:/Interview_review_board/boardList.do";
+		}else {
+			long co_code = member.getCoCode();
+			int limit = 10;
+			int offset = (cPage - 1) * limit;
+			List<IRInfo> list = irinfoService.selectInfoList(offset, limit, co_code);
+			
+			log.debug("list = {}", list);
+			model.addAttribute("list", list);
+			int totalContent = irinfoService.selectIRInfoTotalCount(co_code);
+			
+			String url = request.getRequestURI(); // /spring/board/boardList.do
+			String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent,url);		
+			
+			model.addAttribute("pagebar", pagebar);
+			return "/interview_management/irinfo/irList";
+		}
 	}
 	
 	@GetMapping("/irDetail.do")

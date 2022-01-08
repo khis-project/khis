@@ -40,6 +40,7 @@
 	</insert>
 	<select id="selectInfoList" resultType="irinfo">
 		select * from ir_info
+		where co_code = #{co_code}
 		order by member_info_no desc
 	</select>
 	<select id="selectOneIRInfo" resultType="irinfo">
@@ -60,7 +61,7 @@
 		where member_info_no = #{memberInfoNo}
 	</update>
 	<select id="selectIRInfoTotalCount" resultType="_int">
-		select count(*) from ir_info
+		select count(*) from ir_info where co_code = #{co_code}
 	</select>
 	<select id="selectZoomList" resultType="zoom">
 		select * from zoom

@@ -38,9 +38,9 @@ public class IRInfoDaoImpl implements IRInfoDao {
 	
 
 	@Override
-	public List<IRInfo> selectInfoList(int offset, int limit) {
+	public List<IRInfo> selectInfoList(int offset, int limit, long co_code) {
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return session.selectList("irinfo.selectInfoList",null, rowBounds);
+		return session.selectList("irinfo.selectInfoList",co_code, rowBounds);
 	}
 
 	@Override
@@ -62,9 +62,9 @@ public class IRInfoDaoImpl implements IRInfoDao {
 	}
 
 	@Override
-	public int selectIRInfoTotalCount() {
+	public int selectIRInfoTotalCount(long co_code) {
 		// TODO Auto-generated method stub
-		return session.selectOne("irinfo.selectIRInfoTotalCount");
+		return session.selectOne("irinfo.selectIRInfoTotalCount", co_code);
 	}
 
 	@Override
