@@ -377,17 +377,29 @@ public class IRInfoController {
 		// careerList에 담을 map객체
 		List<Map<String, Object>> careerList = new ArrayList<Map<String, Object>>();
 		
-		for(int i = 0; i < interviewerCareer.getCompanyName().length; i++) {
+		if (interviewerCareer.getCompanyName() != null) {
+			for (int i = 0; i < interviewerCareer.getCompanyName().length; i++) {
+				careerMap = new HashMap<String, Object>();
+
+				careerMap.put("companyName", interviewerCareer.getCompanyName()[i]);
+				careerMap.put("careerTerm", interviewerCareer.getCareerTerm()[i]);
+				careerMap.put("careerStartTime", interviewerCareer.getCareerStartTime()[i]);
+				careerMap.put("careerEndTime", interviewerCareer.getCareerEndTime()[i]);
+
+				log.debug("careerMap = {}", careerMap);
+
+				careerList.add(careerMap);
+			}
+		} else {
 			careerMap = new HashMap<String, Object>();
-			
-			
-			careerMap.put("companyName", interviewerCareer.getCompanyName()[i]);
-			careerMap.put("careerTerm", interviewerCareer.getCareerTerm()[i]);
-			careerMap.put("careerStartTime", interviewerCareer.getCareerStartTime()[i]);
-			careerMap.put("careerEndTime", interviewerCareer.getCareerEndTime()[i]);
-			
+
+			careerMap.put("companyName", "");
+			careerMap.put("careerTerm", "");
+			careerMap.put("careerStartTime", "");
+			careerMap.put("careerEndTime", "");
+
 			log.debug("careerMap = {}", careerMap);
-			
+
 			careerList.add(careerMap);
 		}
 		
@@ -397,15 +409,24 @@ public class IRInfoController {
 		Map<String, Object> certificateMap = new HashMap<>();
 		List<Map<String, Object>> certificateList = new ArrayList<Map<String, Object>>() ;
 		
-		for(int i = 0; i < interviewerCertificate.getCertificateName().length; i++) {
+		if(interviewerCertificate.getCertificateName() != null) {
+			for(int i = 0; i < interviewerCertificate.getCertificateName().length; i++) {
+				certificateMap = new HashMap<String, Object>();
+				certificateMap.put("certificateName", interviewerCertificate.getCertificateName()[i]);
+				certificateMap.put("certificateIssuer", interviewerCertificate.getCertificateIssuer()[i]);
+				certificateMap.put("certificateDate", interviewerCertificate.getCertificateDate()[i]);
+				
+				certificateList.add(certificateMap);
+			}
+			
+		} else {
 			certificateMap = new HashMap<String, Object>();
-			certificateMap.put("certificateName", interviewerCertificate.getCertificateName()[i]);
-			certificateMap.put("certificateIssuer", interviewerCertificate.getCertificateIssuer()[i]);
-			certificateMap.put("certificateDate", interviewerCertificate.getCertificateDate()[i]);
+			certificateMap.put("certificateName", "");
+			certificateMap.put("certificateIssuer", "");
+			certificateMap.put("certificateDate", "");
 			
 			certificateList.add(certificateMap);
 		}
-		
 		
 		log.debug("certificateList = {}", certificateList);
 		paramMap.put("certificateList", certificateList);
@@ -423,7 +444,7 @@ public class IRInfoController {
 	}
 	
 	@GetMapping("/interviewerInfoDetail.do")
-	public String interviewerInfoDetail(@RequestParam int interviewerInfoNo, Model model) {
+	public String interviewerInfoDetail(@RequestParam(value = "interviewerInfoNo") int interviewerInfoNo, Model model) {
 		log.debug("interviewerInfoNo = {}", interviewerInfoNo);
 		
 		IRInfo irInfo = irinfoService.selectOneIRInfoByInterviewerInfoNo(interviewerInfoNo);

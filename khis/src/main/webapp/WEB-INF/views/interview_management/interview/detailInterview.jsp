@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/interview_management/main.css" />
 <style>
 #detailForm {
-	width: 400px;
+	width: 500px;
 	padding:30px;
 }
 
@@ -27,10 +27,10 @@
 		<form name = "interviewDeleteFrm" action="${pageContext.request.contextPath }/interview/deleteInterview.do" method = "post">
 			<input type="hidden" name="interviewNo" value = "${interview.interviewNo}" />
 			</form>
-				<table class="table table-hover" style="text-align: center;">
+				<table class="table table-hover" style="text-align: center; table-layout: fixed;">
 						<tr>
 							<th scope = "row">질문번호</th>
-							<td>${interview.interviewNo}</td>
+							<td style = "width: 300px;">${interview.interviewNo}</td>
 						</tr>
 						<tr>
 							<th scope = "row">작성자</th>

@@ -98,11 +98,11 @@ div.photo{
 				</thead>
 				<tbody>
 				<c:forEach items = "${careerList }" var = "career">
-				<fmt:parseDate var = "parseStartTime" value="${career.careerStartTime[0]}" pattern="yyyy-MM-ddHH:mm:ss"/>
-				<fmt:parseDate var = "parseEndTime" value="${career.careerStartTime[0]}" pattern="yyyy-MM-ddHH:mm:ss"/>
+				<fmt:parseDate var = "parseStartTime" value="${not empty career.careerStartTime[0] ? career.careerStartTime[0] : \"\"}" pattern="yyyy-MM-ddHH:mm:ss"/>
+				<fmt:parseDate var = "parseEndTime" value="${not empty career.careerStartTime[0] ? career.careerEndTime[0] : \"\"}" pattern="yyyy-MM-ddHH:mm:ss"/>
  			 		<tr class = "text-center">
- 			 			<td>${career.companyName[0]}</td>
- 			 			<td>${career.careerTerm[0]}개월</td>
+ 			 			<td>${not empty career.companyName[0] ? career.companyName[0] : ""}</td>
+ 			 			<td>${not empty career.careerTerm[0] ? career.careerTerm[0] : ""} ${not empty career.careerTerm[0] ? "개월" : "" }</td>
  			 			<td><fmt:formatDate value = "${parseStartTime}" pattern="yyyy-MM-dd"/></td>
  			 			<td><fmt:formatDate value="${parseEndTime}" pattern="yyyy-MM-dd"/></td>
  			 		</tr>
@@ -122,10 +122,10 @@ div.photo{
 				</thead>
 				<tbody>
 				<c:forEach items = "${certificateList }" var = "certificate">
-				<fmt:parseDate var = "parseCertificateDate" value="${certificate.certificateDate[0] }" pattern="yyyy-MM-ddHH:mm:ss"/>
+				<fmt:parseDate var = "parseCertificateDate" value="${not empty certificate.certificateDate[0] ? certificate.certificateDate[0] : \"\" }" pattern="yyyy-MM-ddHH:mm:ss"/>
  			 		<tr class = "text-center">
- 			 			<td>${certificate.certificateName[0]}</td>
- 			 			<td>${certificate.certificateIssuer[0]}</td>
+ 			 			<td>${not empty certificate.certificateName[0] ? certificate.certificateName[0] : ""}</td>
+ 			 			<td>${not empty certificate.certificateIssuer[0] ? certificate.certificateIssuer[0] : ""}</td>
  			 			<td><fmt:formatDate value="${parseCertificateDate}" pattern="yyyy-MM-dd"/></td>
  			 		</tr>
 				</c:forEach>

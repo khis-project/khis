@@ -41,7 +41,7 @@ public class StringArrayTypeHandler extends BaseTypeHandler<String[]> {
 	@Override
 	public String[] getNullableResult(ResultSet rs, String columnName) throws SQLException {
 		String columnValue = rs.getString(columnName);
-		columnValue = columnValue.replaceAll("\\s", "");
+		if(columnValue != null ) columnValue = columnValue.replaceAll("\\s", "");
 		String[] value = null;
 		if(columnValue != null) {
 			StringTokenizer tokenizer = new StringTokenizer(columnValue, ", ");
@@ -49,6 +49,8 @@ public class StringArrayTypeHandler extends BaseTypeHandler<String[]> {
 			for(int i = 0; tokenizer.hasMoreTokens(); i++) {
 				value[i] = tokenizer.nextToken();
 			}
+		} else {
+			columnValue = "";
 		}
 		log.debug(
 				"{} -> {} 변환완료!", 
