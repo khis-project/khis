@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {font-family: 'GmarketSansMedium';}
+html, body {padding: 0; margin: 0;}
+/* header css*/
+header {width:100%; height:180px;}
+#left-box {margin:0 600px 0 65px;}
+#right-box {margin-top: 60px; margin-left: 75px;}
+.wrap {margin:0 auto; display: flex; flex-direction: row; width:1500px; height:180px;}
+.logo img{width: 170px;}
+
+/* 네비게이션바 */
+#right-box{font-size: 18px; text-align: center;}
+.myMenu {margin:18px;}
+.myMenu>li>a {color: #3b3b3b; text-decoration:none;}
+.myMenu>li>a:hover {color: #2892c6;}
+.myMenu>li {list-style:none; display:inline-block; margin-right:38px;}
+.submenu>li>a {color: #3b3b3b; font-size: 15px; text-decoration:none;}
+.submenu {position:absolute; z-index:10; left:-75px;}
+.submenu>li>a:hover {cursor:pointer; color: #2892c6;}
+.submenu li {
+	list-style:none;
+	display:block;
+	background-color:#fefdfd;
+	color:#3b3b3b;
+	width:80px;
+	padding: 10px 2px;
+	margin: 2px 0 0 0;
+	position: relative;
+	text-align: center;
+	border:1px solid lightgray;
+}
+.menu4>a>img {width:30px; height:30px; margin-left:10px;}
+.menu5 {position:relative;}
+
+/* footer */
+footer{
+	width:100%;
+	height:100px;
+	color: #808080;
+	font-size: 15px;
+	line-height: 18px;
+	margin:0 auto;
+	position: relative;
+}
+footer p {padding-bottom: 20px;}
+footer p span {display: inline-block; margin-left: 65px; padding: 4px 0;}
+.footer-nav {margin-left:65px;}
+.footer-nav a {font-size: 12px; margin-right:8px; display: inline-block;}
+.footer-nav img {width:10px; height:10px; width: 35px; height: 35px;}
+.footer div {width:1500px;}
+#tothetop {position: fixed; bottom: 3rem; right: 3rem; cursor: pointer;}
+#tothetop img {width: 30px; height: 30px;}
