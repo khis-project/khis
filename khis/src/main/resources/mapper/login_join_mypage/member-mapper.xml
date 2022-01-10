@@ -26,13 +26,12 @@
 
 <select id="selectOneMember" resultType="member">
 select
-m.*, i.member_info_no, e.month, e.end_yn
+    m.*, i.member_info_no, e.month, e.end_yn
 from
-member m, ir_info i, premium e
+    member m left join ir_info i on m.member_no = i.member_no 
+    left join premium e on e.member_no = i.member_no
 where
-m.member_no = i.member_no
-and m.member_no = e.member_no
-and m.id = #{id}    
+    m.id = #{id}  
 </select>
 
 <update id="updateMember">
