@@ -244,5 +244,44 @@ select * from ir_info where member_info_no = 80;
  
  select * from interviewer_info;
  
-select seq_interviewer_info_no.nextval, from dual;
- delete from interviewer_info where interviewer_info_nop
+ 
+ create table chat_member(
+    chat_id char(20),
+    member_id varchar2(256) not null,
+    last_check number default 0,
+    status char(1) default 'Y' not null,
+    start_date date default sysdate,
+    end_date date,
+    constraint pk_chat_member_id primary key(chat_id, member_id),
+    constraint ck_chat_member_status check(status in ('Y', 'N'))
+);
+
+create table chat_log(
+    no number, 
+    chat_id char(20),
+    member_id varchar2(256),
+    msg varchar2(2000),
+    log_time number, -- message 작성시각 unix time으로 관리
+    constraint pk_chat_log_no primary key(no),
+    constraint fk_chat_id_member_id foreign key(chat_id, member_id)
+                                    references chat_member(chat_id, member_id)
+);
+
+create sequence seq_chat_log_no nocache;
+
+select count(*) from 
+        (select
+	    no,
+	    chat_id,
+	    (select member_id from chat_member where chat_id = CL.chat_id and member_id != 'admin') member_id,
+	    msg,
+	    log_time,
+	    (select count(*) from chat_log where chat_id = CL.chat_id and log_time > (select last_check from chat_member where chat_id = CL.chat_id and member_id = 'admin')) unread_count
+	from (
+	    select
+	        CL.*,
+	        row_number() over(partition by chat_id order by no desc) rnum
+	    from
+	        chat_log CL) CL
+	where
+	    rnum = 1);

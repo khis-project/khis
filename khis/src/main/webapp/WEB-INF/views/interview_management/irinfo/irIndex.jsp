@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:requestEncoding value="utf-8" />
 <jsp:include
-	page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
 	<jsp:param value="면접관리자 페이지" name="title" />
 </jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/interview_management/main.css" />
@@ -27,4 +27,4 @@
 $('#sidebar').css('height', $('#content').height()); 
 </script>
 <jsp:include
-	page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp" />
+	page="/WEB-INF/views/Interview_review_board/common/footer.jsp" />

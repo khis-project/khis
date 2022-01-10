@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:requestEncoding value="utf-8"/>
  <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
 	<jsp:param value="질문 수정" name="title"/>
 </jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/interview_management/main.css" />
@@ -84,5 +84,5 @@ $('[name=updateInterviewFrm]').submit(function() {
 });
 </script>
 
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
 	

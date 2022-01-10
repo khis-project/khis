@@ -14,44 +14,53 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <fmt:requestEncoding value="utf-8"/>
 <style>
-<style>
+<
+style
+>
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
-@keyframes fadeInDown {
-        0% {
-            opacity: 0;
-            transform: translate3d(0, -100%, 0);
-        }
-        to {
-            opacity: 1;
-            transform: translateZ(0);
-        }
-    } 
+
+@
+keyframes fadeInDown { 0% {
+	opacity: 0;
+	transform: translate3d(0, -100%, 0);
+}
+
+to {
+	opacity: 1;
+	transform: translateZ(0);
+}
+
+}
 #evaluation {
 	font-family: 'GmarketSansMedium';
-	width :99%;
-    text-align: center;
-    margin: auto;
+	width: 99%;
+	text-align: center;
+	margin: auto;
 }
+
 .human.inlinediv {
 	width: 10%;
 	float: left;
 	margin-left: 50px;
-
 }
+
 table {
 	border-collapse: collapse;
 }
+
 .inlinediv {
 	padding: 10;
 	display: inline-table;
 	text-align: left;
-	
 }
+
 h3 {
 	margin-left: 70px;
 	margin-top: 50px;
@@ -60,34 +69,41 @@ h3 {
 
 #person {
 	margin-top: 10px;
-/* 	margin-left: 30px; */
+	/* 	margin-left: 30px; */
 }
+
 #person th {
 	/* border: 1px solid black; */
 	text-align: center;
 }
+
 #person td {
 	/* border: 1px solid black; */
 	text-align: center;
 }
+
 .interviews {
-/* 	margin-left: 30px;
+	/* 	margin-left: 30px;
 	margin-top: 50px; */
 	border-collapse: collapse;
 	border-left: none;
 }
+
 #certificate {
 	border: 1px solid black;
 }
+
 #buttons {
 	text-align: center;
-/* 	margin-left: 50px; */
+	/* 	margin-left: 50px; */
 }
+
 #content {
 	margin-top: 10px;
 	display: none;
-/* 	margin-left: 45px; */
+	/* 	margin-left: 45px; */
 }
+
 .button {
 	opacity: 0;
 	width: 220px;
@@ -95,10 +111,12 @@ h3 {
 
 	/* background-color: rgba(41, 128, 185, 0.43); */
 }
+
 #person {
 	position: relative;
 	opacity: 0;
 }
+
 #interview-info {
 	opacity: 0;
 	position: fixed;
@@ -106,9 +124,11 @@ h3 {
 	width: 50%;
 	height: 70%;
 }
+
 #showInfo {
 	opacity: 1;
 }
+
 .button-hidden {
 	opacity: 0;
 	width: 100%;
@@ -117,6 +137,7 @@ h3 {
 	border: 0px;
 	cursor: pointer;
 }
+
 .button-none {
 	width: 100%;
 	visibility: hidden;
@@ -133,44 +154,67 @@ h3 {
 #co_code_hidden {
 	display: none;
 }
+
 #applyList {
 	display: none;
 }
+
 #applytable {
 	text-align: center;
 }
+
 #complete {
 	display: none;
 }
+
 .totalresults {
 	display: none;
 }
+
 #guide {
 	float: left;
 	opacity: 0;
 }
+
 .backgroundblue {
 	width: 20%;
 	float: right;
 	margin-right: 50px;
 }
+
 #questionlist {
 	height: 100%;
 }
+
 .buttonimg {
 	display: none;
 }
+
 #showInfo {
 	display: none;
 	background-color: white;
 	border: 0px;
 	cursor: pointer;
 }
+
 #showInfo:hover {
 	color: skyblue;
 }
+
 .hover {
 	color: skyblue;
+}
+
+#startChat {
+	position: fixed;
+	bottom: 12rem;
+	left: 6rem;
+	cursor: pointer;
+}
+
+#startChat img {
+	width: 75px;
+	height: 75px;
 }
 </style>
 <script>
@@ -178,6 +222,7 @@ h3 {
 alert("${loginMsg}");
 </c:if>
 </script>
+<a href="" id = "startChat"><img src="https://i.ibb.co/wskkRmQ/speech-bubble.png" alt=""></a>
 <div id="evaluation">
 	<div class="human inlinediv">
 		<br />
@@ -865,6 +910,13 @@ $(document).on("click", ".button-hidden", function(){
 	$(this).css({
 		"color":"skyblue"
 	});
+});
+
+$('#startChat').click((e) => {
+	const url = `${pageContext.request.contextPath}/chat/chat.do`;
+	const name = "startChat";
+	const spec = "width=500px, height=500px";
+	window.open(url, name, spec, '_black');
 });
 /* $(".button-none").click((e) => {
 	$(".button-none").css({

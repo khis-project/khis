@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
 	<jsp:param value="질문 목록" name="title"/>
 </jsp:include>
 
@@ -69,4 +69,4 @@ $('#sidebar').css('height', $('#content').height());
 
 </script>
 
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>

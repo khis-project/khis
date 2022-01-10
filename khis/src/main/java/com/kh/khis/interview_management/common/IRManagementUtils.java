@@ -3,6 +3,7 @@ package com.kh.khis.interview_management.common;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class IRManagementUtils {
 	/**
@@ -135,6 +136,28 @@ public class IRManagementUtils {
 		
 		return pagebar.toString();
 	}
+	
+	public static String getRandomChatId() {
+		Random rnd = new Random();
+		StringBuffer sb = new StringBuffer();
+		sb.append("chat_");
+		
+		for(int i = 0; i < 15; i++) {
+			if(rnd.nextBoolean()) {
+				// 영문자 : 대문자 65~90, 소문자 97~122
+				boolean isUpperCase = rnd.nextBoolean();
+				char ch = (char)((isUpperCase ? 65 : 97) + rnd.nextInt(26));
+				sb.append(ch);
+			}
+			else {
+				// 숫자
+				sb.append(rnd.nextInt(10));
+			}
+		}
+		
+		return sb.toString();
+	}
+
 	
 
 }
