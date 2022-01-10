@@ -27,11 +27,6 @@
 				<h4>이메일</h4>
 				<input type="email" name="email" id="email" placeholder="asdf@naver.com" required><br />
 			</div>
-			 	
-			<div class="content">
-				<h4>사업자등록번호</h4>
-				<input type="text" name="coCode" id="coCode" placeholder="사업자등록번호를 입력하세요">
-			</div>		
 			<div class="content">
 				<h4>면접번호</h4>
 				<input type="text" name="interviewerNo" id="interviewerNo" placeholder="면접번호를 입력하세요">
@@ -58,8 +53,8 @@ $(document).ready(function(){
           if(res.success) {
         	  var $no = $(opener.document).find("input#interviewerNo");
               $no.val($("input#interviewerNo").val()); // 부모창의 companyNo 필드에 면접번호 입력
-        	  var $no = $(opener.document).find("input#coCode");
-              $no.val($("input#coCode").val()); // 부모창의 coCode 필드에 사업자번호 입력
+            var $no = $(opener.document).find("input#coCode"); // hidden
+              $no.val(res.coCode); // 부모창의 coCode 필드에 사업자번호 입력
         	  var $no = $(opener.document).find("input#name");
               $no.val($("input#name").val()); // 부모창의 name 필드에 사업자번호 입력
         	  var $no = $(opener.document).find("input#phone");

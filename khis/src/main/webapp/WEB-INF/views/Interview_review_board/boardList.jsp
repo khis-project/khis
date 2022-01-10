@@ -10,29 +10,28 @@
 
 <!-- 사용자 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Interview_review_board/boardList.css"/>
-<script>
-<c:if test="${not empty msg}">
-	alert("${msg}");
-</c:if>
-</script>
+
 <section id="board-container" class="container">
-	<div id="occupation-container">
-		<h4>산업군</h4>
-		<ul id="nav">
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=1">서비스업</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=2">제조/화학</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=3">의료/제약/복지</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=4">유통/무역/운송</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=5">교육업</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=6">건설업</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=7">IT/웹/통신</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=8">미디어/디자인</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=9">은행/금융업</a></li>
-			<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=10">기관/협회</a></li>
-		</ul>
-	</div>
+  <div id="left">
+		<div id="occupation-container">
+			<h4>산업군</h4>
+			<ul id="nav">
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=1">서비스업</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=2">제조/화학</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=3">의료/제약/복지</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=4">유통/무역/운송</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=5">교육업</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=6">건설업</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=7">IT/웹/통신</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=8">미디어/디자인</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=9">은행/금융업</a></li>
+				<li><a class="categories" href="${pageContext.request.contextPath}/Interview_review_board/boardList.do?occupationCd=10">기관/협회</a></li>
+			</ul>
+		</div>
+	  <button type="button" class="writing" id="writing" onClick="writeBtn()">면접 후기 글 작성</button>
+  </div>
 	<c:if test="${totalContent eq '0'}">
-		<div class="company-container">
+		<div class="company-container">하잉
 		</div>
 	</c:if>
 	<c:if test="${totalContent ne '0'}">
@@ -58,6 +57,10 @@
 	$("#nav li").on("click", function() {
 		$(this).children.css('color', 'red');
 	})
+	
+  function writeBtn(){
+    location.href = "${pageContext.request.contextPath}/Interview_review_board/boardForm.do";
+  } 	
 </script>
 
 <jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>

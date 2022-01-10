@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+  <select id="selectComment" parameterType="Integer" resultType="boardComment">
+      select
+        *
+      from
+        board_comment
+      where
+        comment_no = #{commentNo}
+  </select>
+
+  <select id="selectCommentList" parameterType="Integer" resultType="boardComment">
+      select
+        c.*,
+        m.name as writer_name
+      from
+        board_comment c, member m
+      where
+        c.writer_no = m.member_no
+        and board_no = #{boardNo}
+        and (
+          writer_no = (select member_no from board where board_no = #{boardNo}) 
+          or comment_secret_yn = 'n'
+          or writer_no = #{writerNo}
+        )
+        order by comment_no asc
+  </select>
+  
+  <insert id="insertComment" parameterType="boardComment" statementType="PREPARED"
+      useGeneratedKeys="true" keyColumn="comment_no" keyProperty="commentNo">
+    insert into board_comment(
+      comment_no,
+      board_no,
+      writer_no,
+      comment_secret_yn,
+      comment_date,
+      comment_content
+    )values(
+      seq_comment_no.nextval,
+      #{boardNo},
+      #{writerNo},
+      #{commentSecretYN},
+      sysdate,
+      #{commentContent}
+    )
+  </insert>
+  
+  <update id="updateComment" parameterType="boardComment">
+    update
+      board_comment
+    set
+      board_no = #{boardNo},
+      comment_secret_yn = #{commentSecretYN},
+      comment_content = #{commentContent}
+    where
+      comment_no = #{commentNo}
+  </update>
+  <delete id="deleteComment">
+    delete from
+      board_comment
+    where
+      comment_no = #{commentNo}
+  </delete>
+  
+  
+  
+</mapper>
+
+
+

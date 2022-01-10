@@ -286,6 +286,9 @@ public class JoinRestController {
 		} else {
 			Member member = memberService.findInfo(params);
 			success = member != null;
+			if (success) {
+				map.put("coCode", member.getCoCode());
+			}
 		}
 		map.put("success", success);
 		return map;

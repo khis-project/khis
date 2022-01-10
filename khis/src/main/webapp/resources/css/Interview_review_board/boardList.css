@@ -7,13 +7,18 @@
 }
 body {padding: 0;}
 .container {font-family: 'GmarketSansMedium';}
+#left {margin-right: 10px;}
 #board-container {display: flex; flex-direction: row; margin: 0 auto; justify-content: center;}
 /*산업군 menu css*/
-#occupation-container{padding: 20px; width: 280px; height: 370px; background-color: #e0e0e0; margin: 10px 30px 0 0; font-family: 'GmarketSansMedium';}
+#occupation-container{padding: 20px; width: 280px; height: 370px; background-color: #e0e0e0; margin: 10px 0; font-family: 'GmarketSansMedium';}
 #occupation-container h4 {margin: 0; font-weight: bold; padding-bottom: 15px; width: 280px;}
 #occupation-container ul {padding: 0; width: 280px;}
 #occupation-container li {padding-bottom: 5px; list-style: none; padding-left: 0; cursor: pointer;}
 #occupation-container a {text-decoration: none; color: #000; text-decoration: none;}
+
+/*후기 면접 글 작성 버튼 css*/
+#writing {width: 230px; height: 45px; display: block; margin: 20px auto; padding-top: 2px; border: none; font-weight: bold;}
+
 /*회사list css*/
 .company-container {background-color: #fff; height: auto; width: 800px; font-family: 'GmarketSansMedium'; border-radius: 25px;}
 .company-container>.url {color: inherit; /* 링크의 색상 제거 */text-decoration: none; /* 링크의 밑줄 제거 */}
@@ -28,3 +33,4 @@ body {padding: 0;}
 .company_score {margin: 50px 50px 50px auto;}
 .pagination {display: flex; justify-content:center; padding: 50px;}
 .page-item.active .page-link {background-color: #2196f3; border-color: #2196f3;}
+

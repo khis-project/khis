@@ -4,8 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+  <jsp:param value="로그인" name="title"/>
+</jsp:include>
+
+<head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login_join_mypage/updateForm.css" />
+</head>
 
 <c:if test="${not empty msg}">
 <script>
@@ -145,20 +151,20 @@ $(document).ready(function() {
     	document.getElementById("companyAdd").hidden = true;
     	x.disabled = true;
     	document.getElementById("interviewerNo").hidden = false;
-        window.open(`${pageContext.request.contextPath}/member/kind.do`, "a","width=500, height=750, left =100, top=100"); 
-      }
-      $('#coName').hide();
+      window.open(`${pageContext.request.contextPath}/member/kind.do`, "a","width=500, height=750, left =100, top=100"); 
+    }
+    $('#coName').hide();
 
     if (['IR'].includes(result)) {
-      $('#companyNo').show(); 
-     } 
+      $('#companyNo').hide(); 
+    }
     else {
-          $('#interviewerNo').hide();
-          $('#companyNo').hide(); 
-        }
+      $('#interviewerNo').hide();
+      $('#companyNo').hide(); 
+    }
     
     if (['USER'].includes(result)) {
-        $('#companyNo').hide(); 
+        $('#companyNo').hide();
         $('#companyAdd').show();
     } 
     else {
@@ -190,7 +196,8 @@ document.getElementById("interviewNo").hidden = true; */
 // 리팩토링 조지자 
 
 if("${loginMember.kind}" == "IR"){ // 면접자
-	document.getElementById("coName").hidden = true;
+	document.getElementById("coCode").hidden = true;
+  document.getElementById("coName").hidden = true;
 	document.getElementById("companyAdd").hidden = true;
 	document.getElementById("search").hidden = true;
 	document.getElementById("interviewerNo").hidden = true;
