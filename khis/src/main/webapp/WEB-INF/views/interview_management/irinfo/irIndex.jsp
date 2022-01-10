@@ -6,7 +6,7 @@
 <fmt:requestEncoding value="utf-8" />
 <jsp:include
 	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
-	<jsp:param value="면접관리자 페이지" name="title" />
+	<jsp:param value="면접 연습" name="title" />
 </jsp:include>
 <!-- bootstrap js: jquery load 이후에 작성할것.-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -25,12 +25,11 @@
 </style>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 <div id="content">
-	<h2>${memberCompany.coName } ${loginMember.name }님</h2>
-	<div id="indexPage" style = "height:500px;">
-		<h1 >면접 관리자 사용 방법</h1>
-		
+	<h2>${memberCompany.coName } ${loginMember.name }님 안녕하세요.</h2>
+	<label style="color : #808080;">면접 정보 추가하는 방법입니다.</label>
+	<div id="indexPage" style = "height:500px;">	
 		 <div class="inner-container">
-			<div class="tooltip">
+			<div class="tooltip">    
 				1.<span class="yellow underline"><b> 줌 회의실 추가</b></span>
 					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg1.png"></span>
 			</div>
