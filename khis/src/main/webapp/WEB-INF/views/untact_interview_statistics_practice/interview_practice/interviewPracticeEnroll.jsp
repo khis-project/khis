@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/untact_interview.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="면접 연습 질문 등록" name="title"/>
+</jsp:include>
 <script>
 <c:if test="${not empty msg}">
 alert("${msg}");

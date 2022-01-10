@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="면접 평가" name="title"/>
+</jsp:include>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- bootstrap js: jquery load 이후에 작성할것.-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -41,12 +43,13 @@ to {
 #evaluation {
 	font-family: 'GmarketSansMedium';
 	width: 99%;
+	height : 1200px;
 	text-align: center;
 	margin: auto;
 }
 
 .human.inlinediv {
-	width: 10%;
+	width: 11%;
 	float: left;
 	margin-left: 50px;
 }
@@ -117,17 +120,21 @@ h3 {
 	opacity: 0;
 }
 
-#interview-info {
-	opacity: 0;
+#interview-info{
 	position: fixed;
 	margin-left: -400px;
 	width: 50%;
 	height: 70%;
+	opacity: 0;
+}
+#zoomIframe{
+	position: fixed;
+	margin-left: -400px;
+	width: 50%;
+	height: 70%;
+	opacity: 0;
 }
 
-#showInfo {
-	opacity: 1;
-}
 
 .button-hidden {
 	opacity: 0;
@@ -191,10 +198,10 @@ h3 {
 }
 
 #showInfo {
-	display: none;
 	background-color: white;
 	border: 0px;
 	cursor: pointer;
+	opacity : 0;
 }
 
 #showInfo:hover {
@@ -236,13 +243,13 @@ alert("${loginMsg}");
 			<thead class="thead-dark">
 				<tr>
 					<th width="50px;">번호</th>
-					<th class="name" width="100px;">이름</th>
+					<th class="name" width="120px;">이름</th>
 				</tr>
 			</thead>
 			<c:forEach items="${list}" var="list">
 				<c:if test='${list.member_no ne 0}'>
 					<tr>
-						<td>${list.interviewer_no}</td>
+						<td id="${list.member_info_no}">${list.interviewer_no}</td>
 						<td id="${list.member_info_no}" style="<c:if test="${list.passcheck eq 'y' || list.passcheck eq 'n'}">color: skyblue;</c:if>">${list.name}</td>
 					</tr>			
 				</c:if>
@@ -255,13 +262,15 @@ alert("${loginMsg}");
 	<input type="hidden" id="co_code_hidden" value="" />
 	<input type="hidden" id="imember_no_hidden" value="" />
 	<input type="hidden" id="evaluate_no_hidden" value="" />
-	<div id="interview-info-zoom" class="inlinediv interview" style="margin-left: 40px;">
-    		<br />
-			<input type="button" id="showInfo" value="인적사항 ▼" data-sub="0" />
+	<div id="interview-info-zoom" class="inlinediv interview" >
+   		<br />
+		<input type="button" id="showInfo" value="인적사항 ▼" data-sub="0" />
+		<div id = "zoomIframe">
+			<iframe width="100%" height="100%" id = "zoomIframeConnect">
+			</iframe>
+		</div>
 		<div id="interview-info" class="interviewdetail">
-			
 		</div> 
-		 <br />
 	</div>
 		<div class="inlinediv buttons backgroundblue">
 		<br />
@@ -291,7 +300,7 @@ alert("${loginMsg}");
 			
 		</div>
 		</div>
-
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>
 <script>
 $(document).ready(function(){
 	$("#person").animate({
@@ -302,6 +311,9 @@ $(document).ready(function(){
 	}, 2000);
 });
 $("#person td").click((e) => {
+	$("#showInfo").css("opacity", "1");
+	$("#zoomIframe").css("opacity", "1");
+
 	$("#interview-info").empty();
 	$(".inlinediv.buttons").css({
 		"display" : "inline-table"
@@ -428,6 +440,7 @@ $("#person td").click((e) => {
 		},
 		error: console.log
 	});
+
 	$(".button-none").css({
 		"visibility":"visible"
 	});
@@ -450,6 +463,7 @@ $("#person td").click((e) => {
 	$("#applyList").css({
 		"display":"none"
 	});
+	$("#zoomIframeConnect").attr('src', '${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=R&member_info_no='+$("#member_info_no_hidden").val());
 	
 });
 

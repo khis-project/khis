@@ -855,7 +855,7 @@ update premium set reg_date = default
 alter sequence seq_interview_question_no increment by 23;
 select seq_interview_question_no.nextval from interview_question where question_no = 1;
 alter sequence seq_interview_question_no increment by 1;
-delete from premium where premium_no = 2 
+delete from premium --where premium_no = 2 
 commit;
 select * from member
 update premium set month = 2 , payment = 9000;
@@ -865,3 +865,21 @@ update premium set month = 2 , payment = 9000;
     from member m left join premium p on m.member_no = p.member_no where p.end_yn = 'n' 
     
     and m.member_no = 1
+delete from premium where premium_no in (3,4);
+commit;
+
+--
+select
+    m.*, i.member_info_no, e.month, e.end_yn
+from
+    member m left join ir_info i on m.member_no = i.member_no 
+    left join premium e on e.member_no = i.member_no
+where
+    m.id = 'test201';
+select *
+from ir_info
+where name = '면접자1';
+select * from  member_info_no = 21;
+select * from zoom;
+select * from member
+select * from ir_info where co_code = 1208147521

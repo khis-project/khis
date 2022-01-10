@@ -7,6 +7,9 @@
 <fmt:requestEncoding value="utf-8"/>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="프리미엄 이용" name="title"/>
+</jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/untact_interview.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
 <%

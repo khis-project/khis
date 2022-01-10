@@ -13,7 +13,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://voice.luzspat.com/js/cloudvoice.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
-
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="면접 연습 진행" name="title"/>
+</jsp:include>
 <fmt:requestEncoding value="utf-8"/>
 <div class="text-align-center margin-top-basic">
 	
