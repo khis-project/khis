@@ -126,6 +126,7 @@ h3 {
 	width: 50%;
 	height: 70%;
 	opacity: 0;
+	display : none;
 }
 #zoomIframe{
 	position: fixed;
@@ -266,10 +267,10 @@ alert("${loginMsg}");
    		<br />
 		<input type="button" id="showInfo" value="인적사항 ▼" data-sub="0" />
 		<div id = "zoomIframe">
-			<iframe width="100%" height="100%" id = "zoomIframeConnect">
+			<iframe width="100%" height="100%" id = "zoomIframeConnect" style="border: white;">
 			</iframe>
 		</div>
-		<div id="interview-info" class="interviewdetail">
+		<div id="interview-info" class="interviewdetail" style="background-color : white;">
 		</div> 
 	</div>
 		<div class="inlinediv buttons backgroundblue">
@@ -463,6 +464,7 @@ $("#person td").click((e) => {
 	$("#applyList").css({
 		"display":"none"
 	});
+	console.log('${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=R&member_info_no='+ $("#member_info_no_hidden").val());
 	$("#zoomIframeConnect").attr('src', '${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=R&member_info_no='+$("#member_info_no_hidden").val());
 	
 });
@@ -892,6 +894,7 @@ $(document).on("click", "#showInfo", function(){
 		$("#interview-info").animate({
 			"opacity":"1"
 		}, 1000);
+		$("#interview-info").css("display","block");
 		$("#showInfo").data('sub', 1);
 		$("#showInfo").val('인적사항 ▲');
 	}
@@ -899,6 +902,7 @@ $(document).on("click", "#showInfo", function(){
 		$("#interview-info").animate({
 			"opacity":"0"
 		}, 1000);
+		$("#interview-info").css("display","none");
 		$("#showInfo").data('sub', 0);
 		$("#showInfo").val('인적사항 ▼');
 	}
