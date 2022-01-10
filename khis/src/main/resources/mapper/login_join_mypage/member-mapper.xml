@@ -25,12 +25,15 @@
 </insert>
 
 <select id="selectOneMember" resultType="member">
-    select
-      m.*, i.member_info_no
-    from
-      member m
-       left join IR_INFO i on i.member_no = m.member_no where m.id = #{id}
-  </select>
+select
+m.*, i.member_info_no, e.month, e.end_yn
+from
+member m, ir_info i, premium e
+where
+m.member_no = i.member_no
+and m.member_no = e.member_no
+and m.id = #{id}    
+</select>
 
 <update id="updateMember">
   update 
@@ -50,21 +53,12 @@
     id = #{id}
  </update>
  
-  <!-- <parameterMap type="hashmap" id="paging">
-    <parameter property="count" jdbcType="number"/>
-    <parameter property="offset" jdbcType="number"/>
-  </parameterMap> -->
-
   <select id="selectAdminMemberList" parameterType="pagingDto" resultType="joinFormDto">
     select m.*, mc.* from member m left join member_company mc on m.co_code = mc.co_code
-    <!-- <if test="true">
-      OFFSET #{offset, jdbcType=INTEGER} ROWS FETCH FIRST #{count, jdbcType=INTEGER} ROWS ONLY
-    </if> -->
   </select>
-  
-   <select id="selectMemberList" resultType="joinFormDto">
+
+ <select id="selectMemberList" resultType="joinFormDto">
     select m.*, mc.* from member m left join member_company mc on m.co_code = mc.co_code
-   
   </select> 
   
   <delete id="deleteOneMember">
@@ -75,17 +69,6 @@
   </delete>
   
   <insert id="insertMemberCompany">
-<!--     <selectKey keyProperty="memberNo" resultType="int">
-      select seq_member_no.nextval FROM DUAL
-  </selectKey>
-   
-  insert into 
-    member_company 
-  values(
-    #{coCode},
-    #{coName}
-  ) -->
-  
   merge into 
       member_company
   using dual 
@@ -141,18 +124,7 @@
       <otherwise>
         and member_no = #{memberNo}  </otherwise>
     </choose>
-      
-<!--       <if  test="kind = 'IR_HAED'">
-      select a.co_code from member a
-      inner join member_company b on a.co_code = b.co_code
-      inner join interview_time c on b.co_code = c.co_code
-      where a.co_code = b.co_code and b.co_code = c.co_code
-      </if>
-      <if  test="kind = 'ADMIN'">
-      select a.co_code from member_company a
-      inner join interview_time b on a.co_code = b.co_code
-      where a.co_code = b.co_code
-      </if> -->
+
 </select>
 
 <select id="countMember" resultType="int">
@@ -171,8 +143,6 @@ select count(*) from member
 
 <update id="updateMemberCompany">
   update member_company set co_name = #{coName}, co_address = #{coAddress} where co_code = ${coCode}
-
-
 </update>
   
 </mapper>
