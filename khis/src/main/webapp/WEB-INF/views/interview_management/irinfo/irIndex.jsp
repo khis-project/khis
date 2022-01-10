@@ -27,7 +27,30 @@
 <div id="content">
 	<h2>${memberCompany.coName } ${loginMember.name }님</h2>
 	<div id="indexPage" style = "height:500px;">
-		컨텐츠가 추가될 공간입니다.
+		<h1 >면접 관리자 사용 방법</h1>
+		
+		 <div class="inner-container">
+			<div class="tooltip">
+				1.<span class="yellow underline"><b> 줌 회의실 추가</b></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg1.png"></span>
+			</div>
+			<div class="tooltip">
+				2.<span class="yellow underline"><b> 면접관 정보 추가</b></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg2.png"></span>
+			</div>
+			<div class="tooltip">
+				3.<span class="yellow underline"><b> 면접자 정보 추가</b></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg3.png"></span>
+			</div>
+			<div class="tooltip">
+				4.<span class="yellow underline"><b> 면접자/면접관 매칭</b></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg4.png"></span>
+			</div>
+			<div class="tooltip">
+				5.<span class="yellow underline"><b> 면접 질문 추가</b></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg5.png"></span>
+			</div>
+		</div> 
 	</div>
 </div>
 <script>
