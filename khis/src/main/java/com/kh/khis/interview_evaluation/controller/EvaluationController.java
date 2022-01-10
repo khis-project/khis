@@ -133,6 +133,7 @@ public class EvaluationController {
 		List<Interviews> questionList = evaluationService.selectQuestionList(param);
 		param.put("questionList", questionList);
 		List<Interviews> evaluationList = evaluationService.selectEvaluationList(param);
+		param.put("evaluationList", evaluationList);
 		
 		List<Interviews> finalList = new ArrayList<>();
 		log.debug("questionList = {}", questionList);
@@ -152,7 +153,8 @@ public class EvaluationController {
 					if(evaluationList.get(ii).getInterview_no() == questionList.get(i).getInterview_no()) {
 						is.setEvaluate_value(evaluationList.get(ii).getEvaluate_value());
 						is.setEvaluate_comment(evaluationList.get(ii).getEvaluate_comment());
-						is.setPasscheck(evaluationList.get(ii).getPasscheck());				
+						is.setPasscheck(evaluationList.get(ii).getPasscheck());
+						is.setEvaluate_no(evaluationList.get(ii).getEvaluate_no());
 					}
 				}
 			}
@@ -290,6 +292,7 @@ public class EvaluationController {
 		param.put("evaluate_no", evaluate_no_list);
 		int sum = evaluationService.calculateSumValue(param);
 		log.debug("result = {}", sum);
+		System.out.println("------------------------evaluate_no = " + evaluate_no);
 		return sum;
 	}
 	
@@ -347,7 +350,7 @@ public class EvaluationController {
 		int co_code = 1; // 후에 회사 코드 추가해야함.
 		Map<String, Object> param = new HashMap<>();
 		param.put("co_code", co_code);
-		param.put("	member_info_no", member_info_no);
+		param.put("member_info_no", member_info_no);
 		
 		List<Assigned> assigendList = evaluationService.selectInterviewerDetail(param);
 		

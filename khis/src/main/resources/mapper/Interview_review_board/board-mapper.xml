@@ -184,7 +184,8 @@
 			 announcement_time, 
 			 passcheck,
 			 interview_question,
-			 interview_answer
+			 interview_answer,
+			 pass_no
 			 from board
 			 where board_no = ${param}
 			 
@@ -194,6 +195,7 @@
 	<select id="selectDetailList" resultType="map" parameterType = "String">
 		select
 			b.board_no,
+			b.member_no,
     		b.employment_type,
     		TO_CHAR(b.reg_date,'yyyy-MM-dd') as reg_date,
     		b.interview_difficulty,
