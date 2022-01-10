@@ -53,9 +53,9 @@ public class InterviewServiceImpl implements InterviewService {
 	}
 
 	@Override
-	public List<IRInfo> selectInterviewerList(int memberNo) {
+	public List<IRInfo> selectInterviewerList(long coCode) {
 		// TODO Auto-generated method stub
-		return interviewDao.selectInterviewerList(memberNo);
+		return interviewDao.selectInterviewerList(coCode);
 	}
 	
 	

@@ -35,30 +35,34 @@
 		<form action = "${pageContext.request.contextPath }/irmanagement/updateRater.do" name="updateRaterFrm" method="post">
 		<input type="hidden" name="memberInfoNo" value = "${irInfo.memberInfoNo}" />
 			<div id="updateForm">
-					<div class="mb-3">
+					<div class="mb-4">
 						<label for="name" class="form-label">이름</label> 
-						<input type="text" class="form-control" id="name" name = "name" value ="${irInfo.name}" required>
+						<input type="text" class="form-control" id="name" name = "name" value ="${irInfo.name}">
+						<div id="nameMsg" style = "float:right; margin-top:5px;"></div>
 					</div>
-						<div class="mb-3">
+					<div class="mb-4">
 						<label for="email" class="form-label">이메일</label> 
-						<input type="email" class="form-control" id="email" name = "email" value = "${irInfo.email }"required>
+						<input type="text" class="form-control" id="email" name = "email" value = "${irInfo.email }">
+						<div id="emailMsg" style = "float:right; margin-top:5px;"></div>
 					</div>
 					<div class = "mb-3"> 
 						<label for="ssn" class="form-label">주민번호</label> 
 						<input type="text" class="form-control" name="ssn" id="ssn" value = "${irInfo.ssn }" readonly />
 					</div>
 					
-					<div class="mb-3">
+					<div class="mb-4">
 						<label for="phone" class="form-label">핸드폰</label> 
-						<input type="text" class="form-control" id="phone" name = "phone" value = "${irInfo.phone }" required>
+						<input type="text" class="form-control" id="phone" name = "phone" value=${irInfo.phone } maxlength = "11" >
+						<div id="phoneMsg" style = "float:right; margin-top:5px;"></div>
 					</div>
-					<div class="mb-3" id = "interviewerList">
+					<div class="mb-4" id = "interviewerList">
 						<label for="interviewerList" class="form-label">면접자 선택</label> <br />
 						<div class="form-check">
-							<c:forEach items = "${interviewerList }" var="interviewer" varStatus = "vs">
-									<input type="checkbox" class = "form-check-input" name="assignedMemberInfoNo" id="${vs.count}" value="${interviewer.memberInfoNo}" />
-									<label class = "form-label" for="${vs.count}">${vs.count}. ${interviewer.name}</label><br />
-								</c:forEach>
+						<c:forEach items = "${interviewerList }" var="interviewer" varStatus = "vs">
+						<input type="checkbox" class = "form-check-input" name="assignedMemberInfoNo" id="${vs.count}" value="${interviewer.memberInfoNo}" />
+						<label class = "form-check-label" for="${vs.count}">${vs.count}. ${interviewer.name}</label><br />
+						</c:forEach>
+						<div id="interviewerListMsg" style = "float:right; margin-top:5px;"></div>
 						</div>
 					</div>
 				<div id="buttons">
@@ -75,13 +79,13 @@ $("#returnBtn").click((e) => {
 	history.back();
 });
 
-$('[name=insertRaterFrm]').submit(function() {
+$('[name=updateRaterFrm]').submit(function() {
 	const name = $('#name').val();
 	const email = $('#email').val();
 	const phone = $('#phone').val();
 	const ssn1 = $('#ssn1').val();
 	const ssn2 = $('#ssn2').val();
-	const assignedInfoNo = $("input:checkbox[name='assignedInfoNo']:checked").length
+	const assignedMemberInfoNo = $("input:checkbox[name='assignedMemberInfoNo']:checked").length
 
 	if (name == '') {
 		$('#nameMsg').text("이름은 필수입력값입니다.").css("color", "red").focus();
@@ -117,7 +121,7 @@ $('[name=insertRaterFrm]').submit(function() {
 		$('#phoneMsg').hide();
 	}
 	
-	if(assignedInfoNo == 0) {
+	if(assignedMemberInfoNo == 0) {
 		$('#interviewerListMsg').text("면접자 배정이 필요합니다.").css("color", "red").focus();
 		return false;
 	} else {

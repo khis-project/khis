@@ -285,3 +285,12 @@ select count(*) from
 	        chat_log CL) CL
 	where
 	    rnum = 1);
+        
+        select a.interview_count, b.* from
+	(select imember_info_no, count(*) as interview_count from interview
+	group by imember_info_no) a right outer join ir_info b
+	on a.imember_info_no = b.member_info_no
+	where member_ir_haed_no = #{memberNo}
+	and role = 'I'
+	and (interview_count < 3 or interview_count is null)
+	order by b.member_info_no

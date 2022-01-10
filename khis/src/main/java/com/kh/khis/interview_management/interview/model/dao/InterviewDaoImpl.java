@@ -53,9 +53,9 @@ public class InterviewDaoImpl implements InterviewDao {
 	}
 
 	@Override
-	public List<IRInfo> selectInterviewerList(int memberNo) {
+	public List<IRInfo> selectInterviewerList(long coCode) {
 		// TODO Auto-generated method stub
-		return session.selectList("interview.selectInterviewerList", memberNo);
+		return session.selectList("interview.selectInterviewerList", coCode);
 	}
 	
 	
