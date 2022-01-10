@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Premium">
+	<insert id = "insertPremium">
+ 	insert into premium values (
+ 		seq_premium_no.nextval,
+ 		#{member_no},
+ 		default,
+ 		#{month},
+ 		default,
+ 		#{payment}
+ 	)	
+	</insert>
+	<select id = "selectPremium" resultType="premium">
+	select 
+		m.name, 
+		p.month, 
+		to_char(((p.reg_date +((INTERVAL '1' month) * p.month))),'YYYY-MM-DD HH24:MI:SS') leftDate 
+	from member m left join premium p on m.member_no = p.member_no 
+	where p.end_yn = 'n' and m.member_no = #{member_no}
+	</select>
+</mapper>
