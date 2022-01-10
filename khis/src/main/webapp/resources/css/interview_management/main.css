@@ -58,3 +58,112 @@ h2 {
 	text-decoration: none;
 }
 
+/** index **/
+#indexPage{
+	margin : 0 auto;
+	font-size:130%;
+}
+
+.redtext{
+	color:red;
+	font-size: 73%
+}
+#indexPage h1 {
+	font-weight:400;
+	text-align: center; 
+}
+
+/** tooltip **/
+툴팁 기본 스타일 설정 시작
+.inner-container{
+	font-size: 95%;
+}
+.inner-container a:link  {
+	color: black; 
+	text-decoration: none;
+}
+.inner-container a:visited { 
+	color: black; 
+	text-decoration: none;
+	}
+.inner-container a:hover { 
+	color: blue; 
+	text-decoration: none;
+	}
+
+.tooltip {
+  position: relative;
+  display: block;
+  opacity: 1;
+  font-size: 95%;
+  z-index: 0;
+  line-height: 4;
+  left: 160px;
+}
+.tooltip img{
+	width:95%;
+	height: 100%;
+	opacity: 1;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 50%;
+  height: 500%;
+  background-color: gray;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  opacity:1;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/**툴팁 화살표 기본 스타일 설정 시작**/
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  border-style: solid;
+  border-width: 10px;
+}
+
+/**아래쪽 툴팁 시작**/
+
+.tooltip .tooltip-bottom {
+  width:80%;
+  height: 328px;
+  top: -128%;
+  left: 44%;
+}
+
+
+.tooltip .tooltip-bottom::after {
+  top: 42%;
+  right: 100%;
+  margin-top: -5px;
+  border-color: transparent gray transparent transparent;
+}
+
+/** 밑줄 **/
+
+.underline {
+  line-height: 1.2;
+  background-image: linear-gradient(transparent calc(100% - 3px), #000 3px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.8s;
+  cursor: pointer;
+}
+
+.underline.yellow {
+  background-image: linear-gradient(transparent 60%, #F8CD07 40%);
+}
+.underline:hover {
+  background-size: 100% 100%;
+}
