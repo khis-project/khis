@@ -53,19 +53,15 @@
 				    <i class="fas fa-tasks fa-9x" style="color: #34495E;"></i></a></span>
 					<p>면접 일정을 한눈에 볼 수 있어요.</p>
 				</div>
-				<div class="Interview">
-          <span><br>평가 진행</span><br><br>
-            <span><i class="fas fa-chalkboard-teacher fa-7x" style="color: #34495E;"></i></span>
-          <p></p>
-        </div>
 				<div class="InterviewP">
           <span><br>면접 연습 질문 요청하기</span><br><br>
             <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
             <i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></a></span>
              <p>면접 연습하시면서 필요하다고 <br /> 생각하는 질문들을 적어주세요. </p>
-			</div>
-			<br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="← 메인 페이지로 돌아가기" onClick="mainBtn()">
+			   </div>
 		</div>
+		<br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="← 메인 페이지로 돌아가기" onClick="mainBtn()">
+	</div>
 	</div>
 </body>
 </html>
