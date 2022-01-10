@@ -19,6 +19,6 @@ public interface InterviewDao {
 
 	int selectInterviewTotalCount(long co_code);
 
-	List<IRInfo> selectInterviewerList(int memberNo);
+	List<IRInfo> selectInterviewerList(long coCode);
 
 }

@@ -62,8 +62,11 @@ public class InterviewController {
 			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
 			return "redirect:/";
 		}else {
-			int memberNo = member.getMemberNo();
-			List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
+			// 1. 로그인 회원 회원번호
+//			int memberNo = member.getMemberNo();
+			log.debug("loginMember = {}", member);
+			long coCode = member.getCoCode();
+			List<IRInfo> list = interviewService.selectInterviewerList(coCode);
 			log.debug("list = {}", list);
 			model.addAttribute("list", list);
 			return "interview_management/interview/insertInterview";

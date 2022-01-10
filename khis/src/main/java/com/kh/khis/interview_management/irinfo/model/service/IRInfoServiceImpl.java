@@ -194,16 +194,18 @@ public class IRInfoServiceImpl implements IRInfoService {
 			log.debug("irInfo.memberInfoNo = {}", irInfo.getMemberInfoNo());
 			int assignedInfoNo = irInfo.getMemberInfoNo();
 			
+			if(memberNoList != null) { 
 			result = irinfoDao.deleteAssignedInfo(assignedInfoNo);
 			
-			for(String str : memberNoList) {
-				AssignedInfo assignedInfo = new AssignedInfo();
-				int memberInfNo = Integer.parseInt(str);
-				assignedInfo.setAssignedInterviewer(assignedInfoNo);
-				assignedInfo.setMemberInfoNo(memberInfNo);
-				
-				result = irinfoDao.insertAssignedInfo(assignedInfo);
-				
+				for(String str : memberNoList) {
+					AssignedInfo assignedInfo = new AssignedInfo();
+					int memberInfNo = Integer.parseInt(str);
+					assignedInfo.setAssignedInterviewer(assignedInfoNo);
+					assignedInfo.setMemberInfoNo(memberInfNo);
+					
+					result = irinfoDao.insertAssignedInfo(assignedInfo);
+					
+				}
 			}
 		} catch (Exception e) {
 			log.error("면접관 등록 오류", e);

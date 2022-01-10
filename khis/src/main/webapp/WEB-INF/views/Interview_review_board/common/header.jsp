@@ -13,6 +13,12 @@
 <!-- header css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Interview_review_board/common.css"/>
 
+<c:if test = "${not empty msg}"> 
+<script>
+	alert('${msg}');
+</script>
+</c:if>
+
 <%
 	/* User loginUser = (User)session.getAttribute("loginUser"); */
 %>
