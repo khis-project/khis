@@ -129,7 +129,7 @@ public class UntactInterviewController {
 	// 연결 시 해당 면접관에 대한 정보 가져와서 뿌려주기
 	@RequestMapping(value="/zoomMeetingConnect.do" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String zoomMeetingConnect(@RequestParam String kind , Model model,
-									@RequestParam (defaultValue = "") String member_info_no_string,
+									@RequestParam (name = "member_info_no", defaultValue = "") String member_info_no_string,
 									HttpSession session,
 									RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
@@ -162,6 +162,8 @@ public class UntactInterviewController {
 //			log.debug("time = {}", dateToStr2);
 //			Boolean bValid = getValidDate(dateToStr1, dateToStr2, formatedNow);
 //			log.debug("시간 포함 여부 = {}", bValid);
+		log.debug("zoomInfo = {}", zoomInfo);
+		System.out.println("zoomInfo : " + zoomInfo);
 		if(zoomInfo == null) {
 			redirectAttr.addFlashAttribute("msg","현재 볼 수 있는 면접이 없습니다.");
 			model.addAttribute("msg", "해당 면접자는 현재 면접시간이 아닙니다.");
