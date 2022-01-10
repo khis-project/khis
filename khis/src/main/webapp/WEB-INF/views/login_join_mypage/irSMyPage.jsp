@@ -50,12 +50,14 @@
 				</div>
 				<div class="Interview">
           <span><br>평가 진행</span><br><br>
-            <span><i class="fas fa-chalkboard-teacher fa-9x" style="color: #34495E;"></i></span>
+            <span><a href="http://localhost:9090/khis/evaluation/evaluation.do">
+            <i class="fas fa-chalkboard-teacher fa-9x" style="color: #34495E;"></i></a></span>
              <p>좋은 인재를 찾을 수 있는 <br /> 면접이 되시길 바랍니다. :)</p>
         </div>
 				<div class="InterviewP">
 					<span><br>면접 연습 질문 요청하기</span><br><br>
-				    <span><i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></span>
+				    <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
+				    <i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></a></span>
 					   <p>면접 연습하시면서 필요하다고 <br /> 생각하는 질문들을 적어주세요. </p>
 				</div>					
 			</div>

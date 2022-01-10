@@ -28,7 +28,8 @@ body {font-family: 'GmarketSansMedium'; padding: 0;}
 .result div {margin:20px auto;}
 .result span {vertical-align: middle; margin: 20px;}
 .statics_form {width:740px; height: 250px; background-color:#f9f8f8; margin-top:12px;}
-.difficulty_form, .graph_form {width:370px; height:200px; margin:24px;}
+.difficulty_form {width:300px; height:200px; margin:24px;}
+.graph_form {width:440px; height:200px; margin:24px;}
 .pagination.justify-content-center {padding-bottom:40px; padding-top:20px;}
 .row_title {font-weight:bold; font-size:15px;}
 #myRange {

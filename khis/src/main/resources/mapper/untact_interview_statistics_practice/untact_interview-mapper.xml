@@ -3,27 +3,149 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UntactInterview">
-  <select id="selectZoomList" resultType="Zoom">
-  	select
-  		*
-  	from
-  		zoom
-
+  <select id="selectZoomTotalCount" resultType="_int">
+		select 
+			count(*) 
+		from 
+			zoom
+		where
+			member_no = #{member_no}
+  </select>
+  <select id="selectZoomIr_Info" resultMap="selectZoomApiType">
+<!--     select
+        z.zoom_no, z.member_no, z.co_code, z.api_key, 
+        z.api_secret, z.zoom_number, z.zoom_password, m.name, m.role, m.interviewer_no
+    from
+        ir_info m join zoom z on z.zoom_no = m.zoom_no
+    where
+        m.member_no = #{member_no} -->
+	<!--  select * from ir_info ii left join member m on ii.member_no = m.member_no 
+	left join interview_time it on it.member_info_no = ii.member_info_no
+	where ii.co_code = 2998600021
+	and sysdate between it.start_time and it.end_time -->
+        
+	select 
+		*
+	from 
+		ir_info ii 
+	        left join zoom z on ii.zoom_no = z.zoom_no
+	        left join interview_time it on ii.member_info_no = it.member_info_no    
+	where 
+		ii.member_info_no = #{member_info_no}
+		and sysdate between it.start_time and it.end_time
   </select>
   
   <insert id="insertZoom">
   	insert into
   	<!-- 후에는 zoom_no 부분은 sequence로 변경 -->
-  		zoom(zoom_no, member_no, co_code, api_key, api_secret, jwt_token)
+  		zoom(zoom_no, member_no, co_code, api_key, api_secret)
   	values(
-  		#{zoom_no},
+  		seq_zoom_no.NEXTVAL,
   		#{member_no},
   		#{co_code},
   		#{api_key},
-  		#{api_secret},
-  		#{jwt_token}
+  		#{api_secret}
   	)
   </insert>
+  
+  <select id="selectZoomIRList" resultMap="selectZoomListType">
+    select
+        z.zoom_no, z.member_no, z.co_code, rpad(substr(z.api_key, 1, 5), length(z.api_key), '*') as api_key, 
+        z.api_secret, z.zoom_number, z.zoom_password, m.name, m.role, m.interviewer_no
+    from
+        zoom z left join ir_info m on z.zoom_no = m.zoom_no
+    where
+        z.member_no = #{member_no}
 
+  </select>
+  
+     <select id="selectZoomList" resultMap="selectZoomListType">
+    select
+        z.zoom_no, z.member_no, z.co_code, rpad(substr(z.api_key, 1, 5), length(z.api_key), '*') as api_key, 
+        z.api_secret, z.zoom_number, z.zoom_password
+    from
+        zoom z
+    where
+        member_no = #{member_no}
+
+  </select> 
+<!--     <select id="selectZoomList" resultMap="selectZoomType">
+    select
+        *
+    from
+        zoom
+    where
+        member_no = #{member_no}
+
+  </select> -->
+  
+  
+  <select id="selectZoom" resultMap="selectZoomType">
+    select
+        ZOOM_NO, API_KEY, API_SECRET, ZOOM_NUMBER, ZOOM_PASSWORD
+    from
+        zoom
+    where
+        zoom_no = #{zoom_no}
+
+  </select>
+
+    <update id="updateZoom">
+	update 
+		zoom 
+	set 
+		api_key = #{api_key}, 
+		api_secret = #{api_secret}, 
+		zoom_number = #{zoom_number}, 
+		zoom_password = #{zoom_password}
+	where 
+		zoom_no = #{zoom_no}
+  </update>
+  
+  <delete id="deleteZoom">
+    delete from zoom where zoom_no = #{zoom_no}
+
+  </delete>
+
+  
+  <resultMap type="Zoom" id="selectZoomListType">
+  	<id property="zoom_no" column="zoom_no"/>
+  	<result property="member_no" column="member_no"/>
+  	<result property="co_code" column="co_code"/>
+  	<result property="api_key" column="api_key"/>
+  	<result property="api_secret" column="api_secret"/>
+  	<result property="zoom_number" column="zoom_number"/>
+  	<result property="zoom_password" column="zoom_password"/>
+  	<result property="name" column="name"/>
+  	<result property="role" column="role"/>
+  	<result property="interviewer_no" column="interviewer_no"/>
+  </resultMap>
+
+  <resultMap type="Zoom" id="selectZoomApiType">
+  	<id property="zoom_no" column="zoom_no"/>
+  	<result property="member_no" column="member_no"/>
+  	<result property="co_code" column="co_code"/>
+  	<result property="api_key" column="api_key"/>
+  	<result property="api_secret" column="api_secret"/>
+  	<result property="zoom_number" column="zoom_number"/>
+  	<result property="zoom_password" column="zoom_password"/>
+  	<result property="name" column="name"/>
+  	<result property="role" column="role"/>
+  	<result property="end_time" column="end_time"/>
+  	<result property="start_time" column="start_time"/>
+  	<result property="interviewer_no" column="interviewer_no"/>
+  </resultMap>
+  <resultMap id="selectZoomType" type="Zoom">
+  	<id property="zoom_no" column="zoom_no"/>
+  	<result property="member_no" column="member_no"/>
+  	<result property="co_code" column="co_code"/>
+  	<result property="api_key" column="api_key"/>
+  	<result property="api_secret" column="api_secret"/>
+  	<result property="zoom_number" column="zoom_number"/>
+  	<result property="zoom_password" column="zoom_password"/>
+  	<result property="name" column="name"/>
+  	<result property="role" column="role"/>
+  	<result property="interviewer_no" column="interviewer_no"/>
+  </resultMap>
   
 </mapper>

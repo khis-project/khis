@@ -6,9 +6,13 @@
 <jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp"/>
 <!-- 페이징 bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
 <!-- 사용자 css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/Interview_review_board/boardDetail.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/untact_interview.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/untact_interview_statistics_practice/statistics/statistics.js"></script>
 <div style="height:auto; background-color:#34495e; padding:20px;">
 	<div class="board-container">
 		<c:forEach items="${list}" var="co" varStatus="status" begin="0" end="0">
@@ -36,8 +40,21 @@
 						<span>어려움(100)</span>
 					</div>
 				</div>
-				<div class="graph_form" style="background-color:blue;">
-				
+				<!-- <div class="graph_form"></div> -->
+				<!-- <iframe src="/statistics/statistics.do" style="width: 440px; border: 0;" ></iframe>-->
+				<div class="text-align-center" id = "zoomSection">
+				<!-- 선택하는거에 따라서 나이별/경력별 나오게 하기 -->
+					<input type="hidden" name="urlContextPath" style="dispaly:none;" value="${pageContext.request.contextPath}"/>
+					<input type="hidden" name="co_code" style="dispaly:none;" value="${co.CO_CODE}"/>
+					
+					<select name="satisticsKind" onChange="statisticsKindFunc();" style="margin-top:10px;">
+						<option value="age">나이별</option>
+						<option value="career">경력별</option>
+					</select>
+					<label>(소수점 셋째자리에서 반올림)</label>
+					<div class="text-align-center margin-auto-basic" id="columnchart_material" style="width: 380px; height: 200px;">
+						<h3 style="margin-top:30px;"><img src="">▲ 종류를 선택해주세요.</h3>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -139,4 +156,5 @@
 		${pagebar}
 	</div>
 </div>
+
 <jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>

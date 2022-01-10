@@ -16,7 +16,7 @@
   <typeHandlers>
   	<typeHandler handler="com.kh.khis.login_join_mypage.model.CustomDateHandler" javaType="java.util.Date" jdbcType="DATE"/>
   	<!-- <typeHandler handler="com.kh.khis.common.typehandler.StringArrayTypeHandler"/> -->
-  	<!-- <package name="com.kh.khis.common.typehandler"/> -->
+  	<package name="com.kh.khis.interview_management.common.typehandler"/>
   </typeHandlers>
 
 	

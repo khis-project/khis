@@ -15,7 +15,8 @@ public interface BoardService {
 
 	List<Map<String,Object>> getCompanyNm(String coName);
 
-	List<BoardMemberCompany> selectCompanyList();
+	/* List<BoardMemberCompany> selectCompanyList(); */
+	List<BoardMemberCompany> selectCompanyList(int member_info_no); 
 
 	int selectBoardTotalCount(String occupationCd);
 

@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* 면접 연습 관련*/
+.displayNone { display:none; }
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} 
+body { font-family:"GmarketSansMedium"; }
+
+/* 줄 간격 */
+.text-line-height { line-height:200%; }
+.text-align-center { text-align : center; }
+#divQuestion, .divQuestionAK{display : none;}
+.display-none{display : none;}
+.QA{font-size: 40px;}
+
+.button-basic{
+	color : white;
+	height: 30px;
+	border-radius: 5px;
+	border: 0px;
+}
+.button-hover{
+	background: black;
+	color : white;
+}
+.button-hover:hover{
+	background : #0075ff;
+	color : white;
+}
+.margin-top-basic {margin-top : 50px;}
+.margin-auto-basic{margin: auto;}
+#practicestartDevBtn, #practicestartBasicBtn {width : 200px;}
+
+#divQuesion, .divQuesionAK{
+	display : none;
+}
+.display-none{
+	display : none;
+}
+.QA{
+	font-size: 40px;
+}
+
+.button-basic{
+	color : white;
+	height: 30px;
+	border-radius: 5px;
+	border: 0px;
+}
+.button-hover{
+	background: black;
+	color : white;
+}
+.button-hover:hover{
+	background : #0075ff;
+	color : white;
+}
+.margin-top-basic{
+	margin-top : 50px;
+}
+#practicestartDevBtn, #practicestartMenuBtn, #practicestartBasicBtn {
+	width : 200px;
+}
+.interviewBtn-basic {
+	width : 200px;
+}
+.tbColorTran:hover{
+	color : #1365e8;
+	border-bottom: 1px solid #1365e8;
+}
+.Tbth th{
+	width  : 60px;
+}
+.table-width-auto {
+	width : 800px;
+}

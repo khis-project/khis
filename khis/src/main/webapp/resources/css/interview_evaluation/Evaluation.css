@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, -100%, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translateZ(0);
+        }
+    }
+#evaluation > h3 {
+	margin-left: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+} 
+#evaluation {
+	font-family: 'GmarketSansMedium';
+	width :99%;
+    text-align: center;
+    margin: auto;
+    background-color: #3A85FA;
+    height: 1100px;
+}
+
+table {
+	border-collapse: collapse;
+}
+.inlinediv {
+	padding: 10;
+	display: inline-table;
+	text-align: left;
+	
+}
+
+#person {
+	margin-top: 10px;
+/* 	margin-left: 30px; */
+}
+#person th {
+	/* border: 1px solid black; */
+	text-align: center;
+}
+#person td {
+	/* border: 1px solid black; */
+	text-align: center;
+}
+.interviews {
+/* 	margin-left: 30px;
+	margin-top: 50px; */
+	border-collapse: collapse;
+	border-left: none;
+}
+#certificate {
+	border: 1px solid black;
+}
+#buttons {
+	text-align: center;
+	background-color: #3A85FA;
+
+/* 	margin-left: 50px; */
+}
+#content {
+	margin-top: 10px;
+	display: none;
+/* 	margin-left: 45px; */
+}
+.button {
+	opacity: 0;
+	width: 220px;
+	background-color: #3A85FA;
+	/* background-color: rgba(41, 128, 185, 0.43); */
+}
+#person {
+	position: relative;
+	opacity: 0;
+}
+#interview-info {
+	width: 30%;
+}
+.button-hidden {
+	opacity: 0;
+	visibility: hidden;
+	border: 0px;
+	border-color: #3A85FA;
+	background-color: #3A85FA;
+	color: white;
+}
+.button-none {
+	visibility: hidden;
+	border: 0px;
+	border-color: #3A85FA;
+	background-color: #3A85FA;
+	color: white;
+}
+#co_code_hidden {
+	display: none;
+}
+#applyList {
+	display: none;
+}
+#applytable {
+	text-align: center;
+}
+#complete {
+	display: none;
+}
+.totalresults {
+	display: none;
+}
+#guide {
+	opacity: 0;
+}
+#AssignedList {
+	display: none;
+	background-color: white;
+}
+.backgroundblue {
+	background-color: #3A85FA;
+	height: 130px;
+}
+#questionlist {
+	display: none;
+	background-color: white;
+}
+#applyList {
+	background-color: white;
+}
+.inlinediv.buttons {
+	margin-top: 50px;
+	display: none;
+}

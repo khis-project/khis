@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -31,6 +32,7 @@ import com.kh.khis.Interview_review_board.model.service.BoardService;
 import com.kh.khis.Interview_review_board.model.vo.Board;
 import com.kh.khis.Interview_review_board.model.vo.BoardMemberCompany;
 import com.kh.khis.Interview_review_board.model.vo.Occupation;
+import com.kh.khis.login_join_mypage.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -107,14 +109,15 @@ public class BoardController {
 
 	// 게시판 내용 삭제
 	@GetMapping("/boardDelete.do")
-	public String deleteBoard(@RequestParam int boardNo) throws Exception{
+	public String deleteBoard(@RequestParam int boardNo, RedirectAttributes redirectAttr) throws Exception{
 	    System.out.println(boardNo);
 		int result = boardService.deleteBoard(boardNo);
-		
+		redirectAttr.addFlashAttribute("msg",result > 0 ? "후기가 삭제되었습니다." : "후기 삭제가 되지 않았습니다.");
 	    return "redirect:/Interview_review_board/boardList.do";
 	}
 		
 	// 게시판 상세 내용 조회(회사 box 클릭시)
+
 	@GetMapping("/boardDetail.do")
 	public String boardDetail(
 			Board board, 
@@ -126,7 +129,7 @@ public class BoardController {
 			Model model) {
 		log.debug("cPage = {}", cPage);
 		
-		int limit = 5;
+		int limit = 2;
 		int offset = (cPage - 1) * limit;
 
 		Map<String, Object> mapParam = new HashMap<String, Object>();
@@ -159,10 +162,11 @@ public class BoardController {
 	}
 
 	// 후기 게시판 작성
-	@GetMapping("/boardEnroll.do")
+	@PostMapping("/boardEnroll.do")
 	public String boardEnroll(Board board, RedirectAttributes redirectAttr, HttpServletResponse response, HttpServletRequest request,
 			@RequestParam(name = "boardNo", required = false) String boardNo,
 			@RequestParam(name = "co_code") String coCode,
+			@RequestParam(name = "pass_no") String pass_no,
 			@RequestParam(name = "occupationCode") String occupationCode,
 			@RequestParam(name = "employmentType") String employmentType,
 			@RequestParam(name = "title") String title,
@@ -177,7 +181,7 @@ public class BoardController {
 			@RequestParam(name = "announcementTime") String announcementTime,
 			@RequestParam(name = "recruitmentMethod", defaultValue = "") String[] recruitmentMethods
 			) {
-
+		System.out.println("pass_no" + pass_no);
 		//인터뷰 년도, 월 Date형으로 포맷
 		String inputDate = interviewYear + interviewMonth;
 		String outputDate = null;
@@ -205,6 +209,7 @@ public class BoardController {
 		}
 
 		board.setCoCode(coCode);
+		board.setPass_no(Integer.parseInt(pass_no));
 		board.setOccupationCode(Integer.parseInt(occupationCode));
 		board.setMemberNo(1);
 		board.setInterviewEvaluation(interviewEvaluation);
@@ -226,7 +231,7 @@ public class BoardController {
 		if(boardNo != null && !boardNo.equals("")) {
 			try {
 				int result = boardService.updateBoard(board);
-				String msg = result > 0 ? "업데이트 성공!" : "게시글 업데이트 실패!";
+				String msg = result > 0 ? "후기 수정에 성공하였습니다." : "후기 수정에 실패했습니다.";
 				redirectAttr.addFlashAttribute("msg", msg);
 			} catch (Exception e) { 
 				log.error(e.getMessage(), e);
@@ -235,7 +240,7 @@ public class BoardController {
 		}else {
 			try {
 				int result = boardService.insertBoard(board);
-				String msg = result > 0 ? "게시글 등록 성공!" : "게시글 등록 실패!";
+				String msg = result > 0 ? "후기 등록에 성공하였습니다." : "후기 등록에 실패하였습니다.";
 				redirectAttr.addFlashAttribute("msg", msg);
 			} catch (Exception e) { 
 				log.error(e.getMessage(), e);
@@ -248,18 +253,37 @@ public class BoardController {
 
 	// 게시판 후기작성폼(기업명 검색 부분에 회사 List를 불러옴.)
 	@GetMapping("/boardForm.do")
-	public void boardForm(
+	public String boardForm(
 			Model model, 
 			Board board,
-			HttpServletRequest request
+			HttpServletRequest request,
+			HttpSession session,
+			RedirectAttributes redirectAttr
 			) {
 
-		List<BoardMemberCompany> list = boardService.selectCompanyList();
-		
-		log.debug("companyList = {}", list);
-		model.addAttribute("companyList", list);
-		System.out.println(list);
-						
+		// 여기서 폼으로 넘어가기전에 후기 작성할 데이터가 있는지 확인하기
+		// select 해야 됨.
+		Member member = (Member) session.getAttribute("loginMember");
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+			return "redirect:/Interview_review_board/boardList.do";
+		}else {
+			if(!member.getKind().equals("IR")) {
+				redirectAttr.addFlashAttribute("msg","글을 작성할 권한이 없습니다.");
+				return "redirect:/Interview_review_board/boardList.do";				
+			}else {
+				int member_info_no = member.getMemberInfoNo();
+				//List<BoardMemberCompany> list = boardService.selectCompanyList();
+				List<BoardMemberCompany> list = boardService.selectCompanyList(member_info_no);
+				// list를 쿼리문만 수정하면 될듯
+				if(list.isEmpty()) {
+					redirectAttr.addFlashAttribute("msg", "추가할 수 있는 후기가 없습니다.");
+					return "redirect:/Interview_review_board/boardList.do";
+				}
+				model.addAttribute("list",list);
+			}
+		}
+		return "Interview_review_board/boardForm";
 	}
 
 	

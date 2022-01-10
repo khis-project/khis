@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="InterviewPractice">
+	<select id="selectPracticeList" resultMap="selectPracticeListType">
+	 	select
+	 		*
+	 	from
+	 		interview_Question
+	<where>
+		question_kind = #{kind} and admin_Approval = 'y'
+		<if test='Questions != null'>
+	  		and question_no not in
+	        <foreach collection="Questions" item="item" index="index" separator="," open="(" close=")">
+	            #{item}
+	        </foreach>
+	 		</if>
+	</where>
+	</select>
+  
+	<select id="selectPracticeAdmin" resultMap="selectPracticeListType">
+	 	select
+	 		*
+	 	from
+	 		interview_Question
+	 	<where>
+	 		<if test='question_kind != null'>
+	 			and question_kind = #{question_kind}
+	 		</if>
+	 		<if test='admin_approval != null'>
+	 			and admin_approval = #{admin_approval}
+	 		</if>
+	 	</where>
+	 	order by 
+	 		admin_approval
+	
+	</select>
+	<select id="selectAdminTotalCount" resultType="_int">
+	 	select
+	 		count(*)
+	 	from
+	 		interview_Question
+	 	<where>
+	 		<if test='question_kind != null'>
+	 			and question_kind = #{question_kind}
+	 		</if>
+	 		<if test='admin_approval != null'>
+	 			and admin_approval = #{admin_approval}
+	 		</if>
+	 	</where>
+	
+	</select>
+	<update id="updatePracticeAdmin">
+		update 
+			interview_Question 
+		set 
+			admin_Approval = 'y' 
+		where 
+			question_no = #{question_no}
+	</update>
+	<insert id = "insertInterviewePractice">
+		insert
+		into
+			interview_Question
+			(question_no, question_kind, question, answer, answer_keyword, language_kind, Admin_Approval)
+		<choose>
+			<when test = '"D".equals(question_kind)'>
+				values (30, #{question_kind}, #{question}, #{answer}, #{answer_keyword}, #{language_kind}, default)
+			</when>
+			<when test = '"B".equals(question_kind)'>
+				values (31, #{question_kind}, #{question}, null, null, null, default)	
+			</when>
+		</choose>
+	</insert>
+    <resultMap type="InterviewQuesionPractice" id="selectPracticeListType">
+	  	<id property="question_no" column="question_no"/>
+	  	<result property="question_kind" column="question_kind"/>
+	  	<result property="question" column="question"/>
+	  	<result property="answer" column="answer"/>
+	  	<result property="answer_keyword" column="answer_keyword"/>
+	  	<result property="language_kind" column="language_kind"/>
+	  	<result property="admin_Approval" column="admin_Approval"/>
+  </resultMap>
+</mapper>

@@ -43,7 +43,7 @@
 				</div>
 				<div class="management">
           <span><br>면접 정보 관리</span><br><br>
-            <span><a href="">
+            <span><a href="${pageContext.request.contextPath }/irmanagement/irIndex.do">
             <i class="fas fa-paste fa-9x" style="color: #34495E;"></i></a></span>
           <p> 면접 진행을 위해 <br/>면접관 / 면접자 정보를 입력해 주세요.</p>
         </div>
@@ -60,9 +60,9 @@
         </div>
 				<div class="InterviewP">
           <span><br>면접 연습 질문 요청하기</span><br><br>
-            <span><i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></span>
+            <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
+            <i class="fas fa-pencil-alt fa-9x" style="color: #34495E;"></i></a></span>
              <p>면접 연습하시면서 필요하다고 <br /> 생각하는 질문들을 적어주세요. </p>
-        </div>  
 			</div>
 			<br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="← 메인 페이지로 돌아가기" onClick="mainBtn()">
 		</div>
