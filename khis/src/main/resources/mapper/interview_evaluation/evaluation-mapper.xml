@@ -99,7 +99,11 @@
   </select>
   <select id="selectEvaluationList" resultMap="interviewsMap">
   	select 
-  		*
+  		i.interview_no,
+        ie.evaluate_value,
+        ie.evaluate_no,
+        ie.evaluate_comment,
+        pa.passcheck
 	from 
 		interview i left join interview_evaluate ie 
 		on i.interview_no = ie.interview_no	
@@ -192,7 +196,7 @@
   	insert into
   		pass_comment
   	values (
-  		#{comment_no},
+  		seq_evaluate_comment_no.nextval,
   		#{member_info_no},
   		#{imember_info_no},
   		#{co_code},

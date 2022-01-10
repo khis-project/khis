@@ -196,14 +196,16 @@ public class InterviewPracticeController{
 
 		int randoms = (int)(Math.random() * selectPractice.size()-1);
 		InterviewQuesionPractice ip = selectPractice.get(randoms);
-		if(kind == "D") {
+		if(kind == "D" || "D".equals(kind)) {
 			String[] splits = ip.getAnswer().split(",");
 			String answer = "";
 			for(int a = 0; a < splits.length; a++)
 				answer += splits[a] + (a!=splits.length -1 ? "<br>" : "");
+			log.debug("answer = {}", answer);
 			ip.setAnswer(answer);
 			
 		}
+		//면접 연습을 했던 부분은 더하기 눌렀을 때 안되게 하기.
 		if(StringUtils.isEmpty(Questions)) { 
 			Questions = "";
 		}else {
@@ -212,9 +214,9 @@ public class InterviewPracticeController{
 
 		
 		model.addAttribute("selectPracticeRandom", ip);
-		model.addAttribute("listSize",selectPractice.size());
-		model.addAttribute("Questions",Questions + ip.getQuestion_no());
-		model.addAttribute("rate",rate);
+		model.addAttribute("listSize", selectPractice.size());
+		model.addAttribute("Questions", Questions + ip.getQuestion_no());
+		model.addAttribute("rate", rate);
 		
 		return "untact_interview_statistics_practice/interview_practice/interviewPracticeDetail";
 	}

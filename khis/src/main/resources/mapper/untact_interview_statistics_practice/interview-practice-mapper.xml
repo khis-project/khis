@@ -66,10 +66,10 @@
 			(question_no, question_kind, question, answer, answer_keyword, language_kind, Admin_Approval)
 		<choose>
 			<when test = '"D".equals(question_kind)'>
-				values (30, #{question_kind}, #{question}, #{answer}, #{answer_keyword}, #{language_kind}, default)
+				values (seq_interview_question_no.nextval, #{question_kind}, #{question}, #{answer}, #{answer_keyword}, #{language_kind}, default)
 			</when>
 			<when test = '"B".equals(question_kind)'>
-				values (31, #{question_kind}, #{question}, null, null, null, default)	
+				values (seq_interview_question_no.nextval, #{question_kind}, #{question}, null, null, null, default)	
 			</when>
 		</choose>
 	</insert>
