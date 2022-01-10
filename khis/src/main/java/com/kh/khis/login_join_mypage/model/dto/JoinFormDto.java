@@ -29,7 +29,7 @@ public class JoinFormDto {
 	private String kind;
 	private Date joinDate;
 	private String id;
-	private Integer interviewerNo;
+	private Long interviewerNo;
 	private String coName;
 	private String coAddress;
 	private Integer count;

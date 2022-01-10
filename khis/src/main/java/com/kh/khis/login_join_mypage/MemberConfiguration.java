@@ -6,6 +6,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import org.springframework.web.util.DefaultUriBuilderFactory.EncodingMode;
 
+import net.sf.json.spring.web.servlet.view.JsonView;
+
 @Configuration
 public class MemberConfiguration {
 	@Bean
@@ -14,5 +16,10 @@ public class MemberConfiguration {
 		DefaultUriBuilderFactory handler = (DefaultUriBuilderFactory) restTemplate.getUriTemplateHandler();
 		handler.setEncodingMode(EncodingMode.VALUES_ONLY); // Prevent encode URL
 		return restTemplate;
+	}
+
+	@Bean
+	public void jsonView(JsonView jsonView) {
+
 	}
 }

@@ -29,13 +29,19 @@ public class CustomDateHandler extends BaseTypeHandler<Date> {
 
 	@Override
 	public Date getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-		// TODO Auto-generated method stub
+		java.sql.Date sqlTimestamp = rs.getDate(columnIndex);
+		if (sqlTimestamp != null) {
+			return new Date(sqlTimestamp.getTime());
+		}
 		return null;
 	}
 
 	@Override
 	public Date getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-		// TODO Auto-generated method stub
+		java.sql.Date sqlTimestamp = cs.getDate(columnIndex);
+		if (sqlTimestamp != null) {
+			return new Date(sqlTimestamp.getTime());
+		}
 		return null;
 	}
 
