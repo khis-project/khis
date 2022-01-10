@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -128,12 +129,16 @@ public class UntactInterviewController {
 	// 연결 시 해당 면접관에 대한 정보 가져와서 뿌려주기
 	@RequestMapping(value="/zoomMeetingConnect.do" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String zoomMeetingConnect(@RequestParam String kind , Model model,
-									@RequestParam (value="member_info_no",required=false) String member_info_no_string,
+									@RequestParam (defaultValue = "") String member_info_no_string,
 									HttpSession session,
 									RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
 		int member_info_no = 0;
-		if(member_info_no_string != null || "".equals(member_info_no_string)) { // 면접관일때는 면접자의 member_info_no를 가져옴
+		System.out.println("member_info_no_string : "+ member_info_no_string);
+		System.out.println("member_info_no_string : "+ !"".equals(member_info_no_string));
+		System.out.println("member_info_no_string : "+ Objects.equals("", new String(member_info_no_string)));
+
+		if(!Objects.equals("", new String(member_info_no_string))) { // 면접관일때는 면접자의 member_info_no를 가져옴
 			member_info_no = Integer.parseInt(member_info_no_string);
 		}else { // 면접자일 때
 			if(member == null) {
@@ -169,10 +174,10 @@ public class UntactInterviewController {
 					redirectAttr.addFlashAttribute("msg","회의실 연결이 되어있지 않습니다.<br>면접 관리자에게 연락하시길 바랍니다.");
 					model.addAttribute("msg", "회의실 연결이 되어있지 않습니다.<br>면접 관리자에게 연락하시길 바랍니다.");
 				}else {
-					if("IR".equals(member.getKind()))
-						return "redirect:/member/irMyPage.do";
-					else					
-						return "redirect:/member/irHMyPage.do";
+//					if("IR".equals(member.getKind()))
+//						return "redirect:/member/irMyPage.do";
+//					else					
+//						return "redirect:/member/irHMyPage.do";
 				}
 				String name = "R".equals(kind) ? "면접관" : zoomInfo.getName(); 
 				String role = "R".equals(kind) ? "1" : "0";
