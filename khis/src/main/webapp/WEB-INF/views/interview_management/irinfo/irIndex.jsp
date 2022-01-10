@@ -29,7 +29,7 @@
 	<label style="color : #808080;">면접 정보 추가하는 방법입니다.</label>
 	<div id="indexPage" style = "height:500px;">	
 		 <div class="inner-container">
-			<div class="tooltip">
+			<div class="tooltip">    
 				1.<span class="yellow underline"><b> 줌 회의실 추가</b></span>
 					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg1.png"></span>
 			</div>
