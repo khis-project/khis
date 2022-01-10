@@ -48,7 +48,7 @@
 				</div>
 				<div class="Interview">
 					<span><br>면접 진행</span><br><br>
-				    <span><i class="fas fa-chalkboard-teacher fa-7x" style="color: #34495E;"></i></span>
+				    <span><a href="${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=I"><i class="fas fa-chalkboard-teacher fa-7x" style="color: #34495E;"></i></a></span>
 					<p>노력은 배신하지 않아요. <br /> 후회 없는 면접이 되시길 바라요.:)</p>
 				</div>
 				<div class="InYNCo">

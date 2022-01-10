@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
   <jsp:param value="로그인" name="title"/>
 </jsp:include>
 
@@ -44,4 +44,4 @@
 		</div>
 	</div>
 </form>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

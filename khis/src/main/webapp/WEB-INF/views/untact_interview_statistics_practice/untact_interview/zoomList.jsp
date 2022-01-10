@@ -4,8 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <fmt:requestEncoding value="utf-8"/>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp"></jsp:include>
-
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="zoom 조회" name="title"/>
+</jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/untact_interview.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -173,3 +174,4 @@ alert("${msg}");
 			$(this).next().css('display','none');
 	});
 	</script>
+	<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

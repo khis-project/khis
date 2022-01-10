@@ -128,16 +128,22 @@ public class UntactInterviewController {
 	// 연결 시 해당 면접관에 대한 정보 가져와서 뿌려주기
 	@RequestMapping(value="/zoomMeetingConnect.do" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String zoomMeetingConnect(@RequestParam String kind , Model model,
+									@RequestParam (value="member_info_no",required=false) String member_info_no_string,
 									HttpSession session,
 									RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
-		if(member == null) {
-			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
-		}else {		
-			int member_info_no = member.getMemberInfoNo(); // 나중에는 해당 클릭했을때 클릭한 member_no 가져오기
-			
-			Zoom zoomInfo = untactInterviewService.selectZoomIr_Info(member_info_no);
+		int member_info_no = 0;
+		if(member_info_no_string != null || "".equals(member_info_no_string)) { // 면접관일때는 면접자의 member_info_no를 가져옴
+			member_info_no = Integer.parseInt(member_info_no_string);
+		}else { // 면접자일 때
+			if(member == null) {
+				redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+				return "redirect:/";
+			}
+			member_info_no = member.getMemberInfoNo(); // 나중에는 해당 클릭했을때 클릭한 member_no 가져오기
+		}	
+		
+		Zoom zoomInfo = untactInterviewService.selectZoomIr_Info(member_info_no);
 //			원래는 controller에서 시간 비교를 하려고 했으나 그냥 oracle query문에서 체크
 //			LocalDateTime now = LocalDateTime.now(); // 현재 날짜/시간 2021-12-02T18:19:36.897421300 // 포맷팅 
 //			String formatedNow = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); 
@@ -146,20 +152,22 @@ public class UntactInterviewController {
 //			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");   
 //			String dateToStr1 = dateFormat.format(zoomInfo.getStart_time());
 //			String dateToStr2 = dateFormat.format(zoomInfo.getEnd_time());
-			
+		
 //			log.debug("time = {}", dateToStr1);
 //			log.debug("time = {}", dateToStr2);
 //			Boolean bValid = getValidDate(dateToStr1, dateToStr2, formatedNow);
 //			log.debug("시간 포함 여부 = {}", bValid);
-			if(zoomInfo == null) {
-				redirectAttr.addFlashAttribute("msg","현재 볼 수 있는 면접이 없습니다.");
-				if("IR".equals(member.getKind()))
-					return "redirect:/member/irMyPage.do";
-				else					
-					return "redirect:/member/irHMyPage.do";
-			}else {
+		if(zoomInfo == null) {
+			redirectAttr.addFlashAttribute("msg","현재 볼 수 있는 면접이 없습니다.");
+			model.addAttribute("msg", "해당 면접자는 현재 면접시간이 아닙니다.");
+			if("IR".equals(member.getKind()))
+				return "redirect:/member/irMyPage.do";
+			else					
+				return "untact_interview_statistics_practice/untact_interview/ExceptionPage";
+		}else {
 				if(zoomInfo.getApi_key() == null) { // 회의실 연결이 되어 있지 않음
 					redirectAttr.addFlashAttribute("msg","회의실 연결이 되어있지 않습니다.<br>면접 관리자에게 연락하시길 바랍니다.");
+					model.addAttribute("msg", "회의실 연결이 되어있지 않습니다.<br>면접 관리자에게 연락하시길 바랍니다.");
 				}else {
 					if("IR".equals(member.getKind()))
 						return "redirect:/member/irMyPage.do";
@@ -184,10 +192,8 @@ public class UntactInterviewController {
 				map.put("apiSec",zoomInfo.getApi_secret());
 				
 				model.addAttribute("ZoomUrl", map);
-//				return "";
+
 				return  "untact_interview_statistics_practice/CDN/meeting";
-			}
-			
 		}
 	}
 
