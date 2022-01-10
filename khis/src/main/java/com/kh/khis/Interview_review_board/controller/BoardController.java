@@ -103,7 +103,6 @@ public class BoardController {
 		model.addAttribute("month", month);
 		
 		model.addAttribute("list", listMap);
-		
 		return "Interview_review_board/boardUpdateForm";
 	}
 
@@ -126,12 +125,12 @@ public class BoardController {
 			@RequestParam String score, 
 			@RequestParam(defaultValue = "1") int cPage,
 			HttpServletRequest request,
-			Model model) {
+			Model model,
+			HttpSession session) {
 		log.debug("cPage = {}", cPage);
 		
 		int limit = 2;
 		int offset = (cPage - 1) * limit;
-
 		Map<String, Object> mapParam = new HashMap<String, Object>();
 		mapParam.put("occupation_code", occupationCode);
 		mapParam.put("co_code", coCode);
@@ -157,13 +156,18 @@ public class BoardController {
 		String pagebar = DetailUtils.getPagebar(cPage, limit, totalContent, url);
 		log.debug("pagebar = {}", pagebar);
 		model.addAttribute("pagebar", pagebar);
+		
+		Member member = (Member) session.getAttribute("loginMember");
+		int memberNo = member.getMemberNo();
+		
+		model.addAttribute("MemberNo", memberNo);
 
 		return "Interview_review_board/boardDetail";		 
 	}
 
 	// 후기 게시판 작성
 	@PostMapping("/boardEnroll.do")
-	public String boardEnroll(Board board, RedirectAttributes redirectAttr, HttpServletResponse response, HttpServletRequest request,
+	public String boardEnroll(Board board, RedirectAttributes redirectAttr, HttpServletResponse response, HttpServletRequest request, HttpSession session,
 			@RequestParam(name = "boardNo", required = false) String boardNo,
 			@RequestParam(name = "co_code") String coCode,
 			@RequestParam(name = "pass_no") String pass_no,
@@ -181,7 +185,8 @@ public class BoardController {
 			@RequestParam(name = "announcementTime") String announcementTime,
 			@RequestParam(name = "recruitmentMethod", defaultValue = "") String[] recruitmentMethods
 			) {
-		System.out.println("pass_no" + pass_no);
+		Member member = (Member) session.getAttribute("loginMember");
+		System.out.println("pass_no=" + pass_no);
 		//인터뷰 년도, 월 Date형으로 포맷
 		String inputDate = interviewYear + interviewMonth;
 		String outputDate = null;
@@ -211,7 +216,7 @@ public class BoardController {
 		board.setCoCode(coCode);
 		board.setPass_no(Integer.parseInt(pass_no));
 		board.setOccupationCode(Integer.parseInt(occupationCode));
-		board.setMemberNo(1);
+		board.setMemberNo(member.getMemberNo());
 		board.setInterviewEvaluation(interviewEvaluation);
 		board.setEmploymentType(employmentType);
 		board.setTitle(title);

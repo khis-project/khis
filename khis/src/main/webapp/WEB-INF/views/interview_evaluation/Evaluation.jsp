@@ -509,7 +509,7 @@ $("#btn3").click((e) => {
 		method: "GET",
 		data: {
 			member_info_no : $("#member_info_no_hidden").val(),
-			interviewer_no : 43 // 면접관 번호 세션에서 불러와야함
+			interviewer_no : 79 // 면접관 번호 세션에서 불러와야함
 		},
 		success(data){
 			let html = `<table id="content" style="margin-top: 30px; display : block;">

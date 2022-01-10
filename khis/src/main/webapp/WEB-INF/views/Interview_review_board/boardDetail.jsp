@@ -67,13 +67,15 @@
 						<div class="content-top-text">
 							<span>${board.EMPLOYMENT_TYPE}</span> <span>/</span> <span>${board.REG_DATE}</span>
 						</div>
-						<div class="btn">
-							<a
-								href="${pageContext.request.contextPath}/Interview_review_board/boardUpdate.do?boardNo=${board.BOARD_NO}">수정</a>
-							<a
-								href="${pageContext.request.contextPath}/Interview_review_board/boardDelete.do?boardNo=${board.BOARD_NO}"
-								id="delete_btn">삭제</a>
-						</div>
+						<c:if test="${board.MEMBER_NO == MemberNo}">
+							<div class="btn">
+								<a
+									href="${pageContext.request.contextPath}/Interview_review_board/boardUpdate.do?boardNo=${board.BOARD_NO}">수정</a>
+								<a
+									href="${pageContext.request.contextPath}/Interview_review_board/boardDelete.do?boardNo=${board.BOARD_NO}"
+									id="delete_btn">삭제</a>
+							</div>
+						</c:if>
 					</div>
 					<div class="content_box2">
 						<div class="menu">
