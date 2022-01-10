@@ -13,6 +13,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://voice.luzspat.com/js/cloudvoice.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="면접 연습 페이지" name="title" />
+</jsp:include>
 <%
 	/* List<InterviewPractice> interviewQuestion = new ArrayList<>();
 			//해당 면접 질문 참고 : https://cafe.naver.com/soojebi?iframe_url_utf8=%2FArticleRead.nhn%253Fclubid%3D29835300%2526page%3D1%2526inCafeSearch%3Dtrue%2526searchBy%3D0%2526query%3Dmvc%2526includeAll%3D%2526exclude%3D%2526include%3D%2526exact%3D%2526searchdate%3Dall%2526media%3D0%2526sortBy%3Ddate%2526articleid%3D92591%2526referrerAllArticles%3Dtrue
@@ -130,3 +134,4 @@
 		}
 		
 	</script>
+	<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
