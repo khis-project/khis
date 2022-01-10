@@ -18,9 +18,6 @@ import lombok.ToString;
 @ToString
 public class Member implements Serializable {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private int memberNo;
@@ -38,14 +35,7 @@ public class Member implements Serializable {
 	private String id;
 	private Long interviewerNo; //Integer null을 쓸수있다.
 	private Integer memberInfoNo;
+	private Integer month;
+	private String endYN;
 
-	/*
-	 * public Member(long coCode, String password, String name, Date birthday,
-	 * String email, String phone, String address, String gender, String kind, Date
-	 * joinDate, String id, Integer interviewNo) { super(); this.coCode = coCode;
-	 * this.password = password; this.name = name; this.birthday = birthday;
-	 * this.email = email; this.phone = phone; this.address = address; this.gender =
-	 * gender; this.kind = kind; this.joinDate = joinDate; this.id = id;
-	 * this.interviewNo = interviewNo; }
-	 */
 }
