@@ -16,7 +16,7 @@ public class Interviewer implements Serializable {
 	private int member_info_no;
 	private int member_no;
 	private int co_code;
-	private int interviewer_no;
+	private long interviewer_no;
 	private String name;
 	private String email;
 	private String phone;
