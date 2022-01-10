@@ -46,23 +46,47 @@
      <header>
 		<div class="wrap">
         	<div id="left-box">
-                <a href="${requestContext.request.contextPath}/khis" class="logo"><img src="<%=request.getContextPath()%>/resources/images/khis_logo2.png" alt="로고"/></a>
+                <a href="${requestContext.request.contextPath}/khis" class="logo"><img src="${pageContext.request.contextPath}/resources/images/khis_logo2.png" alt="로고"/></a>
             </div>
             <div id="right-box">
 				<ul class="myMenu">
 					<li class="menu1"><a href="${pageContext.request.contextPath}">홈</a></li>
-					<li class="menu2"><a href="">면접연습</a></li>
+					<li class="menu2"><a href="${pageContext.request.contextPath}/interviewPractice/interviewPractice.do">면접연습</a></li>
 					<li class="menu3"><a href="${pageContext.request.contextPath}/Interview_review_board/boardList.do">면접후기</a></li>
-					<li class="menu4"><a href="#">공채달력<img src="https://i.ibb.co/94XTF6R/halloween.png"/></a></li>
+					<li class="menu4"><a href="${pageContext.request.contextPath}/jobPosting/jobPosting.do">공채달력<img src="https://i.ibb.co/94XTF6R/halloween.png"/></a></li>
 					<li class="menu5">MY
 						<ul class="submenu">
-						<%-- <% if(loginUser == null){ %> --%>
-							<li style="border-radius:10px 10px 0 0;"><a href="#">로그인</a></li>
-							<li><a href="#">회원가입</a></li>
-						<%-- <% }else{ %> --%>
-							<li><a href="#">마이페이지</a></li>
-							<li style="border-radius:0 0 10px 10px"><a href="#">로그아웃</a></li>
-						<%-- <% } %> --%>
+						<c:if test="${empty loginMember}">
+						
+							<li style="border-radius:10px 10px 0 0;"><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a></li>
+						</c:if>
+					  <c:if test="${not empty loginMember}">
+            <c:if test="${loginMember.kind == 'ADMIN'}">
+            <li><a href="${pageContext.request.contextPath}/member/adminMyPage.do">관리자<br />페이지</a></li>
+            </c:if>
+            
+            <!-- IR_HAED 면접관리자 -->
+            <c:if test="${loginMember.kind == 'IR_HAED'}">
+            <li><a href="${pageContext.request.contextPath}/member/irHMyPage.do">마이페이지</a></li>
+            </c:if>
+            
+            <!-- IR 면접자 -->
+            <c:if test="${loginMember.kind == 'IR'}">
+            <li><a href="${pageContext.request.contextPath}/member/irMyPage.do">마이페이지</a></li>
+            </c:if>
+            
+            <!-- IR_SUPERVISOR 면접관 -->
+            <c:if test="${loginMember.kind == 'IR_SUPERVISOR'}">
+            <li><a href="${pageContext.request.contextPath}/member/irSMyPage.do">마이페이지</a></li>
+            </c:if>
+            
+            <!-- USER 예비면접자 -->
+            <c:if test="${loginMember.kind == 'USER'}">
+            <li><a href="${pageContext.request.contextPath}/member/userMyPage.do">마이페이지</a></li>
+            </c:if>
+							<li style="border-radius:0 0 10px 10px"><a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a></li>
+					  </c:if>
 						</ul>
 					</li>
 				</ul>
