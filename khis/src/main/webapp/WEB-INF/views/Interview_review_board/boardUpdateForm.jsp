@@ -36,7 +36,9 @@
 						<input type="text" id="co_code" name="co_code" style="display:none;" value="${co.CO_CODE}" readonly/>
 						<input type="text" id="co_addr" name="co_addr" style="display:none;" readonly/>
 						<input type="text" id="boardNo" name="boardNo" style="display:none;" value="${co.BOARD_NO}" readonly/>
-						<input type="text" id="pass_no" name="pass_no" value="${co.pass_no}" readonly/>
+						<input type="text" id="co_name" name="co_name" placeholder="기업명" style="display:none;" readonly required/>
+						<input type="text" name="co_addr" value="${co.co_address == null ? '회사주소가 없습니다.' : co.co_address}" style="height:20px; border:0; color : #7c7c7c;"readonly/>
+						<input type="text" name="pass_no" value="${co.pass_no}" style="display:none;" readonly/>
 					</td>
 				</tr>
 

@@ -55,5 +55,11 @@
 				<li><a href="${pageContext.request.contextPath }/interview/interviewList.do">면접 질문 목록</a></li>
 			</ul>
 		</li>
+		<li>
+		최종 평가
+			<ul class = "sub">
+				<li><a href="">면접 최종평가</a></li>
+			</ul>
+		</li>
 	</ul>
 </div>

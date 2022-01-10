@@ -659,15 +659,53 @@ select
         
         
 -- fk 묶인 부분 없애기
+CREATE TABLE  premium  (
+	 premium_no 	number		NOT NULL,
+	 MEMBER_NO 	number		NOT NULL,
+	 reg_date 	date		NULL,
+	 month 	number		NULL,
+	 end_yn 	varchar2(1)	DEFAULT 'n'	NULL,
+	 payment 	number		NULL
+);
+
+COMMENT ON COLUMN  premium . premium_no  IS '프리미언 이용 여부 번호';
+
+COMMENT ON COLUMN  premium . MEMBER_NO  IS '회원번호(sequence)';
+
+COMMENT ON COLUMN  premium . reg_date  IS '가입날짜';
+
+COMMENT ON COLUMN  premium . month  IS '프리미엄 유지 개월';
+
+COMMENT ON COLUMN  premium. end_yn  IS '종료 여부(n,y)';
+
+COMMENT ON COLUMN  premium . payment  IS '결제금액';
+
+ALTER TABLE  premium  ADD CONSTRAINT  PK_premium  PRIMARY KEY (
+	 premium_no 
+);
+
         
 create or replace procedure update_premium_procedure
 is
 begin
-    update premium set end_yn = 'n' where ADD_MONTHS(reg_date, 1) <= sysdate;
+    update premium set end_yn = 'n' where ADD_MONTHS(reg_date, month) <= sysdate;
     commit;
 end;
+--
+--begin
+--dbms_scheduler.create_job(
+--    jonupdate_premium_job,
+--    'update_premium_procedure()',
+--    systimestamp,
+--    null,
+--    'freq = daily; byhour23 byminute=58;';
+--    '매일 23시 58분에 프리미엄 시작시작으로부터 1달이 넘으면 end_yn부분 n으로 변경 update 실행'
+--);
+--end;  
+
 
 begin
+
 dbms_scheduler.create_job(
     job_name => 'update_premium_job',
     job_type => 'plsql_block',
@@ -676,10 +714,10 @@ dbms_scheduler.create_job(
     end_date => null,
     repeat_interval => 'freq = daily; byhour23 byminute=58;');
     comments => '매일 23시 58분에 프리미엄 시작시작으로부터 1달이 넘으면 end_yn부분 n으로 변경 update 실행');
-    end;
-/
-    
+    end;  
+    /
 )
+
 
 select py.*, mc.*
 from pass_yn py  left join  member_company mc on mc.co_code = py.co_code
@@ -791,7 +829,7 @@ select * from ir_info ii left join member m on ii.member_no = m.member_no
 left join interview_time it on it.member_info_no = ii.member_info_no
 where ii.co_code = 2998600021
 and sysdate between it.start_time and it.end_time
-
+;
 	select 
 		*
 	from 
@@ -800,3 +838,30 @@ and sysdate between it.start_time and it.end_time
 	        left join interview_time it on ii.member_info_no = it.member_info_no
 	where 
 		ii.member_info_no = 38
+        and sysdate between it.start_time and it.end_time;
+        
+        
+        
+-- 프리미엄 관련 시퀀스 추가
+-- 연습 질문 시퀀스 추가 적용 필요
+SELECT *
+FROM USER_SEQUENCES;
+
+create sequence seq_interview_question_no; -- zoom insert 시 적용
+
+ALTER TABLE premium MODIFY (REG_DATE DEFAULT systimestamp);
+ALTER TABLE premium MODIFY REG_DATE TIMESTAMP(6);
+update premium set reg_date = default 
+alter sequence seq_interview_question_no increment by 23;
+select seq_interview_question_no.nextval from interview_question where question_no = 1;
+alter sequence seq_interview_question_no increment by 1;
+delete from premium where premium_no = 2 
+commit;
+select * from member
+update premium set month = 2 , payment = 9000;
+
+    select m.name, p.month, 
+    to_char(((p.reg_date +((INTERVAL '1' month) * p.month))),'YYYY-MM-DD HH24:MI:SS') leftDate
+    from member m left join premium p on m.member_no = p.member_no where p.end_yn = 'n' 
+    
+    and m.member_no = 1

@@ -16,7 +16,7 @@
 
 <fmt:requestEncoding value="utf-8"/>
 <div class="text-align-center margin-top-basic">
-
+	
 	<!-- 1. 음성이 잘 들리는지 체크 -->
 	<!-- 잘 들리면 버튼 클릭 -->
 	
@@ -24,7 +24,7 @@
 	<!-- 면접 질문은 총 3가지 -->
 	<!-- 면접 질문에 대한 답변은 키워드가 얼만큼 포함되어있는지를 체크 -->
 	<!-- 3초 뒤 면접질문 음성으로 보이기 -->
-
+	<h2 id = "startMessage">잠시만 기다려주세요.<br>곧 질문이 출력됩니다.</h2>
 	
 	<!-- 면접 질문 답변 저장-->
     <div class="words displayNone"></div>
@@ -126,18 +126,19 @@
 		
 		
 		function startFunc(){
+			$("#startMessage").css("display", "block");
 			setTimeout(function() {
 				// 면접 질문을 list에서 랜덤으로 골라 #textMessage 값에 넣기
 				// random 값을 어떻게 처리할지 고민해야된다.★★★
 				// 해당 부분은 controller에 현재 면접 연습을 했던 질문들을 제외한 질문 리스트를 가져와 random 돌림
-				
+				$("#startMessage").css("display", "none");
 				if($("[name=kind]").val() == 'D'){
 					$("#divQuestion").after(`<div style="margin:auto; text-align : center;"><table id = "Answer" class="display-none margin-auto-basic table-width-auto"><tr><th style="width:70px;">설명</th><td><lable class="divQuestionAK">`+`${selectPracticeRandom.answer}`+`</label></td></tr><tr><th>키워드</th><td><label class="divQuestionAK" id = "divQuestionK">`+`${selectPracticeRandom.answer_keyword}`+`</label><td/></tr></table></div>`);
 					$(".divQuestionAK").css("display","none");
 				}
 				$("#divQuestion").css('display','block');
 				$("[name=inputForm]").submit();
-				}, 6000);
+				}, 3000);
 		}
 		
 		var synth = window.speechSynthesis;

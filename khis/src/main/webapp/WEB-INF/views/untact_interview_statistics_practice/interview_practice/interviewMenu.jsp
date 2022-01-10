@@ -6,11 +6,6 @@
 <fmt:requestEncoding value="utf-8"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/untact_interview.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
-<%
-	String zoom_number = "87156082004";
-	String zoom_password = "UUlpUHB6a29PeGl3R3VuSzFnalU5Zz09";
-%>
-
 <div>
 	<!-- 면접 연습하기는 면접자 / 면접 예비자만 가능하게 하기 -->
 	<!-- 만약 해당 기능 구현이 끝나면 개발자 테스트 부분은 결제해야지 이용가능하게 하기, 실제 카카오페이 결제 기능 넣어보기 -->
