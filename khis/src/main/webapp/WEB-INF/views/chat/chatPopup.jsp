@@ -79,6 +79,7 @@ const stompClient = Stomp.over(ws);
 // 2. 연결 요청
 stompClient.connect({}, (frame) => {
 	console.log("Stomp Client Connect : ", frame);
+	setInterval(chatLogUpdate, 15000);
 	
 	// 3.구독요청
 	stompClient.subscribe("/chat/${chatId}", (message) => {
@@ -97,6 +98,7 @@ stompClient.connect({}, (frame) => {
 			$('#chatForm').scrollTop($('#chatForm')[0].scrollHeight);
 	});
 	
+	
 });
 
 $(sendBtn).click((e) => {
@@ -112,6 +114,36 @@ $(sendBtn).click((e) => {
 	$(message).val('').focus(); // #message 초기화
 	
 });
+
+const chatLogUpdate = () => {
+	const loginMember = "${loginMember.id}";
+	$.ajax({
+		url:`${pageContext.request.contextPath}/chat/chatLogUpdate.do`,
+		type:'GET',
+		data :{
+			chatId : "${chatId}"	
+		},
+		success : function(chatLog) {
+			const data = document.getElementById('data');
+			console.log("채팅창 초기화");
+
+			$.each(chatLog, function(i, content) {
+				const memberId = content.memberId;
+				const msg = content.msg;
+				$(data).append(`<div class = "mt-2 mb-2 messageFrm"  `+(loginMember == content.memberId ? `style = "text-align:right;">` : `>`) +
+						(`<p style ="margin-bottom: 0;"> \${memberId} <span>님</span></p>`) +
+						(`<div class="message"><label class = "messageLabel" `+(loginMember == content.memberId ? `style = "background-color:lightyellow;">` : `>`) + `\${msg}</label></div>`) + 
+						(`</div>`));
+				});
+			$('#chatForm').scrollTop($('#chatForm')[0].scrollHeight);
+			
+		}, 
+		error : function() {
+			console.log(error);
+		}
+		
+	});
+};
 
 $(message).keyup((e) => {
 	if(e.keyCode == 13){

@@ -293,4 +293,38 @@ select count(*) from
 	where member_ir_haed_no = #{memberNo}
 	and role = 'I'
 	and (interview_count < 3 or interview_count is null)
-	order by b.member_info_no
+	order by b.member_info_no;
+    
+    
+    insert into
+  		chat_log(no, chat_id, member_id, msg, log_time)
+  	values(
+  		seq_chat_log_no.nextval,
+  		'chat_i03G837516y8D48',
+  		'kakao11',
+  		'zzzzzz',
+  		1641894899631
+        );
+        commit;
+        
+            insert into
+  		chat_log(no, chat_id, member_id, msg, log_time)
+  	values(
+  		seq_chat_log_no.nextval,
+  		'chat_i03G837516y8D48',
+  		'kakao11',
+  		'테스트중입니다123',
+  		1641900096760
+        );
+        commit;
+        
+              insert into
+  		chat_log(no, chat_id, member_id, msg, log_time)
+  	values(
+  		seq_chat_log_no.nextval,
+  		'chat_i03G837516y8D48',
+  		'admin',
+  		'테스트중입니다123',
+  		1641900096780
+        );
+        commit;
