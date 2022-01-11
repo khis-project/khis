@@ -33,7 +33,7 @@
 			<div class="box">
 				<div class="information">
 					<span><br>회원정보</span><br><br> 
-					<span><a href="http://localhost:9090/khis/member/updateForm.do">
+					<span><a href="${pageContext.request.contextPath}/member/updateForm.do">
 						<i class="fas fa-user-lock fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">소중한 개인 정보,<br /> 확인 및 수정이 가능해요.</p><p2>* [ 수정은 주소만 변경 가능합니다.:) ]</p2>
 				</div>
@@ -44,23 +44,26 @@
 				</div>
 				<div class="schedule">
 					<span><br>면접 일정</span><br><br>
-				    <span><a href="http://localhost:9090/khis/member/schedule.do">
+				    <span><a href="${pageContext.request.contextPath}/member/schedule.do">
 				      <i class="fas fa-tasks fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">나의 면접 일정을 한눈에 볼 수 있어요.</p>
 				</div>
 				<div class="Interview">
 					<span><br>면접 진행</span><br><br>
-				    <span><i class="fas fa-chalkboard-teacher fa-7x" style="color: #34495E;"></i></span>
+				    <span><a href="${pageContext.request.contextPath}/evaluation/evaluation.do">
+				    <i class="fas fa-chalkboard-teacher fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">노력은 배신하지 않아요. <br /> 후회 없는 면접이 되시길 바라요.:)</p>
 				</div>
 				<div class="InYNCo">
 					<span><br>면접결과 및 코멘트</span><br><br>
-					<span><i class="far fa-handshake fa-7x" style="color: #34495E;"></i></span>
+					<span><a href="${pageContext.request.contextPath}/info/checkMyEvaluation.do">
+					<i class="far fa-handshake fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">나와 함께할 회사는 어디일까요? <br />중요한 정보가 될 수 있는 면접관님의 코멘트를 볼 수 있어요.</p>
 				</div>
 				<div class="InterviewP">
 					<span><br>면접 연습 질문 요청하기</span><br><br>
-				    <span><i class="fas fa-pencil-alt fa-7x" style="color: #34495E;"></i></span>
+				    <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
+				    <i class="fas fa-pencil-alt fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">면접 연습하시면서 필요하다고 <br />생각하는 질문들을 적어주세요. </p>
 				</div>
 			</div> 

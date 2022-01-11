@@ -58,7 +58,7 @@
 		<li>
 		최종 평가
 			<ul class = "sub">
-				<li><a href="">면접 최종평가</a></li>
+				<li><a href="${pageContext.request.contextPath }/evaluation/finalEvaluation.do">면접 최종평가</a></li>
 			</ul>
 		</li>
 	</ul>
