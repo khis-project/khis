@@ -36,7 +36,9 @@ body {font-family: 'GmarketSansMedium'; padding: 0;}
 .pagination.justify-content-center {padding-bottom:40px; padding-top:20px;}
 .row_title {font-weight:bold; font-size:15px;}
 .add {border: none; outline: none; width: 45px; height: 26px; letter-spacing: 2px; font-weight: 500; }
-.cmt-text {padding-left: 10px;}
+.cmt-text {padding-left: 10px; width:300px;}
+.cmt-nm {font-weight: bold; }
+.cmt-dt {font-size: 8px;}
 .cmt-up {float: right;}
 .cmt-del {float: right; margin-left: 10px;}
 .secretBtn{position: relative; top: 1.5px; margin-left: 458px;}

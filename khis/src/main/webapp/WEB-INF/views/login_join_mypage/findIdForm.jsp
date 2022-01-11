@@ -4,8 +4,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login_join_mypage/findId.css"/>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login_join_mypage/findId.css"/>
+<jsp:include
+  page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+  <jsp:param value="아이디찾기" name="findId" />
+</jsp:include>
 
 <c:if test="${not empty msg}">
 <script>
@@ -17,8 +20,7 @@
 </c:if>
 <html>
 <title>아이디 찾기</title>
-<body>
-<form name="findIdForm" action="<%=request.getContextPath()%>/admin/findId.do"
+<form name="findIdForm" action="${pageContext.request.contextPath}/admin/findId.do"
 	method="post">
 	<div class="container">
 		<div class="findIdForm">
@@ -27,7 +29,7 @@
 			<div class="line"></div>
 			<div class="content">
 				<br /><h4>휴대폰 번호</h4>
-				<input type="text" id="phone" name="phone" placeholder="- 없이 입력하세요." />
+				<input type="text" id="phone" name="phone" placeholder="- 없이 입력하세요" />
 			</div>
 			<div class="content">
 				<h4>이메일</h4>
@@ -39,5 +41,5 @@
 		</div>
 	</div>
 </form>
-</body>
 </html>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

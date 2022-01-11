@@ -33,7 +33,7 @@ public class Member implements Serializable {
 	private String kind;
 	private Date joinDate;
 	private String id;
-	private long interviewerNo; //Integer null을 쓸수있다.
+	private Long interviewerNo; //Integer null을 쓸수있다.
 	private Integer memberInfoNo;
 	private Integer month;
 	private String endYN;

@@ -71,6 +71,14 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("member.countMember", count);
 	}
 
+	@Override
+	public List<JoinFormDto> selectAdminMemberList(RowBounds rowBounds) {
+		if (rowBounds == null) {
+			return session.selectList("member.selectAdminMemberList");
+		}
+		return session.selectList("member.selectAdminMemberList", null, rowBounds);
+	}
+
 	/*
 	 * @Override public List<JoinFormDto> selectMemberList(Map<String, Object>
 	 * param) { return session.selectList("member.selectMemberList", param); }

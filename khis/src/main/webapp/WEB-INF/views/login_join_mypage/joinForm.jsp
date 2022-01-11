@@ -6,16 +6,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/login_join_mypage/join.css" />
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
-	<jsp:param value="회원가입" name="title"/>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="회원가입" name="title" />
 </jsp:include>
 
 
 <title>회원가입</title>
-<body>
 	<form name="joinForm"
-		action="<%=request.getContextPath()%>/join/joinForm.do" method="POST">
+		action="${pageContext.request.contextPath}/join/joinForm.do" method="POST">
 		<div class="container">
 			<div class="joinForm">
 				<h2>회원가입</h2>
@@ -123,7 +122,6 @@
 			</div>
 		</div>
 	</form>
-</body>
 <script>
 //아이디 중복검사
 $(id).keyup((e) => {
@@ -251,4 +249,4 @@ if(document.getElementById("kind").value == "IR_HAED"){
 }
 
 </script>
-<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

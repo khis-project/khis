@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp">
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
   <jsp:param value="로그인" name="title"/>
 </jsp:include>
 
@@ -23,7 +23,6 @@
 </c:if>
 
 <title>회원 정보 업데이트</title>
-<body>
 <form name="updateForm"
 id="updateForm"
 	action="<%=request.getContextPath()%>/join/memberUpdate.do"
@@ -105,7 +104,6 @@ id="updateForm"
 		</div>
 	</div>	
 </form>
-</body>
 <script>
 
 
@@ -310,3 +308,4 @@ $(document).ready(function(){
 	  });
 	})
 </script>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

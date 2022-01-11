@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 * {
-	margin: 3px;
+	margin: 0px;
 	font-family: 'GmarketSansMedium';
 }
 
@@ -10,10 +10,6 @@
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
-
-body {
-	background: #34495e;
 }
 
 
@@ -33,8 +29,8 @@ h3 {
 }
 
 .joinForm {
-	margin-top: 100px;
-	margin-bottom: 40px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	width: 450px;
 	border-radius: 10px;
 	display: flex;

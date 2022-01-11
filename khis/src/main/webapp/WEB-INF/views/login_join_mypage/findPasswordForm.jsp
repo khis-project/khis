@@ -4,12 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login_join_mypage/findPassword.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login_join_mypage/findPassword.css"/>
+<jsp:include
+  page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+  <jsp:param value="비밀번호 찾기" name="findId" />
+</jsp:include>
+
 
 <title>비밀번호 찾기</title>
-<body>
 <div id="findPasswordForm">
-	<form name="findPasswordForm"  action="<%=request.getContextPath()%>/adminApi/requestEmailAuthCode" method="post">
+	<form name="findPasswordForm"  action="${pageContext.request.contextPath}/adminApi/requestEmailAuthCode" method="post">
 	<div class="container">
 		<div class="findPasswordForm">
 			<h2>비밀번호 찾기</h2>
@@ -28,8 +32,8 @@
 				<input type="button" value="인증하기" id="findPassSendKey" style = "display:none;"/><br />
 			<div id="findPassEmailMsg"></div>
 			</div>
-			<div class="submit">
-			<input type="button" value="인증번호 발송" id = "findPassSendEmail" onClick="requestEmail()"/>
+			<div class="submit1">
+			<input type="button" value="인증번호 발송"  id = "findPassSendEmail" onClick="requestEmail()"/>
 			</div>
 		</div>
 	</div>
@@ -37,7 +41,7 @@
 </div>
 
 <div id="helloWorldForm">
-	<form name="findPasswordForm"  action="<%=request.getContextPath()%>/findPassword" method="post">
+	<form name="findPasswordForm"  action="${pageContext.request.contextPath}/findPassword" method="post">
 	<div class="container">
 		<div class="findPasswordForm">
 			<h2>비밀번호 변경하기</h2>
@@ -56,17 +60,13 @@
 			
 				
 			</div>	
-			<div class="submit">
+			<div class="submit2">
 			<input type="button" value="변경하기" id = "changePassSendEmail" onClick="changePassword()"/>
 			</div>
 		</div>
 	</div>
 </form>
 </div>
-
-
-
-</body>
 <script>
 
 document.getElementById("helloWorldForm").hidden = true;
@@ -154,3 +154,4 @@ var confirmPassword_data = document.getElementById("confirmPassword").value;
 		
 	}
 </script>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

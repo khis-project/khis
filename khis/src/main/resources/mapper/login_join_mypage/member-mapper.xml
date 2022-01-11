@@ -29,7 +29,7 @@ select
     m.*, i.member_info_no, e.month, e.end_yn
 from
     member m left join ir_info i on m.member_no = i.member_no 
-    left join premium e on e.member_no = i.member_no and e.end_yn = 'n'
+    left join premium e on e.member_no = i.member_no and e.end_yn ='n'
 where
     m.id = #{id}  
 </select>
@@ -53,12 +53,16 @@ where
  </update>
  
   <select id="selectAdminMemberList" parameterType="pagingDto" resultType="joinFormDto">
-    select m.*, mc.* from member m left join member_company mc on m.co_code = mc.co_code
+  select m.*, mc.*, p.end_yn from member m
+  left join premium p on m.member_no = p.member_no and p.end_yn = 'n'
+  left join member_company mc on m.co_code = mc.co_code
   </select>
+
+
 
  <select id="selectMemberList" resultType="joinFormDto">
     select m.*, mc.* from member m left join member_company mc on m.co_code = mc.co_code
-  </select> 
+ </select> 
   
   <delete id="deleteOneMember">
     delete
