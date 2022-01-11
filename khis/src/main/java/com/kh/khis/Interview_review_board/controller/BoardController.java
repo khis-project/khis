@@ -126,7 +126,9 @@ public class BoardController {
 			@RequestParam(defaultValue = "1") int cPage,
 			HttpServletRequest request,
 			Model model,
-			HttpSession session) {
+			HttpSession session,
+			RedirectAttributes redirectAttr
+			) {
 		log.debug("cPage = {}", cPage);
 		
 		int limit = 2;
@@ -158,11 +160,17 @@ public class BoardController {
 		model.addAttribute("pagebar", pagebar);
 		
 		Member member = (Member) session.getAttribute("loginMember");
-		int memberNo = member.getMemberNo();
-		
-		model.addAttribute("MemberNo", memberNo);
-
-		return "Interview_review_board/boardDetail";		 
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg","로그인 후 이용해주세요.");
+			return "redirect:/member/loginForm.do";
+		}else {
+			int memberNo = member.getMemberNo();
+			
+			model.addAttribute("MemberNo", memberNo);
+			
+			return "Interview_review_board/boardDetail";		 
+			
+		}
 	}
 
 	// 후기 게시판 작성
@@ -186,74 +194,79 @@ public class BoardController {
 			@RequestParam(name = "recruitmentMethod", defaultValue = "") String[] recruitmentMethods
 			) {
 		Member member = (Member) session.getAttribute("loginMember");
-		System.out.println("pass_no=" + pass_no);
-		//인터뷰 년도, 월 Date형으로 포맷
-		String inputDate = interviewYear + interviewMonth;
-		String outputDate = null;
-		Date interviewDate = new Date();
-		try {
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYYMM") ;
-		interviewDate = sdf.parse(inputDate);
-		outputDate = sdf.format(interviewDate);
-		System.out.println(outputDate);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		String recruitmentMethod = "";
-		int i = 0;
-		while(i < recruitmentMethods.length) {
-			System.out.println(recruitmentMethod);
-			if(i == recruitmentMethods.length-1) {
-			recruitmentMethod += recruitmentMethods[i];
-			}else {
-			recruitmentMethod += recruitmentMethods[i] + ",";
-			}
-			i++;
-		}
-
-		board.setCoCode(coCode);
-		board.setPass_no(Integer.parseInt(pass_no));
-		board.setOccupationCode(Integer.parseInt(occupationCode));
-		board.setMemberNo(member.getMemberNo());
-		board.setInterviewEvaluation(interviewEvaluation);
-		board.setEmploymentType(employmentType);
-		board.setTitle(title);
-		board.setInterviewDifficulty(interviewDifficulty);
-		board.setInterviewPath(interviewPath);
-		board.setInterviewDate(outputDate);
-		board.setRecruitmentMethod(recruitmentMethod);
-		board.setAnnouncementTime(announcementTime);
-		board.setPasscheck(passcheck);
-		board.setInterviewQuestion(interviewQuestion);
-		board.setInterviewAnswer(interviewAnswer);
-		if(boardNo != null && !boardNo.equals("")) {
-			board.setBoardNo(Integer.parseInt(boardNo));
-		}
-		
-
-		if(boardNo != null && !boardNo.equals("")) {
-			try {
-				int result = boardService.updateBoard(board);
-				String msg = result > 0 ? "후기 수정에 성공하였습니다." : "후기 수정에 실패했습니다.";
-				redirectAttr.addFlashAttribute("msg", msg);
-			} catch (Exception e) { 
-				log.error(e.getMessage(), e);
-				throw e; // spring container에게 던짐.
-			}
+		if(member == null) {
+			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+			return "redirect:/member/loginForm.do";
 		}else {
+			System.out.println("pass_no=" + pass_no);
+			//인터뷰 년도, 월 Date형으로 포맷
+			String inputDate = interviewYear + interviewMonth;
+			String outputDate = null;
+			Date interviewDate = new Date();
 			try {
-				int result = boardService.insertBoard(board);
-				String msg = result > 0 ? "후기 등록에 성공하였습니다." : "후기 등록에 실패하였습니다.";
-				redirectAttr.addFlashAttribute("msg", msg);
-			} catch (Exception e) { 
-				log.error(e.getMessage(), e);
-				throw e; // spring container에게 던짐.
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYYMM") ;
+			interviewDate = sdf.parse(inputDate);
+			outputDate = sdf.format(interviewDate);
+			System.out.println(outputDate);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			String recruitmentMethod = "";
+			int i = 0;
+			while(i < recruitmentMethods.length) {
+				System.out.println(recruitmentMethod);
+				if(i == recruitmentMethods.length-1) {
+				recruitmentMethod += recruitmentMethods[i];
+				}else {
+				recruitmentMethod += recruitmentMethods[i] + ",";
+				}
+				i++;
+			}
+
+			board.setCoCode(coCode);
+			board.setPass_no(Integer.parseInt(pass_no));
+			board.setOccupationCode(Integer.parseInt(occupationCode));
+			board.setMemberNo(member.getMemberNo());
+			board.setInterviewEvaluation(interviewEvaluation);
+			board.setEmploymentType(employmentType);
+			board.setTitle(title);
+			board.setInterviewDifficulty(interviewDifficulty);
+			board.setInterviewPath(interviewPath);
+			board.setInterviewDate(outputDate);
+			board.setRecruitmentMethod(recruitmentMethod);
+			board.setAnnouncementTime(announcementTime);
+			board.setPasscheck(passcheck);
+			board.setInterviewQuestion(interviewQuestion);
+			board.setInterviewAnswer(interviewAnswer);
+			if(boardNo != null && !boardNo.equals("")) {
+				board.setBoardNo(Integer.parseInt(boardNo));
+			}
+			
+
+			if(boardNo != null && !boardNo.equals("")) {
+				try {
+					int result = boardService.updateBoard(board);
+					String msg = result > 0 ? "후기 수정에 성공하였습니다." : "후기 수정에 실패했습니다.";
+					redirectAttr.addFlashAttribute("msg", msg);
+				} catch (Exception e) { 
+					log.error(e.getMessage(), e);
+					throw e; // spring container에게 던짐.
+				}
+			}else {
+				try {
+					int result = boardService.insertBoard(board);
+					String msg = result > 0 ? "후기 등록에 성공하였습니다." : "후기 등록에 실패하였습니다.";
+					redirectAttr.addFlashAttribute("msg", msg);
+				} catch (Exception e) { 
+					log.error(e.getMessage(), e);
+					throw e; // spring container에게 던짐.
+				}
+			}
+			
+			return "redirect:/Interview_review_board/boardList.do";
 		}
-		
-		return "redirect:/Interview_review_board/boardList.do";
 	}
 
 	// 게시판 후기작성폼(기업명 검색 부분에 회사 List를 불러옴.)
@@ -271,7 +284,7 @@ public class BoardController {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/Interview_review_board/boardList.do";
+			return "redirect:/member/loginForm.do";
 		}else {
 			if(!member.getKind().equals("IR")) {
 				redirectAttr.addFlashAttribute("msg","글을 작성할 권한이 없습니다.");

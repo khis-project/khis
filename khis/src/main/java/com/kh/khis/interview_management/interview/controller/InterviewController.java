@@ -37,8 +37,8 @@ public class InterviewController {
 		
 		Member member = (Member) session.getAttribute("loginMember"); 
 		if(member == null) {
-			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
 		}else {
 			Long co_code = member.getCoCode();
 			List<Interview> list = interviewService.selectInterviewList(offset, limit, co_code);
@@ -59,8 +59,8 @@ public class InterviewController {
 		// 질문 등록 가능한 면접자 리스트 불러오기 : 세션의 #loginMember에서 회원번호로 불러오기
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
-			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
 		}else {
 			// 1. 로그인 회원 회원번호
 //			int memberNo = member.getMemberNo();
@@ -86,8 +86,8 @@ public class InterviewController {
 	public String detailInterview(@RequestParam int interviewNo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
-			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
 		}else {
 			int memberNo = member.getMemberNo();
 			log.debug("interviewNo = {}", interviewNo);
@@ -109,8 +109,8 @@ public class InterviewController {
 	public String updateInterview(@RequestParam int interviewNo, Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
-			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
-			return "redirect:/";			
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
 		}else {
 			int memberNo = member.getMemberNo();
 			log.debug("interviewNo = {}", interviewNo);

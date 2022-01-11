@@ -51,12 +51,12 @@ public class IRInfoController {
 	}
 	
 	@GetMapping("/insertInterviewer.do")
-	public String insertInterviewer(HttpSession session, Model model, RedirectAttributes redirectAttr ) {
+	public String insertInterviewer(HttpSession session, Model model, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
 		log.debug("member = {}", member);
 		if(member == null) {
-			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
 		}else {
 			
 			int memberNo = member.getMemberNo();
@@ -151,15 +151,20 @@ public class IRInfoController {
 	}
 
 	@GetMapping("/insertRater.do")
-	public String insertRater(Model model, HttpSession session) {
+	public String insertRater(Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
-		int memberNo = member.getMemberNo();
-		// 2. 면접관 insert시 필요한 면접자 정보 담아서 보내기 
-		List<IRInfo> interviewerList = irinfoService.selectInterviewerList(memberNo);
-		log.debug("interviewerList = {}", interviewerList);
-		model.addAttribute("interviewerList", interviewerList);
-	 		
- 		return "/interview_management/irinfo/insertRater";
+		if(member == null) {
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
+		}else {
+			int memberNo = member.getMemberNo();
+			// 2. 면접관 insert시 필요한 면접자 정보 담아서 보내기 
+			List<IRInfo> interviewerList = irinfoService.selectInterviewerList(memberNo);
+			log.debug("interviewerList = {}", interviewerList);
+			model.addAttribute("interviewerList", interviewerList);
+		 		
+	 		return "/interview_management/irinfo/insertRater";
+		}
 	}
 	
 	@PostMapping("/insertRater.do")
@@ -207,7 +212,7 @@ public class IRInfoController {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/Interview_review_board/boardList.do";
+			return "redirect:/member/loginForm.do";
 		}else {
 			long co_code = member.getCoCode();
 			int limit = 10;
@@ -251,7 +256,7 @@ public class IRInfoController {
 		Member member = (Member) session.getAttribute("loginMember"); 
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg", "로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 			int memberNo = member.getMemberNo();
 			
