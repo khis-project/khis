@@ -1,5 +1,6 @@
 package com.kh.khis.chat.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.kh.khis.chat.model.service.ChatService;
 import com.kh.khis.chat.model.vo.ChatLog;
@@ -51,6 +53,16 @@ public class ChatMessageController {
 		return lastCheck;
 	}
 	
+	
+	@MessageMapping("/chatLogUpdate")
+	@SendTo(value={"/chat/admin", "/chat/irHead"})
+	public List<ChatLog> chatLogUpdate(Map<String, Object> chatLog){
+		log.debug("chatId = {}", chatLog);
+		String chatId = (String) chatLog.get("chatId");
+		List<ChatLog> list = chatService.findChatLogByChatId(chatId);
+		log.debug("chatList = {}", list);
+		return list;
+	}
 	
 	
 	

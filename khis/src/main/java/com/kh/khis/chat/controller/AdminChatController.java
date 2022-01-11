@@ -37,7 +37,7 @@ public class AdminChatController {
 		int totalContent = chatService.selectTotalChatList();
 		String url = request.getRequestURI();
 		String pagebar = IRManagementUtils.getPagebar(cPage, limit, totalContent, url);	
-		log.debug("pagebar = {}", pagebar);
+//		log.debug("pagebar = {}", pagebar);
 		model.addAttribute("pagebar", pagebar);
 		return "admin/adminChatList";
 	}

@@ -76,6 +76,7 @@ span{
 	const stompClient = Stomp.over(ws);
 	// connect
 	stompClient.connect({}, (frame) => {
+		setInterval(chatLogUpdate, 15000);
 		// 구독신청 및 핸들러 등록
 		stompClient.subscribe("/chat/${chatId}", (message) => {
 			console.log("message : ", message);
@@ -138,6 +139,36 @@ span{
 		};
 		
 		stompClient.send("/app/lastCheck", {}, JSON.stringify(data));
+	};
+	
+	const chatLogUpdate = () => {
+		const loginMember = "${loginMember.id}";
+		$.ajax({
+			url:`${pageContext.request.contextPath}/chat/chatLogUpdate.do`,
+			type:'GET',
+			data :{
+				chatId : "${chatId}"	
+			},
+			success : function(chatLog) {
+				const data = document.getElementById('data');
+				console.log("채팅창 초기화");
+
+				$.each(chatLog, function(i, content) {
+					const memberId = content.memberId;
+					const msg = content.msg;
+					$(data).append(`<div class = "mt-2 mb-2 messageFrm"  `+(loginMember == content.memberId ? `style = "text-align:right;">` : `>`) +
+							(`<p style ="margin-bottom: 0;"> \${memberId} <span>님</span></p>`) +
+							(`<div class="message"><label class = "messageLabel" `+(loginMember == content.memberId ? `style = "background-color:lightyellow;">` : `>`) + `\${msg}</label></div>`) + 
+							(`</div>`));
+					});
+				$('#chatForm').scrollTop($('#chatForm')[0].scrollHeight);
+				
+			}, 
+			error : function() {
+				console.log(error);
+			}
+			
+		});
 	};
 	
 	$(message).keyup((e) => {
