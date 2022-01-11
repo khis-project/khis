@@ -4,7 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp"/>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="게시글 수정 페이지" name="title" />
+</jsp:include>
 <!-- bootstrap js: jquery load 이후에 작성할것.-->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
@@ -345,16 +348,7 @@ $(document).on('click', '.tb2 tbody tr', function(){
  		console.log("coAddr = " + coAddr);
 	});
 
-
-
-	
-	
-
-
-
-   
-  		
- 
   
 </script>
-</body>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
