@@ -17,7 +17,7 @@
 	<jsp:param value="면접 연습 진행" name="title"/>
 </jsp:include>
 <fmt:requestEncoding value="utf-8"/>
-<div class="text-align-center margin-top-basic">
+<div class="text-align-center margin-top-basic" style="height: 600px;">
 	
 	<!-- 1. 음성이 잘 들리는지 체크 -->
 	<!-- 잘 들리면 버튼 클릭 -->
@@ -284,7 +284,7 @@
 		 					}
 		 					$("#divQuestionK").html(Quesions);
 		 				}else{
-		 					$("#divQuestion").after(`<div style="margin:auto; text-align : center;"><table class="margin-auto-basic table-width-auto"><tr><th style="width:70px;">답변</th><td>`+$(".para").text()+`</td></tr></table></div>`)
+		 					$("#divQuestion").after(`<div style="margin:auto; text-align : center; margin-top: 40px;"><table class="margin-auto-basic table-width-auto"><tr><th style="width:70px;">답변</th><td>`+$(".para").text()+`</td></tr></table></div>`)
 		 				}
 	 					
 	 					$("#Answer").css('display','block');
@@ -298,3 +298,4 @@
 		}
 		
 	</script>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>

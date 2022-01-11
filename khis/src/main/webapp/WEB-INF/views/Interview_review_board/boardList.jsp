@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp"/>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="면접후기 게시글 조회" name="title" />
+</jsp:include>
 
 <!-- 페이징 bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -62,8 +65,7 @@
     location.href = "${pageContext.request.contextPath}/Interview_review_board/boardForm.do";
   } 	
 </script>
-
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>
-
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
 
 

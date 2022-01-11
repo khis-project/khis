@@ -213,9 +213,14 @@
 					<figure class="snip1200">
   						<img src="https://i.ibb.co/kGTVx3Q/2492e6d03874045b2975bcd7f9f082d0.jpg"/>
   						<figcaption>
-    						<p>- 비대면 면접<br>
-    						   - 통계자료<br>
-    						   - 면접 연습</p>
+    						<p>- 비대면 zoom 면접 연결 기능<br>
+    						   - zoom 회의실 추가/수정/삭제 기능<br>
+    						   - zoom 및 사용방법<br>
+    						   - 통계자료 조회 기능<br>
+    						   - 면접 연습 기능<br>
+    						   - 프리미엄 기능<br>
+    						   - 자기소개서 추가 기능<br>
+    						   </p>
     						<div class="heading">
       							<h5><span>Jeonghyeon</span></h5>
     						</div>
@@ -224,17 +229,23 @@
 					<figure class="snip1200">
   						<img src="https://i.ibb.co/CmTXrWT/2.jpg"/>
   						<figcaption>
-    						<p>- 면접평가/수정</p>
+    						<p>- 면접평가/수정 기능<br>
+    						   - 합격여부 확인 추가 작업<br>
+    						   - 최종평가 추가 작업<br>
+						       - 게시판 수정 추가 작업
+    						   </p>
     						<div class="heading">
-      							<h5><span>Jingi</span></h5>
+      							<h5><span>Jinki</span></h5>
     						</div>
   						</figcaption>
 					</figure>
 					<figure class="snip1200">
   						<img src="https://i.ibb.co/xS2J60g/1.jpg" />
   						<figcaption>
-    						<p>- 면접관/면접자 정보 추가/수정<br>
-    						   - 면접질문 추가/수정</p>
+    						<p>- 면접관 정보 추가/수정/삭제 기능<br>
+    						   - 면접자 정보 추가/수정/삭제 기능<br>
+    						   - 면접질문 추가/수정 기능<br>
+    						   - 채팅 기능 추가 작업</p>
     						<div class="heading">
       							<h5><span>Chanwoo</span></h5>
     						</div>
@@ -246,7 +257,8 @@
   						<img src="https://i.ibb.co/xS2J60g/1.jpg"/>
   						<figcaption>
     						<p>- 사이트 소개<br>
-    						   - 합격여부 확인</p>
+    						   - 면접관 사용 방법 소개 추가 작업
+    						</p>
     						<div class="heading">
       							<h5><span>Soobin</span></h5>
     						</div>
@@ -255,8 +267,11 @@
 					<figure class="snip1200">
   						<img src="https://i.ibb.co/ZLnfjXx/3.jpg"/>
   						<figcaption>
-    						<p>- 로그인/회원가입<br>
-    						   - 마이페이지</p>
+    						<p>- 로그인/회원가입 기능<br>
+    						   - 아이디찾기/비밀번호변경 기능<br>
+    						   - 마이페이지 기능<br>
+    						   - 게시판 댓글 기능 추가 작업
+    						</p>
     						<div class="heading">
       							<h5><span>Chaea</span></h5>
     						</div>
@@ -265,7 +280,10 @@
 					<figure class="snip1200">
   						<img src="https://i.ibb.co/kGTVx3Q/2492e6d03874045b2975bcd7f9f082d0.jpg"/>
   						<figcaption>
-    						<p>- 면접후기 게시판</p>
+    						<p>- 면접후기 게시판 추가/수정/삭제 기능<br>
+    						   - 사이트 소개 추가 작업<br>
+    						   - 전체적인 css 추가 작업
+    						</p>
     						<div class="heading">
       							<h5><span>Seonyoung</span></h5>
     						</div>

@@ -879,7 +879,27 @@ where
 select *
 from ir_info
 where name = '면접자1';
-select * from  member_info_no = 21;
+select * from interview_time where member_info_no = 21;
 select * from zoom;
 select * from member
+select * from ir_info;
+select * from interview_time;
+commit;
+insert into interview_time values(seq_itime_no.nextval, 42, 1, default, default, '상반기 공채');
 select * from ir_info where co_code = 1208147521
+;
+select 
+		*
+	from 
+		ir_info ii 
+	        left join zoom z on ii.zoom_no = z.zoom_no
+	        left join interview_time it on ii.member_info_no = it.member_info_no    
+	where 
+		ii.member_info_no = 86
+		and sysdate between it.start_time and it.end_time;
+        
+select
+    m.*, i.member_info_no, e.month, e.end_yn
+from
+    member m left join ir_info i on m.member_no = i.member_no 
+    left join premium e on e.member_no = i.member_no and premium = 'n'
