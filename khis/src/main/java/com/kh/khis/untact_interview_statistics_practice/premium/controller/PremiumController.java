@@ -81,11 +81,10 @@ public class PremiumController {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 			int member_no = member.getMemberNo();
 			Premium premium = premiumService.selectPremium(member_no);
-			System.out.println("premium : " + premium);
 			model.addAttribute("premium", premium);
 			return "untact_interview_statistics_practice/premium/premiumForm";
 		}
@@ -99,13 +98,12 @@ public class PremiumController {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 			int member_no = member.getMemberNo();
 			map.put("month", month);
 			map.put("payment", payment);
 			map.put("member_no", member_no);
-			System.out.println("map : "+map);
 			int result = premiumService.insertPremium(map);
 			redirectAttr.addFlashAttribute("msg",result > 0 ? "프리미엄 회원 추가에 성공하였습니다.":"프리미엄 회원 추가에 실패하였습니다.<br>다시진행해주세요.");
 			return "untact_interview_statistics_practice/premium/premiumForm";

@@ -76,7 +76,7 @@ public class StatisticsController {
 		Map<String,String> map = new HashMap<String, String>();
 		map.put("satisticsKind", satisticsKind);
 		map.put("co_code", co_code); // 해당 부분은 후에 co_code를 클릭하면 보내지게 진행
-		System.out.println("satisticsKind : " + satisticsKind);
+//		System.out.println("satisticsKind : " + satisticsKind);
 		List<Statistics> statisticsList = statisticsService.selectStatisticsKind(map);
 //		INFO : |--------|-----------|----------|------|
 //		INFO : |CO_CODE |CAREER_SUM |PASSCHECK |COUNT |

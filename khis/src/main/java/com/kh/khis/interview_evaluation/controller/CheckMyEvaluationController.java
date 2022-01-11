@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.khis.interview_evaluation.model.service.CheckMyEvaluationService;
 import com.kh.khis.interview_evaluation.model.vo.Detail;
@@ -31,37 +32,47 @@ public class CheckMyEvaluationController {
 	private CheckMyEvaluationService checkMyEvaluationService;
 	
 	@GetMapping("/checkMyEvaluation.do")
-	public String CheckMyEvaluation(Model model, HttpSession session) {
+	public String CheckMyEvaluation(Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		
 		Member member = (Member) session.getAttribute("loginMember");
-		int member_no = member.getMemberNo();// 나중에 세션에서 가져와야함
-		String name = member.getName();
-		String premium = member.getEndYN();
-		System.out.println("premium = {} " + premium);
-		List<Results> results = checkMyEvaluationService.selectResults(member_no);
-		model.addAttribute("list", results);
-		model.addAttribute("name", name);
-		model.addAttribute("premium", premium);
-		System.out.println("list = " + results);
-		
-		return "interview_evaluation/CheckMyEvaluation";
+		if(member == null) {
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
+		}else {
+			int member_no = member.getMemberNo();// 나중에 세션에서 가져와야함
+			String name = member.getName();
+			String premium = member.getEndYN();
+			System.out.println("premium = {} " + premium);
+			List<Results> results = checkMyEvaluationService.selectResults(member_no);
+			model.addAttribute("list", results);
+			model.addAttribute("name", name);
+			model.addAttribute("premium", premium);
+			System.out.println("list = " + results);
+			
+			return "interview_evaluation/CheckMyEvaluation";	
+		}
 	}
 	
 	@PostMapping("/checkDetail.do")
-	public String CheckDetail(@RequestParam String passcheck, Model model, HttpSession session) {
+	public String CheckDetail(@RequestParam String passcheck, Model model, HttpSession session, RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
-		int member_info_no = member.getMemberInfoNo();
-		List<Detail> detail = checkMyEvaluationService.selectInfoDetail(member_info_no);
-		Map<Integer, List<Detail>> param = new HashMap<>();
-		for(Detail details : detail) {
-			List<Detail> detail2 = param.get(details.getMember_info_no()) == null ? new ArrayList() : param.get(details.getMember_info_no());
-			detail2.add(details);
-			param.put(details.getMember_info_no(), detail2);
+		if(member == null) {
+ 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+ 			return "redirect:/member/loginForm.do";
+		}else {
+			int member_info_no = member.getMemberInfoNo();
+			List<Detail> detail = checkMyEvaluationService.selectInfoDetail(member_info_no);
+			Map<Integer, List<Detail>> param = new HashMap<>();
+			for(Detail details : detail) {
+				List<Detail> detail2 = param.get(details.getMember_info_no()) == null ? new ArrayList() : param.get(details.getMember_info_no());
+				detail2.add(details);
+				param.put(details.getMember_info_no(), detail2);
+			}
+			System.out.println(param);
+			model.addAttribute("passcheck", passcheck);
+			model.addAttribute("detailList", param);
+			return "interview_evaluation/Detail";
 		}
-		System.out.println(param);
-		model.addAttribute("passcheck", passcheck);
-		model.addAttribute("detailList", param);
-		return "interview_evaluation/Detail";
 	}
 
 }

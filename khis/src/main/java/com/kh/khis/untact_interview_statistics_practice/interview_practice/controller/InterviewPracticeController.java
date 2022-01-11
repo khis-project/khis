@@ -101,7 +101,7 @@ public class InterviewPracticeController{
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		if(loginMember == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 			log.debug("{}", "practice.do 요청!");
 			model.addAttribute("premium", loginMember.getEndYN());
@@ -128,7 +128,7 @@ public class InterviewPracticeController{
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		if(loginMember == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 				
 			log.debug("{}", "interviewePracticeinsert.do 요청!");

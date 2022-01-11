@@ -68,7 +68,7 @@ public class UntactInterviewController {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 			int member_no = member.getMemberNo(); // 추후에는 해당 면접관리자의 member_no 가져오기
 			int limit = 5;
@@ -133,17 +133,14 @@ public class UntactInterviewController {
 									HttpSession session,
 									RedirectAttributes redirectAttr) {
 		Member member = (Member) session.getAttribute("loginMember");
-		int member_info_no = 0;
-		System.out.println("member_info_no_string : "+ member_info_no_string);
-		System.out.println("member_info_no_string : "+ !"".equals(member_info_no_string));
-		System.out.println("member_info_no_string : "+ Objects.equals("", new String(member_info_no_string)));
+		int member_info_no = 0; // 초기화
 
 		if(!Objects.equals("", new String(member_info_no_string))) { // 면접관일때는 면접자의 member_info_no를 가져옴
 			member_info_no = Integer.parseInt(member_info_no_string);
 		}else { // 면접자일 때
 			if(member == null) {
 				redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-				return "redirect:/";
+				return "redirect:/member/loginForm.do";
 			}
 			member_info_no = member.getMemberInfoNo(); // 나중에는 해당 클릭했을때 클릭한 member_no 가져오기
 		}	
@@ -163,7 +160,7 @@ public class UntactInterviewController {
 //			Boolean bValid = getValidDate(dateToStr1, dateToStr2, formatedNow);
 //			log.debug("시간 포함 여부 = {}", bValid);
 		log.debug("zoomInfo = {}", zoomInfo);
-		System.out.println("zoomInfo : " + zoomInfo);
+
 		if(zoomInfo == null) {
 			redirectAttr.addFlashAttribute("msg","현재 볼 수 있는 면접이 없습니다.");
 			model.addAttribute("msg", "해당 면접자는 현재 면접시간이 아닙니다.");
@@ -212,7 +209,7 @@ public class UntactInterviewController {
 		Member member = (Member) session.getAttribute("loginMember");
 		if(member == null) {
 			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
-			return "redirect:/";
+			return "redirect:/member/loginForm.do";
 		}else {
 
 			zoom.setMember_no(member.getMemberNo());
@@ -243,7 +240,7 @@ public class UntactInterviewController {
 	
 	@PostMapping("zoomUpdate.do")
 	public String Updatezoom(@ModelAttribute Zoom zoom, Model model, RedirectAttributes redirectAttr) {
-		System.out.println("zoom : " + zoom);
+//		System.out.println("zoom : " + zoom);
 		int result = untactInterviewService.updateZoom(zoom);
 		String msg = result > 0 ? "zoom api 수정에 성공하였습니다." : "zoom api 수정에 실패하였습니다.";
 		redirectAttr.addFlashAttribute("msg",msg);
@@ -314,8 +311,8 @@ public class UntactInterviewController {
 			// zoomList; //배정된 인원수, 해당 회의실에 배정된 사람들
 			
 			log.debug("zoomList = {}", zoomList);
-			System.out.println("zoomList" + zoomList);
-			System.out.println("selectZoomApiList" + selectZoomIRList);
+//			System.out.println("zoomList" + zoomList);
+//			System.out.println("selectZoomApiList" + selectZoomIRList);
 	
 	//		for(Zoom z : zoomList) {
 	//			Zoom zz = new Zoom();
@@ -361,7 +358,7 @@ public class UntactInterviewController {
 			
 			
 			log.debug("zoom 회의실에 포함된 사용자 zoomnum = {}", zoomnum);
-			System.out.println("zoom 회의실에 포함된 사용자 zoomnum = "+ zoomnum);
+//			System.out.println("zoom 회의실에 포함된 사용자 zoomnum = "+ zoomnum);
 			model.addAttribute("zoom_number", zoomnum); // 회의실에 배정된 인원수
 	//		model.addAttribute("zoom", zoom); // 회의실 중복제거
 			model.addAttribute("zoom", selectZoomIRList); // 회의실 중복제거
