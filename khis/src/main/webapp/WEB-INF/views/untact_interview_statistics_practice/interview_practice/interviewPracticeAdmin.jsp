@@ -68,3 +68,4 @@ alert("${msg}");
 	</table>
 	${pagebar}
 </div>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>

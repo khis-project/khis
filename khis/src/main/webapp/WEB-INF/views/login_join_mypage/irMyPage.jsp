@@ -53,12 +53,14 @@
 				</div>
 				<div class="InYNCo">
 					<span><br>면접결과 및 코멘트</span><br><br>
-					<span><i class="far fa-handshake fa-7x" style="color: #34495E;"></i></span>
+					<span><a href="${pageContext.request.contextPath}/info/checkMyEvaluation.do">
+					<i class="far fa-handshake fa-7x" style="color: #34495E;"></i></a></span>
 					<p>나와 함께할 회사는 어디일까요? <br />중요한 정보가 될 수 있는 면접관님의 코멘트를 볼 수 있어요.</p>
 				</div>
 				<div class="InterviewP">
 					<span><br>면접 연습 질문 요청하기</span><br><br>
-				    <span><i class="fas fa-pencil-alt fa-7x" style="color: #34495E;"></i></span>
+				    <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
+				    <i class="fas fa-pencil-alt fa-7x" style="color: #34495E;"></i></a></span>
 					<p>면접 연습하시면서 필요하다고 <br />생각하는 질문들을 적어주세요. </p>
 				</div>
 			</div> 

@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.khis.login_join_mypage.model.vo.Member;
 import com.kh.khis.untact_interview_statistics_practice.common.HiSpringUtils;
 import com.kh.khis.untact_interview_statistics_practice.interview_practice.model.service.InterviewPracticeService;
 import com.kh.khis.untact_interview_statistics_practice.interview_practice.model.vo.InterviewQuesionPractice;
@@ -94,11 +96,18 @@ public class InterviewPracticeController{
 	}
 	
 	@GetMapping("/interviewPractice.do")
-	public String practice() {
-		log.debug("{}", "practice.do 요청!");
-		return "untact_interview_statistics_practice/interview_practice/interviewPractice";
+	public String practice(HttpSession session, Model model, RedirectAttributes redirectAttr) {
+//		premium
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		if(loginMember == null) {
+			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+			log.debug("{}", "practice.do 요청!");
+			model.addAttribute("premium", loginMember.getEndYN());
+			return "untact_interview_statistics_practice/interview_practice/interviewPractice";
+		}
 	}
-	
 	@GetMapping("/interviewPracticeMenu.do")
 	public String practiceMenu() {
 		log.debug("{}", "practiceMenu.do 요청!");
@@ -115,13 +124,30 @@ public class InterviewPracticeController{
 	}
 	
 	@PostMapping("/interviewePracticeinsert.do")
-	public String insertInterviewePractice(@ModelAttribute InterviewQuesionPractice iqpFrm, Model model) {
-		System.out.println(iqpFrm);
-		log.debug("{}", "interviewePracticeinsert.do 요청!");
-		int result = interviewPracticeService.insertInterviewePractice(iqpFrm);
-		model.addAttribute("msg", result >0 ? "면접연습질문추가성공":"면접연습질문추가실패");
-		//후에는 마이페이지로 이동
-		return "untact_interview_statistics_practice/interview_practice/interviewMenu";
+	public String insertInterviewePractice(@ModelAttribute InterviewQuesionPractice iqpFrm, Model model,HttpSession session,RedirectAttributes redirectAttr) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		if(loginMember == null) {
+			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
+			return "redirect:/";
+		}else {
+				
+			log.debug("{}", "interviewePracticeinsert.do 요청!");
+			int result = interviewPracticeService.insertInterviewePractice(iqpFrm);
+			redirectAttr.addFlashAttribute("msg", result >0 ? "면접 연습 질문 추가에 성공하였습니다.":"면접 연습 질문 추가에 실패하였습니다.");
+			//후에는 마이페이지로 이동
+	//		if("IR".equals(loginMember.getKind())) {
+	//			return "redirect:/member/irMyPage.do";
+	//			
+	//		}else if("IR_SUPERVISOR".equals(loginMember.getKind())) {
+	//		}else if("IR_HAED".equals(loginMember.getKind())) {
+	//			return "redirect:/member/irHMyPage.do";
+	//			
+	//		}else if("USER".equals(loginMember.getKind())) {
+	//			return "redirect:/member/irHMyPage.do";
+	//			
+	//		}
+			return "redirect:/interviewPractice/interviewePracticeinsertFrm.do";
+		}
 	}	
 	@GetMapping("/interviewePracticeinsertFrm.do")
 	public String interviewePracticeinsertFrm() {

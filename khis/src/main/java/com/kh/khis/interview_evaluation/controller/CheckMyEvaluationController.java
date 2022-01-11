@@ -36,9 +36,12 @@ public class CheckMyEvaluationController {
 		Member member = (Member) session.getAttribute("loginMember");
 		int member_no = member.getMemberNo();// 나중에 세션에서 가져와야함
 		String name = member.getName();
+		String premium = member.getEndYN();
+		System.out.println("premium = {} " + premium);
 		List<Results> results = checkMyEvaluationService.selectResults(member_no);
 		model.addAttribute("list", results);
 		model.addAttribute("name", name);
+		model.addAttribute("premium", premium);
 		System.out.println("list = " + results);
 		
 		return "interview_evaluation/CheckMyEvaluation";

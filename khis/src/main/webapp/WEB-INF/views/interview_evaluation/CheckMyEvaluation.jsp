@@ -5,11 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- bootstrap js: jquery load 이후에 작성할것.-->
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="합격 여부 확인" name="title"/>
+</jsp:include>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
 <!-- bootstrap css -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
 <fmt:requestEncoding value="utf-8"/>
 <style>
 h2 {
@@ -64,7 +67,7 @@ h2 {
 }
 </style>
 <body>
-<section id="check">
+<section id="check" style="margin : auto; text-align : center;">
 	<h2>면접 결과 확인</h2>
 	<div id="welcome">
 		<p id="welcome-name">${name}님 반갑습니다.</p>
@@ -73,7 +76,7 @@ h2 {
 		<input type="hidden" id="co_code_hidden" value=""/>
 	</div>
 	<div id="apply">
-		<table id="applylist">
+		<table id="applylist" style="margin:auto;">
 			<thead>
 				<tr>
 					<th id="list_no" width="60px;">번호</th>
@@ -104,8 +107,8 @@ h2 {
 							<td style="text-align: center;" width="200px;">
 								<c:if test="${item.final_pass_check != 'null'}">
 									<form action="${pageContext.request.contextPath}/info/checkDetail.do" name="detailFrm" method="POST">
-							<input type="hidden" name="passcheck" value="${item.final_pass_check}"/>		
-									<input type="submit" class="checkedresults_I" value="상세 결과 확인" />
+										<input type="hidden" name="passcheck" value="${item.final_pass_check}"/>		
+										<input type="submit" class="checkedresults_I" value="상세 결과 확인" ${premium eq 'n'? '': 'disabled'}/><!-- 프리미엄 회원만 이용 -->
 									</form>
 									<span class="checkedresults">프리미엄 회원만 이용가능합니다.</span>
 								</c:if>
@@ -156,3 +159,4 @@ $(document).on("mouseout", ".checkedresults_I", function(){
 	});
 });
 </script>
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
