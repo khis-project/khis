@@ -307,4 +307,3 @@
 </script>
 <jsp:include
 	page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
-</jsp:include>
