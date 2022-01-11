@@ -32,6 +32,7 @@ public interface MemberDao {
 
 	int countMember(int count);
 
+	List<JoinFormDto> selectAdminMemberList(RowBounds rowBounds);
 
 
 

@@ -34,4 +34,5 @@ public class JoinFormDto {
 	private String coAddress;
 	private Integer count;
 	private Integer offset;
+	private String endYN;
 }

@@ -31,6 +31,7 @@
 					<th>아이디</th>
 					<th>이름</th>
 					<th>가입자 유형</th>
+					<th>프리미엄</th>
 					<th>회원관리</th>
 				</tr>
 
@@ -41,6 +42,7 @@
 							<td>${user.id}</td>
 							<td>${user.name}</td>
 							<td>${user.kind}</td>
+							<td>${user.endYN == 'n' ? '가입':''}</td>
 							<td width="3em" class="button"><input type="button" class="modify"
 								onClick="getThisUserUpdateform('${user.id}');" value="수정">
 						    <input type="button" class="delete"

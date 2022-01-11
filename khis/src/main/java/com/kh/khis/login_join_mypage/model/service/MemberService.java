@@ -32,4 +32,6 @@ public interface MemberService {
 
 	int countMember(int id);
 
+	List<JoinFormDto> selectAdminMemberList(RowBounds params);
+
 }

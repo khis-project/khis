@@ -47,7 +47,7 @@ public class AdminController {
 		 @RequestParam(defaultValue = "1") int page) {
 	  Integer count = 10;
 	  RowBounds params = new RowBounds(count * (page - 1), count);
-	  List<JoinFormDto> userList = memberService.selectMemberList(params);
+	  List<JoinFormDto> userList = memberService.selectAdminMemberList(params);
 	  // userList = new ArrayList<>(userList.subList((page - 1) * count, page * count));
 	  model.addAttribute("userList", userList);
 	  // session.setAttribute("admin", true);

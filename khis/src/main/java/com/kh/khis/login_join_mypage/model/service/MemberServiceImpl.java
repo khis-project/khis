@@ -67,6 +67,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.countMember(id);
 	}
 
+	@Override
+	public List<JoinFormDto> selectAdminMemberList(RowBounds rowBounds) {
+		return memberDao.selectAdminMemberList(rowBounds);
+	}
+
 
 	/*
 	 * @Override public List<JoinFormDto> selectMemberList(Map<String, Object>

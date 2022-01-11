@@ -189,7 +189,7 @@
 </div>
 <script id="template" type="text/template">
   <div class="comment">
-    <span class="cmt-nm"></span> <span style="width:300px;" class="cmt-text"></span> <span style="font-size: 8px;" class="cmt-dt"></span>
+    <span class="cmt-nm"></span> <span class="cmt-text"></span> <span class="cmt-dt"></span>
     <span class="cmt-del">삭제</span> <span class="cmt-up">수정</span>
   </div>
 </script>

@@ -1,63 +1,74 @@
 @charset "UTF-8";
 
 * {
-	margin: 3px;
-    font-family: 'GmarketSansMedium';
+	margin: 0;
+	font-family: 'GmarketSansMedium';
 }
 
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
-body {
+form {
 	background: #34495e;
-	padding: 0; 
+	margin: 0 auto;
+	padding: 0;
 }
-
 
 h3 {
-	margin-right: 330px;
+	margin-right: 285px;
+	font-family: 'GmarketSansMedium';
 	font-size: 20px;
-    font-family: 'GmarketSansMedium';
 }
 
 .container {
-	width: 100%;
+	margin: 0 auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 	background: #34495e;
 }
 
 .joinForm {
-	margin-top: 100px;
-	margin-bottom: 40px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 	width: 450px;
 	border-radius: 10px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 	background: white;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	
 }
 
 h2 {
 	color: black;
 	font-size: 35px;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
+}
+
+
+h4 {
+  color: black;
+  font-size: 15px;
+  font-family: 'GmarketSansMedium';
+  margin-top: 8px;
 }
 
 .memberId-container {
 	margin-top: 5px;
 	width: 80%;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .memberId-container input {
@@ -69,13 +80,13 @@ h2 {
 	border: 1px solid lightgray;
 	outline: none;
 	border-radius: 6px;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .content {
 	margin-top: 5px;
 	width: 80%;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .memberId-container span.guide.ok {
@@ -89,7 +100,7 @@ h2 {
 	color: green;
 	display: none;
 	position: absolute;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .memberId-container span.guide.error {
@@ -103,12 +114,12 @@ h2 {
 	color: red;
 	display: none;
 	position: absolute;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .content#btnContent {
 	text-align: center;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .content input {
@@ -120,7 +131,7 @@ h2 {
 	border: 1px solid lightgray;
 	outline: none;
 	border-radius: 6px;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
 
 .content input#coCode {
@@ -132,13 +143,14 @@ h2 {
 	border: 1px solid lightgray;
 	outline: none;
 	border-radius: 6px;
-    font-family: 'GmarketSansMedium';
+	font-family: 'GmarketSansMedium';
 }
+
 .content input#coCode.Btn {
-	width: 95px; 
-	background: cornflowerblue; 
-	color: white; 
-	font-size: 14px; 
+	width: 95px;
+	background: cornflowerblue;
+	color: white;
+	font-size: 14px;
 	font-weight: bold;
 	font-family: 'GmarketSansMedium';
 }
@@ -167,7 +179,7 @@ h2 {
 select#gender, select#kind {
 	width: 95%;
 	height: 35px;
-	margin-top: 10px;
+	margin-top: 5px;
 	text-align: center;
 	border-radius: 6px;
 	font-family: 'GmarketSansMedium';
@@ -180,7 +192,6 @@ select#gender, select#kind {
 	font-weight: bold;
 	letter-spacing: 2px;
 	font-family: 'GmarketSansMedium';
-	
 }
 
 .signupBtn:hover {
@@ -190,6 +201,7 @@ select#gender, select#kind {
 
 input.signupBtn {
 	width: auto;
+	letter-spacing: 6px;
 	font-family: 'GmarketSansMedium';
 }
 
