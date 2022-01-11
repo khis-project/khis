@@ -36,7 +36,7 @@
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
 <%-- content --%>
-<div id ="content">
+<div id ="content" style="height: 900px;">
 <h2>면접 질문 리스트</h2>
 	<div id="listForm">
 	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-secondary btn-sm"/>

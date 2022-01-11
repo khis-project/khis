@@ -94,13 +94,13 @@ public class EvaluationDaoImpl implements EvaluationDao {
 	}
 
 	@Override
-	public List<Interviewer> selectInterviewerList(int limit, int offset, int co_code) {
+	public List<Interviewer> selectInterviewerList(int limit, int offset, long co_code) {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		return session.selectList("evaluation.selectInterviewerList", co_code, rowBounds);
 	}
 
 	@Override
-	public int selectInterviewerCount(int co_code) {
+	public int selectInterviewerCount(long co_code) {
 		return session.selectOne("evaluation.selectInterviewerCount", co_code);
 	}
 

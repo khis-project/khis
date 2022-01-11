@@ -314,32 +314,41 @@ public class EvaluationController {
 	private String MemberInfoList(
 			@RequestParam(defaultValue = "1") int cPage,
 			Model model, 
-			HttpServletRequest request
+			HttpServletRequest request,
+			HttpSession session,
+		    RedirectAttributes redirectAttr
 			) {
-		
-		int limit = 3;
-		int offset = (cPage - 1) * limit;
-		int co_code = 1; // 후에 회사 코드 추가해야함.
-		
-		// 1. co_code 별 면접자 목록
-		List<Interviewer> list = evaluationService.selectInterviewerList(limit, offset, co_code);
-		log.debug("InterviewerList = {}", list);
-		model.addAttribute("iList", list);
-		
-		// 2. 총 면접자 수
-		int iTotalCount = evaluationService.selectInterviewerCount(co_code);
-		log.debug("iTotalCount = {}", iTotalCount);
-		model.addAttribute("iTotalCount", iTotalCount);
-		
-		
-		// 3. page_bar
-		String url = request.getRequestURI();
-		String pagebar = HiSpringUtils2.getPagebar(cPage, limit, iTotalCount, url);
-		log.debug("pagebar = {}", pagebar);
-		model.addAttribute("pagebar", pagebar);
-		
-		return "interview_evaluation/FinalCheck"; 
-		
+		Member member = (Member) session.getAttribute("loginMember");
+		/*if(member.getKind().equals("IR_SUPERVISOR")) {*/
+		if(member == null) {
+			redirectAttr.addFlashAttribute("loginMsg", "로그인 후 이용가능합니다.");
+			return "redirect:/";
+		}
+		else {		
+			int limit = 3;
+			int offset = (cPage - 1) * limit;
+			
+			long co_code = member.getCoCode(); // 후에 회사 코드 추가해야함.
+			
+			// 1. co_code 별 면접자 목록
+			List<Interviewer> list = evaluationService.selectInterviewerList(limit, offset, co_code);
+			log.debug("InterviewerList = {}", list);
+			model.addAttribute("iList", list);
+			
+			// 2. 총 면접자 수
+			int iTotalCount = evaluationService.selectInterviewerCount(co_code);
+			log.debug("iTotalCount = {}", iTotalCount);
+			model.addAttribute("iTotalCount", iTotalCount);
+			
+			
+			// 3. page_bar
+			String url = request.getRequestURI();
+			String pagebar = HiSpringUtils2.getPagebar(cPage, limit, iTotalCount, url);
+			log.debug("pagebar = {}", pagebar);
+			model.addAttribute("pagebar", pagebar);
+			
+			return "interview_evaluation/FinalCheck"; 
+		}
 	}
 	
 	@ResponseBody

@@ -30,7 +30,7 @@
 <%-- sidebar --%>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 <%-- Content --%>
-	<div id="content">
+	<div id="content" style="height: 900px;">
 		<h2>면접관 수정</h2>
 		<form action = "${pageContext.request.contextPath }/irmanagement/updateRater.do" name="updateRaterFrm" method="post">
 		<input type="hidden" name="memberInfoNo" value = "${irInfo.memberInfoNo}" />

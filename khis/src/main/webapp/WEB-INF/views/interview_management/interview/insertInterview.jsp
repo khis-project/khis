@@ -29,7 +29,7 @@
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
 <%-- content --%>
-	<div id="content">
+	<div id="content" style="height: 900px;">
 		<h2>질문 등록</h2>
 		<form action ="${pageContext.request.contextPath }/interview/insertInterview.do" name = "insertInterviewFrm" method ="post">
 		<%--value = loginMember.memberNo --%> 

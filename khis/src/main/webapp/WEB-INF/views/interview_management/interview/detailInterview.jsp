@@ -28,7 +28,7 @@
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
 <%-- content --%>
-<div id="content">
+<div id="content" style="height: 900px;">
 	<h2>${interview.title}</h2>
 	<div id="detailForm">
 		<form name = "interviewDeleteFrm" action="${pageContext.request.contextPath }/interview/deleteInterview.do" method = "post">

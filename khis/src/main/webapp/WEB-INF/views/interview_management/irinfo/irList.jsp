@@ -23,7 +23,7 @@
 }
 </style>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
-	<div id="content">
+	<div id="content" style="height: 900px;">
 		<h2>회원 목록</h2>
 		<div id="IRList">
 		<div class="btn-group" role="group" style = "float:right; margin-bottom: 10px;">
