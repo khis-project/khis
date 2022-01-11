@@ -12,6 +12,12 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href = "${pageContext.request.contextPath}/resources/css/interview_evaluation/FinalEvaluation.css"/>
 <fmt:requestEncoding value="utf-8"/>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="최종 평가 페이지" name="title" />
+</jsp:include>
+<jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
+
 <div id="final">
 	<h3>최종 평가</h3>
 	<div class="interviewer inlinediv">
@@ -120,3 +126,5 @@ $("#interviewer td").click((e) => {
 	});
 });
 </script>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
