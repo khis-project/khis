@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/header.jsp"/>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/header.jsp">
+	<jsp:param value="게시글 상세 페이지" name="title" />
+</jsp:include>
 <!-- 페이징 bootstrap -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <!-- 사용자 css -->
@@ -302,4 +305,6 @@
     });
   });
 </script>
-<jsp:include page="/WEB-INF/views/homepage_introduce_interview_pass/common/footer.jsp"/>
+<jsp:include
+	page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
+</jsp:include>
