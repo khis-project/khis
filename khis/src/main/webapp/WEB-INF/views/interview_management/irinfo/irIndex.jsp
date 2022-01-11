@@ -24,7 +24,7 @@
 
 </style>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
-<div id="content">
+<div id="content" style="height: 900px;">
 	<h2>${memberCompany.coName } ${loginMember.name }님 안녕하세요.</h2>
 	<label style="color : #808080;">면접 정보 추가하는 방법입니다.</label>
 	<div id="indexPage" style = "height:500px;">	

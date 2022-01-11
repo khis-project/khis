@@ -27,7 +27,7 @@
 </style>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 <%-- content --%>
-	<div id="content">
+	<div id="content" style="height: 900px;">
 		<h2>${irInfo.name} (${irInfo.role eq "I" ? "면접자" : "면접관"})</h2>
 			<div id="detailForm">
 			<form name = "irDeleteFrm" action="${pageContext.request.contextPath }/irmanagement/irDelete.do" method = "post">

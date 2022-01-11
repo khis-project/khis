@@ -32,7 +32,7 @@ div.ssn{
 </style>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 <%-- Content --%>
-	<div id="content">
+	<div id="content" style="height: 900px;">
 		<h2>면접관 등록</h2>
 		<form action = "${pageContext.request.contextPath }/irmanagement/insertRater.do" name = "insertRaterFrm" method="post">
 		<input type="hidden" name="role" value="R" />

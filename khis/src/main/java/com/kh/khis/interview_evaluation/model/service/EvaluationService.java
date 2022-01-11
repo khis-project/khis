@@ -41,9 +41,9 @@ public interface EvaluationService {
 
 	int passnonpass(PassOrNonPass pass);
 
-	List<Interviewer> selectInterviewerList(int limit, int offset, int co_code);
+	List<Interviewer> selectInterviewerList(int limit, int offset, long co_code);
 
-	int selectInterviewerCount(int co_code);
+	int selectInterviewerCount(long co_code);
 
 	List<Assigned> selectInterviewerDetail(Map<String, Object> param);
 

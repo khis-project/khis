@@ -24,7 +24,7 @@ alert("${msg}");
 </style>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
-<div id = "zoomSection" class="text-align-center">
+<div id = "zoomSection" style="height: 900px;" class="text-align-center">
 	<h2 style="margin-top:50px;">Zoom 회의실 추가하기<img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoom_plus.png" width="50px" onclick="window.open('${pageContext.request.contextPath}/untactInterview/zoomHowToUse.do','_blank','height=700px, width=600px',)"/></h2>
 	<label style="font-size : 7px; color : #7c7c7c;">zoom 아이콘을 클릭하면 추가 방법에 대한 설명을 확인할 수 있습니다.</label>
 	<form

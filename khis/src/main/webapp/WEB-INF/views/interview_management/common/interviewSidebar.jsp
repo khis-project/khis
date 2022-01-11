@@ -7,13 +7,12 @@
 <style>
 
 	#sidebar{
+		background-color : #152f70;
 		font-family: 'GmarketSansMedium';
-		background-color:aliceblue;
 		position:absolute;
 		width:275px;
 		float : left;
 	}
-	
 	#sidebar li{
 		padding: 5px 5px 5px 5px;
 	 	 text-decoration: none;
@@ -22,17 +21,20 @@
 			
 	}
 	
-	#sidebar ul.sub li:hover {
-		color:black;
+	#sidebar ul li.sub li:hover {
+		color: white;
 	}
 	#sidebar a {
-		 color: #818181;
+		 color: #808080;
 		display: block;
 		text-decoration: none;
 	}
+	#sidebar ul > li {
+	color : white;
+	}
 </style>
-<div id="sidebar">
-	<ul>
+<div id="sidebar" style="height: 100%;">
+	<ul style="margin-top: 70px;">
 		<li>
 		회의실 관련
 			<ul class = "sub">

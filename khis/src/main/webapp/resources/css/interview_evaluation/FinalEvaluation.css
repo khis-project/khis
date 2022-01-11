@@ -8,6 +8,7 @@
 	padding: 10;
 	display: inline-table;
 	text-align: left;
+	float: right;
 	
 }
 h3 {
@@ -33,6 +34,10 @@ h3 {
 	text-align: center;
 }
 #interviewer-info {
-	width: 80%;
+	width: 60%;
 	text-align: center;
+	margin-right: 100px;
+}
+#final {
+	height: 80%;
 }

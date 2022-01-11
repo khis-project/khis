@@ -89,12 +89,12 @@ public class EvaluationServiceImpl implements EvaluationService {
 	}
 
 	@Override
-	public List<Interviewer> selectInterviewerList(int limit, int offset, int co_code) {
+	public List<Interviewer> selectInterviewerList(int limit, int offset, long co_code) {
 		return evaluationDao.selectInterviewerList(limit, offset, co_code);
 	}
 
 	@Override
-	public int selectInterviewerCount(int co_code) {
+	public int selectInterviewerCount(long co_code) {
 		return evaluationDao.selectInterviewerCount(co_code);
 	}
 

@@ -28,7 +28,7 @@ alert("${msg}");
 <!--  -->
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
-<div id = "zoomSection" class="text-align-center">
+<div id = "zoomSection" style="height: 900px;" class="text-align-center">
 	<h2 style="margin-top:50px"><img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoom_logo_icon_189240.png" width="45px"/>Zoom 회의실 리스트</h2>
 
 	<table class="zoomListTb">
