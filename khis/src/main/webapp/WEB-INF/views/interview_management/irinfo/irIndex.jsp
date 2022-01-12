@@ -34,20 +34,22 @@
 					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg1.png"></span>
 			</div>
 			<div class="tooltip">
-				2.<span class="yellow underline"><b> 면접관 정보 추가</b></span>
-					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg2.png"></span>
-			</div>
-			<div class="tooltip">
-				3.<span class="yellow underline"><b> 면접자 정보 추가</b></span>
+				2.<span class="yellow underline"><b> 면접자 정보 추가</b></span>
 					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg3.png"></span>
 			</div>
 			<div class="tooltip">
+				3.<span class="yellow underline"><b> 면접관 정보 추가</b></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg2.png"></span>
+			</div>
+			<div class="tooltip">
 				4.<span class="yellow underline"><b> 면접자/면접관 매칭</b></span>
-					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg4.png"></span>
+					<span class="tooltiptext tooltip-bottom">
+					<label style="font-size : 13px; color : white;">면접관 정보를 추가하면서 배정할 면접자를 선택할 수 있습니다.</label>
+					<img src="<%=request.getContextPath()%>/resources/images/irimg4.png" style="height: 230px;"></span>
 			</div>
 			<div class="tooltip">
 				5.<span class="yellow underline"><b> 면접 질문 추가</b></span>
-					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg5.png"></span>
+					<span class="tooltiptext tooltip-bottom"><img src="<%=request.getContextPath()%>/resources/images/irimg5.png" ></span>
 			</div>
 		</div> 
 	</div>

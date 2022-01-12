@@ -218,8 +218,9 @@
     						   - zoom 및 사용방법<br>
     						   - 통계자료 조회 기능<br>
     						   - 면접 연습 기능<br>
-    						   - 프리미엄 기능<br>
+    						   - 프리미엄 추가 기능<br>
     						   - 자기소개서 추가 기능<br>
+    						   - 공채 달력 추가 기능<br>
     						   </p>
     						<div class="heading">
       							<h5><span>Jeonghyeon</span></h5>
