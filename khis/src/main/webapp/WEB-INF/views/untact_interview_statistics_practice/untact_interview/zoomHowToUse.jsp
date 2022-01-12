@@ -18,12 +18,12 @@
 		<img id = "use" src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoomuse1.png" class="preview" width="500px">
 		<p class="img-hover-display"><b>3. JWT 부분의 Create를 누르고 이름을 입력합니다.</b></p>
 		<img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoomuse2.png" class="preview" width="500px">
-		<p class="img-hover-display"><b>4. 입력해야되는 부분을 입력한 뒤 API Key와 API Secret을 저장합니다.</b></p>
+		<p class="img-hover-display"><b>4. 입력해야되는 부분을 입력한 뒤 API Key와 API Secret을 메모해둡니다.</b></p>
 		<img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoomuse3.png" class="preview" width="500px">
 		<p>5. https://zoom.us/ 페이지에서 내 계정을 클릭한뒤 회의를 클릭합니다.</p>
-		<p class="img-hover-display"><b>6. 회의실 번호와 pwd를 저장합니다.</b></p>
+		<p class="img-hover-display"><b>6. 회의실 번호와 pwd를 메모해둡니다.</b></p>
 		<img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoomuse4.png" class="preview" width="500px">
-		<p>7. zoom 회의실에 위에 저장했던 데이터를 폼에 입력합니다.</p>
+		<p>7. zoom 회의실 추가 폼에 위에 메모해두었던 데이터를 입력합니다.</p>
 		<p>8. zoom 회의실을 추가한다.</p>
 	</div>
 	<div class="left-display flex-div">
