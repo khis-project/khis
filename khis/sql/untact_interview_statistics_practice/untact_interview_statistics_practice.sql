@@ -905,3 +905,15 @@ from
     left join premium e on e.member_no = i.member_no and premium = 'n'
     ;
     select * from ir_info;
+    
+    
+    select 
+		*
+	from 
+		ir_info ii 
+	        left join zoom z on ii.zoom_no = z.zoom_no
+	        left join interview_time it on ii.member_info_no = it.member_info_no    
+	where 
+		ii.member_info_no = 98
+		and sysdate between it.start_time
+ and it.end_time
