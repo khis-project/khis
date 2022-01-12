@@ -328,3 +328,7 @@ select count(*) from
   		1641900096780
         );
         commit;
+        
+select * from member_company;
+
+select * from member;

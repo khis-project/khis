@@ -126,6 +126,7 @@ const chatLogUpdate = () => {
 		success : function(chatLog) {
 			const data = document.getElementById('data');
 			console.log("채팅창 초기화");
+			$(data).empty();
 
 			$.each(chatLog, function(i, content) {
 				const memberId = content.memberId;
