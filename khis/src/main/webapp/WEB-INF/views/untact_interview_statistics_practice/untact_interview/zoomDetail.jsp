@@ -15,8 +15,8 @@ alert("${msg}");
 </script>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
-<div id = "zoomSection">
-	<h1>Zoom 회의실 수정하기</h1>
+<div id = "zoomSection" style="height : 1000px;">
+	<h2 style="text-align : center;">Zoom 회의실 수정하기</h2>
 	<form
 			name="zoomUpdateFrm" 
 			action="${pageContext.request.contextPath}/untactInterview/zoomUpdate.do" 
@@ -24,7 +24,6 @@ alert("${msg}");
 		<table class="zoomTb">
 			<tr><th>api_key</th><td>: <input type="text" class="zoom_txt" id = "api_key" name = "api_key" value = "${zoomDetail.api_key }" required></td></tr>
 			<tr><th>api_secret</th><td>: <input type="text" class="zoom_txt" id = "api_secret" name = "api_secret" value = "${zoomDetail.api_secret }" required></td></tr>
-			<tr><th>jwt_token</th><td>: <input type="text" class="zoom_txt" id = "jwt_token" name = "jwt_token" value = "${zoomDetail.jwt_token }" required></td></tr>
 			<tr><th>zoom_number</th><td>: <input type="text" class="zoom_txt" id = "zoom_number" name = "zoom_number" value = "${zoomDetail.zoom_number }" required></td></tr>
 			<tr><th>zoom_password</th><td>: <input type="text" class="zoom_txt" id = "zoom_password" name = "zoom_password" value = "${zoomDetail.zoom_password }"required></td></tr>
 			<tr><td><input type="hidden" class="zoom_txt" id = "zoom_no" name = "zoom_no" value = "${zoomDetail.zoom_no }"required></td>
