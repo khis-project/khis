@@ -36,6 +36,13 @@
 <div id="sidebar" style="height: 100%;">
 	<ul style="margin-top: 70px;">
 		<li>
+			면접 정보 추가 관련
+			<ul>
+			<li><a href="${pageContext.request.contextPath}/irmanagement/irIndex.do">면접 정보 추가 방법</a></li>
+			</ul>
+		</li>
+		
+		<li>
 		회의실 관련
 			<ul class = "sub">
 				<li><a href="${pageContext.request.contextPath}/untactInterview/zoom.do">회의실 추가</a></li>
@@ -58,7 +65,7 @@
 			</ul>
 		</li>
 		<li>
-		최종 평가
+		최종 평가 관련
 			<ul class = "sub">
 				<li><a href="${pageContext.request.contextPath }/evaluation/finalEvaluation.do">면접 최종평가</a></li>
 			</ul>
