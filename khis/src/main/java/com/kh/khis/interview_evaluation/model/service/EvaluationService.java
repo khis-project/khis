@@ -31,7 +31,7 @@ public interface EvaluationService {
 
 	int updateEvaluation(Evaluation evaluation);
 
-	List<Apply> selectApplyList(Map<String, Integer> param);
+	List<Apply> selectApplyList(Map<String, Object> param);
 
 	List<Interviews> selectOtherInterviewerEvaluation(String imember_info_no);
 

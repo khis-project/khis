@@ -87,7 +87,7 @@ $("#interviewer td").click((e) => {
 						</td>
 					</tr>
 					 <tr>
-						<td colspan='3'><input type="button" class="btn btn-outline-success" id="complete" style="width: 100%;" value="`+((value == 0) ? '평가 불가능' : '평가 완료')+`" `+((value > 0) ? `disabled` : ``)+` `+((pass != null) ? `disabled` : ``)+`/></td>
+						<td colspan='3'><input type="button" class="btn btn-outline-success" id="complete" style="width: 100%;" value="`+((value == 0) ? '평가 완료' : '평가 불가능')+`" `+((value > 0) ? `disabled` : ``)+` `+((pass != null) ? `disabled` : ``)+`/></td>
 					 </tr>
 					 </table>`;
 			console.log("value = " + value);
@@ -108,7 +108,6 @@ $("#interviewer td").click((e) => {
 						success(data){
 							alert('평가가 완료되었습니다.');
 							$("#final_pass_hidden").val($("input:radio[name=results]:checked").val());
-							alert($("#final_pass_hidden").val());
 							$("input:radio[name=results]").attr('disabled', true);
 							$("#complete").attr('disabled', true);
 							$("#complete").val('평가가 완료된 면접자입니다.');

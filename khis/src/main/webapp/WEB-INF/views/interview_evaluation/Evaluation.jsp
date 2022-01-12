@@ -123,7 +123,7 @@ h3 {
 #interview-info{
 	position: fixed;
 	margin-left: -400px;
-	width: 50%;
+	width: 40%;
 	height: 70%;
 	opacity: 0;
 	display : none;
@@ -131,7 +131,7 @@ h3 {
 #zoomIframe{
 	position: fixed;
 	margin-left: -400px;
-	width: 50%;
+	width: 40%;
 	height: 70%;
 	opacity: 0;
 }
