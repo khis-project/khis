@@ -112,17 +112,18 @@ where
 <select id="selectScheduleList" resultType="map">
 	<choose>
 	<when test="kind == 'IR_SUPERVISOR'">
-	 select ir.member_info_no as "groupId"
+ select ir.member_info_no as "groupId"
       , co_name || ' ' || t.job_posting_name as "title"
       , cast(t.start_time AS DATE) as "start"
       , cast(t.end_time AS DATE) as "end"  
-	 from interview_time t, ir_info ir left join assigned_Info ai on ir.member_info_no = ir.member_info_no and ai.assigned_interviewer = #{memberNo}, member_company co
-	   
-	 where ir.member_info_no = t.member_info_no
-	     
-	 and ir.co_code = co.co_code
-	 
-	 and ir.co_code = #{coCode}
+      , ai.assigned_interviewer
+ from ir_info ir left join assigned_Info ai on ir.member_info_no = ai.member_info_no
+ left join interview_time t on t.member_info_no = ai.member_info_no
+ left join member_company mc on ir.co_code = mc.co_code  
+ 
+ where
+ ir.co_code =  #{coCode}
+ and ai.assigned_interviewer = #{memberInfoNo}
 	</when>
 	<otherwise>
 	    select ir.member_info_no as "groupId"
