@@ -55,9 +55,9 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td><input type="button" class = "premiumBtn" value="결제" data-sub="5000"></td>
-				<td><input type="button" class = "premiumBtn" value="결제" data-sub="9000"></td>
-				<td><input type="button" class = "premiumBtn" value="결제" data-sub="13000"></td>
+				<td><input type="button" class = "premiumBtn button-hover button-basic" value="결제" data-sub="5000"></td>
+				<td><input type="button" class = "premiumBtn button-hover button-basic" value="결제" data-sub="9000"></td>
+				<td><input type="button" class = "premiumBtn button-hover button-basic" value="결제" data-sub="13000"></td>
 			</tr>
 		</table>
 		<input type="hidden" name = "month">
@@ -66,6 +66,7 @@
 	</c:if>
 </div>
 
+<jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"/>
 <script>
 //order
 $(".premiumBtn").on('click',function(){

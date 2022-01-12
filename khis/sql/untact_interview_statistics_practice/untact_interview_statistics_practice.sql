@@ -928,11 +928,35 @@ from
       , co_name || ' ' || t.job_posting_name as "title"
       , cast(t.start_time AS DATE) as "start"
       , cast(t.end_time AS DATE) as "end"  
+      , ai.assigned_interviewer
  from ir_info ir left join assigned_Info ai on ir.member_info_no = ai.member_info_no
  left join interview_time t on t.member_info_no = ai.member_info_no
  left join member_company mc on ir.co_code = mc.co_code  
  
  where
  ir.co_code = 1258154503
+ and ai.assigned_interviewer = 98
+ 
+ select * from ir_info i left join member m on i.member_no = m.member_no where member_info_no = 98
  
  select * from ir_info ii l
+ ;
+ 
+
+select * From member m left join ir_info i on m.member_no = i.member_no where m.id = 'kakao1';
+
+ 	insert into premium values (
+ 		seq_premium_no.nextval,
+ 		144,
+ 		default,
+ 		1,
+ 		default,
+ 		5000
+ 	)
+    ;
+    commit;
+select * from ir_info where interviewer_no =2201110050;
+member_info_no = 96
+
+delete from interview_evaluate where evaluate_no = 45;
+commit;
