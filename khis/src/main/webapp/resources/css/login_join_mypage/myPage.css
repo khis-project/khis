@@ -160,13 +160,14 @@ p2 {
 }
 
 .mainBtn {
-	height: 35px;
-	width: 350px;
-	border: none;
-	letter-spacing: 3px;
-	border-radius: 5px;
-	background: white;
-	font-weight: bold;
-	font-size: 15px;
-	font-family: 'GmarketSansMedium';
+  height: 35px;
+  width: 320px;
+  border: none;
+  letter-spacing: 3px;
+  border-radius: 5px;
+  background: white;
+  font-weight: bold;
+  font-size: 15px;
+  font-family: 'GmarketSansMedium';
+  margin-top: 20px;
 }
