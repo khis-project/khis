@@ -28,7 +28,7 @@
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
 <%-- Content --%>
-	<div id="content" style="height: 900px;">
+	<div id="content" style="height: 1000px;">
 		<h2>질문 수정</h2>
 		<form action = "${pageContext.request.contextPath}/interview/updateInterview.do" name="updateInterviewFrm" method = "post">
 		<input type="hidden" name="interviewNo" value=${interview.interviewNo } />

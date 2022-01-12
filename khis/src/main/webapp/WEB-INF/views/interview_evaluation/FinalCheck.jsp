@@ -87,14 +87,15 @@ $("#interviewer td").click((e) => {
 						</td>
 					</tr>
 					 <tr>
-						<td colspan='3'><input type="button" class="btn btn-outline-success" id="complete" style="width: 100%;" value="`+((value > 0) ? '평가 불가능' : '평가 완료')+`" `+((value > 0) ? `disabled` : ``)+` `+((pass != null) ? `disabled` : ``)+`/></td>
+						<td colspan='3'><input type="button" class="btn btn-outline-success" id="complete" style="width: 100%;" value="`+((value == 0) ? '평가 불가능' : '평가 완료')+`" `+((value > 0) ? `disabled` : ``)+` `+((pass != null) ? `disabled` : ``)+`/></td>
 					 </tr>
 					 </table>`;
 			console.log("value = " + value);
 			$("#interviewer-info").html(html);
 			(value > 0) ? $("#complete").removeClass("btn-outline-success") : '';
 			(value > 0) ? $("#complete").toggleClass("btn btn btn-danger") : '';
-			$("#complete").val((pass != null ? '평가가 완료된 면접자입니다.' : $("#complete").val()));
+			console.log("pass : " + ("" == pass));
+			$("#complete").val(((pass != null && pass != "") ? '평가가 완료된 면접자입니다.' : $("#complete").val()));
 			$("#complete").click((e) => {
 				if(confirm("최종 평가를 완료하시겠습니까?")){
 					$.ajax({

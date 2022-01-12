@@ -38,6 +38,7 @@
 <%-- content --%>
 <div id ="content" style="height: 900px;">
 <h2>면접 질문 리스트</h2>
+<label style="font-size : 13px; color : #808080;">면접자 당 최대 3개까지만 등록할 수 있습니다.</label>
 	<div id="listForm">
 	<input type="button" value="글쓰기" id="btn-add" class="btn btn-outline-secondary btn-sm"/>
 	<table id="tbl-board" class="table table-striped table-hover">

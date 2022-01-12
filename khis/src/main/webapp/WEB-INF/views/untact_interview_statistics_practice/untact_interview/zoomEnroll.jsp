@@ -34,7 +34,7 @@ alert("${msg}");
 		<table class="zoomTb"><!-- #1d3971 -->
 			<tr><th>api_key</th><td>: <input type="text" class="zoom_txt" id = "api_key" name = "api_key" required></td></tr>
 			<tr><th>api_secret</th><td>: <input type="text" class="zoom_txt" id = "api_secret" name = "api_secret" required></td></tr>
-			<tr><th>zoom_number</th><td>: <input type="text" class="zoom_txt" id = "zoom_number" name = "zoom_number" required></td></tr>
+			<tr><th>zoom_number</th><td>: <input type="text" class="zoom_txt" id = "zoom_number" name = "zoom_number" placeholder="공백을 제거하고 입력해주세요."  onkeyup="noSpaceForm(this);" onchange="noSpaceForm(this);" required></td></tr>
 			<tr><th>zoom_password</th><td>: <input type="text" class="zoom_txt" id = "zoom_password" name = "zoom_password" required></td></tr>
 			<tr><th><input type="hidden" class="zoom_txt" id = "id" name="id"></th></tr><!-- 해당 zoom 정보를 추가하는 관리자 id -->
 		</table>
@@ -46,4 +46,17 @@ alert("${msg}");
 		</table>
 	</form>
 </div>
+<script>
+        // 공백 사용 못 하게
+        function noSpaceForm(obj) 
+        {             
+            var str_space = /\s/;               // 공백 체크
+            if(str_space.exec(obj.value)) 
+            {     // 공백 체크
+                obj.focus();
+                obj.value = obj.value.replace(' ',''); // 공백제거
+                return false;
+            }
+        }
+</script>
 <jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>
