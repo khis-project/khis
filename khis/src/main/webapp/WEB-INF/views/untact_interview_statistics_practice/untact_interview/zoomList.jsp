@@ -36,7 +36,6 @@ alert("${msg}");
 			<th>번호</th>
 			<th>회의실번호</th>
 			<th>api key</th>
-			<th>배정된 인원(면접관)</th>
 			<th>배정된 인원(면접자)</th>
 			<th>수정</th>
 			<th>삭제</th>
@@ -73,11 +72,6 @@ alert("${msg}");
 				<td><input type="text" id = "api_key" name = "api_key" width ="100px" value = '${z.api_key}' readonly></td> 
 				
 				<!-- 면접관/면접자 인원수에 마우스를 hover하면 이름과 면접시간 출력되게 하기-->
-				<td>
-					<span class = "zoom_number_R" id ="${z.zoom_number}_Rs" >${zoom_number[z.zoom_number += ',' +='R'] == null ? 0 : zoom_number[z.zoom_number += ',' +='R']} 명</span>
-					<span class = "zoom_number" id ="${z.zoom_number}_R" ></span>
-
-				</td>
 				<td>
 				<!--  해당 값 hover 시, 그 하위 요소 보이게 하기 -->
 					<span class = "zoom_number_I" id ="${z.zoom_number}_Is">${zoom_number[z.zoom_number += ',' +='I'] == null ? 0 : zoom_number[z.zoom_number += ',' +='I']} 명</span>
