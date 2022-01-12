@@ -57,7 +57,8 @@
 		name = #{name},
 		email = #{email},
 		phone = #{phone},
-		category = #{category}
+		category = #{category},
+		zoom_no = #{zoomNo}
 		where member_info_no = #{memberInfoNo}
 	</update>
 	<select id="selectIRInfoTotalCount" resultType="_int">

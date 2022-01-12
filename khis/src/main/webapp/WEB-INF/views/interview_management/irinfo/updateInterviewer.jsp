@@ -33,7 +33,7 @@ div.interviewTime {
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 <%-- Content --%>
 <div id="content" style="height: 1000px;">
-		<h2>면접자 등록</h2>
+		<h2>면접자 수정</h2>
 		<form action = "${pageContext.request.contextPath }/irmanagement/updateInterviewer.do" name = "updateInterviewerFrm" method="post">
 			<input type="hidden" name="memberInfoNo" value = "${irInfo.memberInfoNo }" />
 			<div id="updateForm">
