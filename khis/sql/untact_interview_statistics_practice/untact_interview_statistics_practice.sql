@@ -903,3 +903,5 @@ select
 from
     member m left join ir_info i on m.member_no = i.member_no 
     left join premium e on e.member_no = i.member_no and premium = 'n'
+    ;
+    select * from ir_info;

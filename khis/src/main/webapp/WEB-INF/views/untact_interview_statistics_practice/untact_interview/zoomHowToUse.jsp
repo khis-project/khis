@@ -13,7 +13,8 @@
 	<div class="left-display">
 	<p style="font-size : small; text-align : center; margin-top : -5px;"><b>굵은 글씨</b>에 마우스를 갖다 놓으면 해당 부분의 이미지를 볼 수 있습니다.</p>
 		<p class="img-hover-display">1. https://marketplace.zoom.us/ 에 접속해 회원가입을 진행합니다.</p>
-		<p class="img-hover-display"><b>2. 상단 메뉴에 Develop 부분의 Build App 부분을 클릭합니다.</b></p>
+		<p class="img-hover-display"><b>2. 로그인 후 상단 메뉴에 Develop 부분의 Build App 부분을 클릭합니다.</b>
+									<br><label style="font-size : 9px; color : #7c7c7c;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;해당 메뉴가 보이지 않다면 로그인이 되어있는지 확인해주세요.</label></p>
 		<img id = "use" src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoomuse1.png" class="preview" width="500px">
 		<p class="img-hover-display"><b>3. JWT 부분의 Create를 누르고 이름을 입력합니다.</b></p>
 		<img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoomuse2.png" class="preview" width="500px">

@@ -50,7 +50,7 @@
 				</div>
 				<div class="Interview">
 					<span><br>면접 진행</span><br><br>
-				    <span><a href="${pageContext.request.contextPath}/evaluation/evaluation.do">
+				    <span><a href='${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=I'>
 				    <i class="fas fa-chalkboard-teacher fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">노력은 배신하지 않아요. <br /> 후회 없는 면접이 되시길 바라요.:)</p>
 				</div>
