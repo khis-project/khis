@@ -29,7 +29,7 @@
 </head>
 	<div class="container">
 		<div class="w1280"><br />
-			<h1><br>My Page</h1><br /><br />
+			<h1><br>My Page</h1><br />
 			<div class="box">
 				<div class="information">
 					<span><br>회원정보</span><br><br> 
@@ -49,6 +49,7 @@
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">면접 연습하시면서 필요하다고 <br />생각하는 질문들을 적어주세요. </p>
 				</div>			
 			</div>
+			<br /><br /><input type="button" class="mainBtn" id="mainBtn" value="- 프리미엄 가입하기 -" onClick="premiumBtn()">
 		</div>
 	</div>
 <script>
@@ -74,8 +75,8 @@ $('.unregister').click(function() {
 	}
 });
 
-function mainBtn(){
-    location.href = "${pageContext.request.contextPath}/";
+function premiumBtn(){
+    location.href = "${pageContext.request.contextPath}/premium/premium.do";
   } 
 </script>
 <jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>

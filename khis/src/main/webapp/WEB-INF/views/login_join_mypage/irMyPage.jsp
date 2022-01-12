@@ -29,11 +29,11 @@
 </head>
 	<div class="container">
 		<div class="w1280"><br />
-			<h1><br>My Page</h1><br /><br />		
+			<h1><br>My Page</h1><br />
 			<div class="box">
 				<div class="information">
 					<span><br>회원정보</span><br><br> 
-					<span><a href="${pageContext.request.contextPath}/member/updateForm.do">
+					<span><a href="http://localhost:9090/khis/member/updateForm.do">
 						<i class="fas fa-user-lock fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">소중한 개인 정보,<br /> 확인 및 수정이 가능해요.</p><p2>* [ 수정은 주소만 변경 가능합니다.:) ]</p2>
 				</div>
@@ -44,7 +44,7 @@
 				</div>
 				<div class="schedule">
 					<span><br>면접 일정</span><br><br>
-				    <span><a href="${pageContext.request.contextPath}/member/schedule.do">
+				    <span><a href="http://localhost:9090/khis/member/schedule.do">
 				      <i class="fas fa-tasks fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">나의 면접 일정을 한눈에 볼 수 있어요.</p>
 				</div>
@@ -62,11 +62,12 @@
 				</div>
 				<div class="InterviewP">
 					<span><br>면접 연습 질문 요청하기</span><br><br>
-				    <span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
+					<span><a href='${pageContext.request.contextPath}/interviewPractice/interviewePracticeinsertFrm.do'>
 				    <i class="fas fa-pencil-alt fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">면접 연습하시면서 필요하다고 <br />생각하는 질문들을 적어주세요. </p>
 				</div>
 			</div> 
+			 <br /><br /><br /><input type="button" class="mainBtn" id="mainBtn" value="- 프리미엄 가입하기 -" onClick="premiumBtn()">
     </div>
 		</div>
 <script>
@@ -92,8 +93,8 @@ $('.unregister').click(function() {
 	}
 });
 
-function mainBtn(){
-	  location.href = "${pageContext.request.contextPath}/";
+function premiumBtn(){
+	  location.href = "${pageContext.request.contextPath}/premium/premium.do";
 	} 
 </script>
 <jsp:include page="/WEB-INF/views/Interview_review_board/common/footer.jsp"></jsp:include>
