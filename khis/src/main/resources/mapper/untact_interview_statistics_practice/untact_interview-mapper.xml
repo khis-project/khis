@@ -38,13 +38,15 @@
   <insert id="insertZoom">
   	insert into
   	<!-- 후에는 zoom_no 부분은 sequence로 변경 -->
-  		zoom(zoom_no, member_no, co_code, api_key, api_secret)
+  		zoom(zoom_no, member_no, co_code, api_key, api_secret,zoom_number,zoom_password)
   	values(
   		seq_zoom_no.NEXTVAL,
   		#{member_no},
   		#{co_code},
   		#{api_key},
-  		#{api_secret}
+  		#{api_secret},
+  		#{zoom_number},
+  		#{zoom_password}
   	)
   </insert>
   

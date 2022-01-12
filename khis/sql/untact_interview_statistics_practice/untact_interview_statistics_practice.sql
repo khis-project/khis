@@ -915,5 +915,8 @@ from
 	        left join interview_time it on ii.member_info_no = it.member_info_no    
 	where 
 		ii.member_info_no = 98
-		and sysdate between it.start_time
- and it.end_time
+		and systimestamp between it.start_time
+ and it.end_time'
+ 
+ select * from ir_info where co_code = 1258154503
+ select * from ASSIGNED_INFO a left join ir_info i  on  a.member_info_no = i.member_info_no where i.co_code = 1258154503
