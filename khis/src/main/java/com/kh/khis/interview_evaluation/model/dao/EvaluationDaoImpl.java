@@ -119,4 +119,9 @@ public class EvaluationDaoImpl implements EvaluationDao {
 		return session.selectList("evaluation.selectEvaluationList", param);
 	}
 
+	@Override
+	public int selectEvaluateNo(Map<String, Object> param) {
+		return session.selectOne("evaluation.selectEvaluateNo", param);
+	}
+
 }

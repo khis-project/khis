@@ -51,5 +51,7 @@ public interface EvaluationService {
 
 	List<Interviews> selectEvaluationList(Map<String, Object> param);
 
+	int selectEvaluateNo(Map<String, Object> param);
+
 
 }

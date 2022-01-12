@@ -113,5 +113,10 @@ public class EvaluationServiceImpl implements EvaluationService {
 		return evaluationDao.selectEvaluationList(param);
 	}
 
+	@Override
+	public int selectEvaluateNo(Map<String, Object> param) {
+		return evaluationDao.selectEvaluateNo(param);
+	}
+
 
 }

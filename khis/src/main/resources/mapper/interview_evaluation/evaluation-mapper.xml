@@ -184,9 +184,9 @@
 	    interview_evaluate 
 	<where>
 		member_info_no = #{member_info_no}
-		<if test='evaluate_no != null'>
-			and evaluate_no in 
-			<foreach collection="evaluate_no" item="item" index="index" separator="," open="(" close=")">
+		<if test='interview_no != null'>
+			and interview_no in 
+			<foreach collection="interview_no" item="item" index="index" separator="," open="(" close=")">
 				#{item}
 			</foreach>
 		</if>
@@ -249,6 +249,14 @@
   		#{board_write_yn}
   	)
   </insert>
+  <select id="selectEvaluateNo" resultType="_int">
+  	select
+	    evaluate_no
+	from
+	    interview_evaluate
+	where
+	    interview_no = #{interview_no} and member_info_no = #{member_info_no}
+  </select>
   <resultMap type="interviewer" id="interviewerMap">
   <id column="member_info_no" property="member_info_no" jdbcType="CLOB" javaType="java.lang.Integer"/>
   	<result column="member_no" property="member_no"/>
