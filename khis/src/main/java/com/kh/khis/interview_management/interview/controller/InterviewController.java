@@ -89,10 +89,10 @@ public class InterviewController {
  			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
  			return "redirect:/member/loginForm.do";
 		}else {
-			int memberNo = member.getMemberNo();
+			long coCode = member.getCoCode();
 			log.debug("interviewNo = {}", interviewNo);
 			
-			List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
+			List<IRInfo> list = interviewService.selectInterviewerList(coCode);
 			log.debug("list = {}", list);
 			model.addAttribute("list", list);
 			
@@ -112,9 +112,9 @@ public class InterviewController {
  			redirectAttr.addFlashAttribute("msg","로그인 후 이용할 수 있습니다.");
  			return "redirect:/member/loginForm.do";
 		}else {
-			int memberNo = member.getMemberNo();
+			long coCode = member.getCoCode();
 			log.debug("interviewNo = {}", interviewNo);
-			List<IRInfo> list = interviewService.selectInterviewerList(memberNo);
+			List<IRInfo> list = interviewService.selectInterviewerList(coCode);
 			log.debug("lis {}", list);
 			model.addAttribute("list", list);
 			Interview interview = interviewService.selectOneInterview(interviewNo);
