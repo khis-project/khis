@@ -263,6 +263,7 @@ alert("${loginMsg}");
 	<input type="hidden" id="co_code_hidden" value="" />
 	<input type="hidden" id="imember_no_hidden" value="" />
 	<input type="hidden" id="evaluate_no_hidden" value="" />
+	<input type="hidden" id="interview_no_hidden" value="" />
 	<div id="interview-info-zoom" class="inlinediv interview" >
    		<br />
 		<input type="button" id="showInfo" value="인적사항 ▼" data-sub="0" />
@@ -569,8 +570,7 @@ $("#btn3").click((e) => {
 		url: `${pageContext.request.contextPath}/evaluation/evaluationQuestion.do`,
 		method: "GET",
 		data: {
-			member_info_no : $("#member_info_no_hidden").val(),
-			interviewer_no : 79 // 면접관 번호 세션에서 불러와야함
+			member_info_no : $("#member_info_no_hidden").val()
 		},
 		success(data){
 			let html = `<table id="content" style="margin-top: 30px; display : block;">
@@ -595,6 +595,7 @@ $("#btn3").click((e) => {
 				console.log(item.evaluate_value);
 				console.log(item.evaluate_value==4);
 				testvalue = item.evaluate_value + "";
+				$("#interview_no_hidden").val($("#interview_no_hidden").val() + item.interview_no + (index != data.length - 1 ? "," : ""));
 				html += `<form
 					class="finishFrmid"
 					name="finishFrm`+item.interview_no+`"
@@ -686,7 +687,7 @@ $("#btn3").click((e) => {
 					url: `${pageContext.request.contextPath}/evaluation/sumValue.do`,
 					method: "GET",
 					data: {
-						evaluate_no : $("#evaluate_no_hidden").val()
+						interview_no : $("#interview_no_hidden").val()
 					},
 					success(data){
 						$("#sumValue").text(data);
@@ -936,12 +937,4 @@ $('#startChat').click((e) => {
 	const spec = "width=500px, height=500px";
 	window.open(url, name, spec, '_black');
 });
-/* $(".button-none").click((e) => {
-	$(".button-none").css({
-		"color":"black"
-	});
-	$(e.target).css({
-		"color":"red"
-	});
-}); */
 </script>	

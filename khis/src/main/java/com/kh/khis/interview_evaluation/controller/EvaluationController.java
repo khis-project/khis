@@ -171,7 +171,8 @@ public class EvaluationController {
 			@RequestParam String evaluate_value,
 			@RequestParam String evaluate_comment,
 			RedirectAttributes redirectAttr,
-			HttpSession session) {
+			HttpSession session,
+			Model model) {
 		Member member = (Member) session.getAttribute("loginMember");
 		String member_info_no = Integer.toString(member.getMemberInfoNo()); // 나중에 세션에서 가져와야함 (면접관 번호)
 		Evaluation evaluation = new Evaluation(
@@ -180,12 +181,22 @@ public class EvaluationController {
 				Integer.parseInt(member_info_no),
 				Integer.parseInt(evaluate_value),
 				evaluate_comment);
+		System.out.println("interview-no = " + interview_no);
 		log.debug("evaluation = {}", evaluation);
 		
 		int result = evaluationService.insertEvaluation(evaluation);
 		log.debug("result = {}", result);
 		
 		String msg = result > 0 ? "평가가 완료되었습니다." : "평가에 실패했습니다.";
+		
+		Map<String, Object> param = new HashMap<>();
+		param.put("interview_no", interview_no);
+		param.put("member_info_no", member_info_no);
+		if(result > 0) {
+			int evaluate_no = evaluationService.selectEvaluateNo(param);
+			model.addAttribute("evaluate_no", evaluate_no);
+			System.out.println("evaluate_no ========== " + evaluate_no);
+		}
 		redirectAttr.addFlashAttribute("msg", msg);
 		
 		return "redirect:/evaluation/evaluation.do";
@@ -285,20 +296,21 @@ public class EvaluationController {
 	@ResponseBody
 	@GetMapping("/sumValue.do")
 	public int sumValue(
-			@RequestParam String evaluate_no,
+			@RequestParam String interview_no,
 			HttpSession session
 		) {
 		Member member = (Member) session.getAttribute("loginMember");
 		int member_info_no = member.getMemberInfoNo(); // 후에 session에서 면접관 번호 가져와야됨
 		Map<String, Object> param = new HashMap<>();
 		List<Integer> evaluate_no_list = new ArrayList<Integer>();
-		for(String a : evaluate_no.split(",")) // ,로 split 한 뒤 해당 값 list에 저장
+		for(String a : interview_no.split(",")) // ,로 split 한 뒤 해당 값 list에 저장
 			evaluate_no_list.add(Integer.parseInt(a));
+		System.out.println("zzzzzzzzzzz=" + evaluate_no_list);
 		param.put("member_info_no", member_info_no);
 		param.put("evaluate_no", evaluate_no_list);
 		int sum = evaluationService.calculateSumValue(param);
 		log.debug("result = {}", sum);
-		System.out.println("------------------------evaluate_no = " + evaluate_no);
+		System.out.println("------------------------evaluate_no = " + interview_no);
 		return sum;
 	}
 	
