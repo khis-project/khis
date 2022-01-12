@@ -220,17 +220,23 @@ public class EvaluationController {
 	@ResponseBody
 	@GetMapping("/pastApply.do")
 	public List<Apply> pastApply(
-			@RequestParam int co_code,
+			@RequestParam long co_code,
 			@RequestParam int member_info_no
 		){
-		Map<String, Integer> param = new HashMap<>();
-		param.put("co_code", co_code);
-		param.put("member_info_no", member_info_no);
-		List<Apply> list = evaluationService.selectApplyList(param);
-		log.debug("list = {}", list);
-		
-		System.out.println("list = " + list);
-		
+		List<Apply> list = new ArrayList();
+		try {
+			Map<String, Object> param = new HashMap<>();
+			param.put("co_code", co_code);
+			param.put("member_info_no", member_info_no);
+			list = evaluationService.selectApplyList(param);
+			log.debug("list = {}", list);
+			
+			System.out.println("list = " + list);
+			
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return list;
 	}
 	
@@ -354,9 +360,11 @@ public class EvaluationController {
 	@ResponseBody
 	@GetMapping("/InterviewrDetail.do")
 	public List<Assigned> InterviewerDetail(
-			@RequestParam int member_info_no
+			@RequestParam int member_info_no,
+			HttpSession session
 			){
-		int co_code = 1; // 후에 회사 코드 추가해야함.
+		Member member = (Member) session.getAttribute("loginMember");
+		long co_code = member.getCoCode(); // 후에 회사 코드 추가해야함.
 		Map<String, Object> param = new HashMap<>();
 		param.put("co_code", co_code);
 		param.put("member_info_no", member_info_no);

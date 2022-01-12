@@ -64,7 +64,7 @@ public class EvaluationServiceImpl implements EvaluationService {
 	}
 
 	@Override
-	public List<Apply> selectApplyList(Map<String, Integer> param) {
+	public List<Apply> selectApplyList(Map<String, Object> param) {
 		return evaluationDao.selectApplyList(param);
 	}
 

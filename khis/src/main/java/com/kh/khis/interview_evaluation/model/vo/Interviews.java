@@ -19,7 +19,7 @@ public class Interviews implements Serializable {
 	private int evaluate_no;
 	private int interview_no;
 	private int member_no;
-	private int co_code;
+	private long co_code;
 	private String name;
 	private String title;
 	private String content;

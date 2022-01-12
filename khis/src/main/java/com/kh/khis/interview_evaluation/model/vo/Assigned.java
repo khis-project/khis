@@ -17,7 +17,7 @@ public class Assigned implements Serializable {
 	private int member_info_no;
 	private int assigned_interviewer;
 	private String passcheck;
-	private int co_code;
+	private long co_code;
 	private String final_pass_check;
 
 }

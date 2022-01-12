@@ -67,7 +67,7 @@ h2 {
 }
 </style>
 <body>
-<section id="check" style="margin : auto; text-align : center;">
+<section id="check" style="margin : auto; text-align : center; height: 900px;">
 	<h2>면접 결과 확인</h2>
 	<div id="welcome">
 		<p id="welcome-name">${name}님 반갑습니다.</p>
@@ -146,7 +146,7 @@ $("#showlist").click((e) => {
 	});
 });
 $(".checkedresults_I").click((e) => {
-	detailFrm.submit()
+	detailFrm.submit();
 });
 $(document).on("mouseover", ".checkedresults_I", function(){
 	$(".checkedresults").css({

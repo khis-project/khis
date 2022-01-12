@@ -68,7 +68,7 @@ public class EvaluationDaoImpl implements EvaluationDao {
 	}
 
 	@Override
-	public List<Apply> selectApplyList(Map<String, Integer> param) {
+	public List<Apply> selectApplyList(Map<String, Object> param) {
 		return session.selectList("evaluation.selectApplyList", param);
 	}
 

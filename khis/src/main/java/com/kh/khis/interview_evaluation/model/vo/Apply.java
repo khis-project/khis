@@ -18,7 +18,7 @@ public class Apply implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int member_info_no;
-	private int co_code;
+	private long co_code;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date start_time;
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")

@@ -16,7 +16,7 @@ public class PassYN implements Serializable {
 	
 	private int pass_no;
 	private int member_info_no;
-	private int co_code;
+	private long co_code;
 	private String final_pass_check;
 	private Date reg_date;
 	private String board_write_yn;
