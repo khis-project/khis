@@ -919,4 +919,20 @@ from
  and it.end_time'
  
  select * from ir_info where co_code = 1258154503
- select * from ASSIGNED_INFO a left join ir_info i  on  a.member_info_no = i.member_info_no where i.co_code = 1258154503
+ select * from ASSIGNED_INFO a left join ir_info i  on  a.member_info_no = i.member_info_no where i.co_code = 1258154503;
+ 
+ select * from zoom;
+ 
+ 
+ select ir.member_info_no as "groupId"
+      , co_name || ' ' || t.job_posting_name as "title"
+      , cast(t.start_time AS DATE) as "start"
+      , cast(t.end_time AS DATE) as "end"  
+ from ir_info ir left join assigned_Info ai on ir.member_info_no = ai.member_info_no
+ left join interview_time t on t.member_info_no = ai.member_info_no
+ left join member_company mc on ir.co_code = mc.co_code  
+ 
+ where
+ ir.co_code = 1258154503
+ 
+ select * from ir_info ii l
