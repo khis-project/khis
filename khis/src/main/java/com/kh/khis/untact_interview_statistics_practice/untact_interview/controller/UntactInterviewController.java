@@ -240,7 +240,7 @@ public class UntactInterviewController {
 	
 	@PostMapping("zoomUpdate.do")
 	public String Updatezoom(@ModelAttribute Zoom zoom, Model model, RedirectAttributes redirectAttr) {
-//		System.out.println("zoom : " + zoom);
+		System.out.println("zoom : " + zoom);
 		int result = untactInterviewService.updateZoom(zoom);
 		String msg = result > 0 ? "zoom api 수정에 성공하였습니다." : "zoom api 수정에 실패하였습니다.";
 		redirectAttr.addFlashAttribute("msg",msg);

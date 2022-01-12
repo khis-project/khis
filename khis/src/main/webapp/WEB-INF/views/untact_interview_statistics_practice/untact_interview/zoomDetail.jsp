@@ -8,6 +8,7 @@
 	<jsp:param value="zoom 수정" name="title"/>
 </jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/untact_interview.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/untact_interview_statistics_practice/interview_practice.css" />
 <script>
 <c:if test="${not empty msg}">
 alert("${msg}");
@@ -31,8 +32,8 @@ alert("${msg}");
 		</table>
 		<table class="zoomTb">
 			<tr>
-				<td class ="zoomTbBtn"><input type="submit" class="interview_btn" value="수정"></td>
-				<td class ="zoomTbBtn"><input type="reset" class="interview_btn" value="취소" onclick="javascript:history.back();"></td>
+				<td class ="zoomTbBtn"><input type="submit" class="button-hover button-basic table-button" value="수정"></td>
+				<td class ="zoomTbBtn"><input type="reset" class="button-hover button-basic table-button" value="취소" onclick="javascript:history.back();"></td>
 			</tr>
 		</table>
 	</form>
