@@ -30,7 +30,7 @@ alert("${msg}");
 
 <div id = "zoomSection" style="height: 900px;" class="text-align-center">
 	<h2 style="margin-top:50px"><img src="${pageContext.request.contextPath}/resources/images/untact_interview_statistics_practice/zoomUse/zoom_logo_icon_189240.png" width="45px"/>Zoom 회의실 리스트</h2>
-
+	<label style="font-size : 9px; color : #808080;">회의실을 삭제하면 해당 면접자의 회의실 배정도 다시해야됩니다</label>
 	<table class="zoomListTb">
 		<tr>
 			<th>번호</th>

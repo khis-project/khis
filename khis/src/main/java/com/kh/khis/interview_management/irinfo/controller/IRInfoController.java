@@ -324,7 +324,7 @@ public class IRInfoController {
 
 			irInfo.setInterviewTime(interviewTime);
 		}
-		
+		log.debug("update : irInfo = {}", irInfo);
 		int result = irinfoService.updateInterviewer(irInfo);
 		String msg = result > 0 ? "수정 성공" : "수정 실패";
 		redirectAttr.addFlashAttribute("msg", msg);
