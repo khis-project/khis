@@ -111,7 +111,8 @@
 		email = #{email},
 		phone = #{phone},
 		category = #{category},
-		ir_path_code = #{irPathCode}
+		ir_path_code = #{irPathCode},
+		zoom_no = #{zoomNo}
 		where member_info_no = #{memberInfoNo}
 	</update>
 	<update id = "updateInterviewTime">
