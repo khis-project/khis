@@ -17,6 +17,11 @@
 </script>
 <c:remove var="msg" />
 </c:if>
+<c:if test="${not empty evmsg}">
+<script>
+	alert("${evmsg}");
+</script>
+</c:if>
 
 <html>
 <title>면접관 마이 페이지</title>
