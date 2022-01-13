@@ -583,7 +583,6 @@ $("#btn3").click((e) => {
 			<tr>
 				<td colspan="2"><hr /></td>
 			</tr></table>`;
-			console.log("도착은했냐");
 			console.log(data);
 			let testvalue = 0;
 			let sum = 0;
@@ -881,7 +880,7 @@ $(document).on("click", ".evaluation-insert", function(){
 				data: $("[name=finishFrm"+form+"]").serialize(),
 				dataTyps : "json",
 				success(data){
-					alert("${data.msg}");
+					alert("평가 수정이 완료되었습니다.");
 					/* $("#"+form).val("저장"); */
 					$(this).attr("action",`${pageContext.request.contextPath}/evaluation/updateEvaluation.do`);
 					
