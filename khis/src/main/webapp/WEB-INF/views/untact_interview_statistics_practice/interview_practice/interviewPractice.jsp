@@ -69,7 +69,7 @@
 		<input type="button" id = "practicestartBasicBtn" class = "text-align-center button-basic button-hover margin-top-basic interviewBtn-basic" value="기본 면접 연습" >
 		<br>
 		<label id = "resultMessage" style="display: block; color: #616361; font-size: small;">개발자 면접 연습은 프리미엄 회원만 이용가능합니다.</label>
-		<label id = "resultMessage" style="display: block; color: #616361; font-size: small;">사용이 <label style="color:red;">${premium eq 'n'? '가능': '불가능'}</label>합니다.</label>
+		<label id = "resultMessage" style="display: block; color: #616361; font-size: small;">사용이 <label style="color:red;">${premium eq "n"? '가능': '불가능'}</label>합니다.</label>
 		
 		<input type="button" id = "back" class = "text-align-center button-basic button-hover margin-top-basic interviewBtn-basic" value="뒤로가기" onclick="javascript:history.back();">
 

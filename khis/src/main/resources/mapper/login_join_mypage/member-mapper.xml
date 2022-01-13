@@ -29,7 +29,7 @@ select
     m.*, i.member_info_no, e.month, e.end_yn
 from
     member m left join ir_info i on m.member_no = i.member_no 
-    left join premium e on e.member_no = i.member_no and e.end_yn ='n'
+    left join premium e on e.member_no = m.member_no and e.end_yn ='n'
 where
     m.id = #{id}  
 </select>

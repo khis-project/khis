@@ -55,6 +55,7 @@ public class LoginController {
 			// 로그인 성공 : loginMember객체를 세션에 저장해서 로그인상태유지
 			model.addAttribute("loginMember", member);
 			session.setAttribute("loginMember", member);
+			System.out.println("loginMember" + member);
 			if(member.getKind().equals("IR_HAED")){
 				MemberCompany memberCompany = memberCompanyService.selectOneMemberCompany(member.getCoCode().toString());
 				session.setAttribute("memberCompany", memberCompany);
