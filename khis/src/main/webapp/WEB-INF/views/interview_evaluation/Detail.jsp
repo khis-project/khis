@@ -21,10 +21,9 @@ h2 {
 	margin-top: 50px;
 	text-align: center;
 }
+
 #detailtable th, td {
 	border: 1px solid black;
-}
-#detailtable th{
 	text-align: center;
 }
 #detaildiv {
@@ -41,11 +40,11 @@ h2 {
 }
 </style>
 <body>
-<section id="detail">
+<section id="detail" style="height: 900px;">
 	<h2>면접 결과 상세보기</h2>
 	<br />
 	<div id="detaildiv">
-		<table id="detailtable">
+		<table id="detailtable" class="table-sm">
 			<thead>
 				<tr>
 					<th width="150px;">면접관 번호</th>
@@ -66,6 +65,7 @@ h2 {
 				</c:forEach>
 			</tbody>
 		</table>
+		<br />
 	<a id="goback" href="${pageContext.request.contextPath}/info/checkMyEvaluation.do">뒤로가기</a>
 	</div>
 </section>	

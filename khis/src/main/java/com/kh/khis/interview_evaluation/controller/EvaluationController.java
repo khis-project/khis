@@ -113,7 +113,7 @@ public class EvaluationController {
 		log.debug("interviewer = {}", interviewer);
 		Map<String, Object> param = new HashMap<>();
 		param.put("interviewer", interviewer);
-		int interviewer_info_no = interviewer.getMember_info_no();
+		int interviewer_info_no = interviewer.getInterviewer_info_no();
 		
 		System.out.println("interviewer_info_no = " + interviewer_info_no);
 		
