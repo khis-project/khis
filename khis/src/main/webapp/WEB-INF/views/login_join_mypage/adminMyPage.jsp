@@ -32,7 +32,7 @@
 				</div>
 				<div class="schedule">
 					<span><br>면접 일정</span><br><br>
-				    <span><a href='${pageContext.request.contextPath}/khis/member/schedule.do'>
+				    <span><a href='${pageContext.request.contextPath}/member/schedule.do'>
 				    <i class="fas fa-tasks fa-9x" style="color: #34495E;"></i></a></span>
 				    <p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">회원들의 면접 일정을 확인합니다.</p>
 				</div>

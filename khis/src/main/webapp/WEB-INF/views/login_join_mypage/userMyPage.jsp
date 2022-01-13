@@ -33,7 +33,7 @@
 			<div class="box">
 				<div class="information">
 					<span><br>회원정보</span><br><br> 
-					<span><a href="http://localhost:9090/khis/member/updateForm.do">
+					<span><a href='${pageContext.request.contextPath}/member/updateForm.do'>
 						<i class="fas fa-user-lock fa-9x"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">소중한 개인 정보, 확인 및 수정이 가능해요.</p><p2>* [ 면접자로 변경 가능해요 :) ]</p2>
 				</div>

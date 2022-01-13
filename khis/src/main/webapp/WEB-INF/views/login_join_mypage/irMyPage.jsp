@@ -33,7 +33,7 @@
 			<div class="box">
 				<div class="information">
 					<span><br>회원정보</span><br><br> 
-					<span><a href='${pageContext.request.contextPath}/khis/member/updateForm.do'>
+					<span><a href='${pageContext.request.contextPath}/member/updateForm.do'>
 						<i class="fas fa-user-lock fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">소중한 개인 정보,<br /> 확인 및 수정이 가능해요.</p><p2>* [ 수정은 주소만 변경 가능합니다.:) ]</p2>
 				</div>
@@ -44,7 +44,7 @@
 				</div>
 				<div class="schedule">
 					<span><br>면접 일정</span><br><br>
-				    <span><a href='${pageContext.request.contextPath}/khis/member/schedule.do'>
+				    <span><a href='${pageContext.request.contextPath}/member/schedule.do'>
 				      <i class="fas fa-tasks fa-7x" style="color: #34495E;"></i></a></span>
 					<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">나의 면접 일정을 한눈에 볼 수 있어요.</p>
 				</div>
