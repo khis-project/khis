@@ -26,13 +26,13 @@
 			<div class="box">
 				<div class="information">
 					<span><br>회원리스트</span><br><br> 
-					<span><a href="http://localhost:9090/khis/admin/adminMemberList.do">
+					<span><a href='${pageContext.request.contextPath}/admin/adminMemberList.do'>
 						<i class="fas fa-user-lock fa-9x" style="color: #34495E;"></i></a></span>
 						<p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">회원들의 정보를 확인 및 수정합니다.</p>
 				</div>
 				<div class="schedule">
 					<span><br>면접 일정</span><br><br>
-				    <span><a href="http://localhost:9090/khis/member/schedule.do">
+				    <span><a href='${pageContext.request.contextPath}/khis/member/schedule.do'>
 				    <i class="fas fa-tasks fa-9x" style="color: #34495E;"></i></a></span>
 				    <p style= "margin-top: 30px; font-size: 13px; font-family: 'GmarketSansMedium';">회원들의 면접 일정을 확인합니다.</p>
 				</div>

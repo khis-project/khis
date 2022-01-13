@@ -78,7 +78,7 @@ function getThisUserUpdateform(userId){
 
 function deleteUser(userId){
 	if(confirm('삭제 하시겠습니까?')){
-		location.href = "${pageContext.request.contextPath}/admin/deleteThisUser.do/"+userId;
+		location.href = "${pageContext.request.contextPath}/admin/adminMemberList.do/";
 		alert("삭제가 완료되었습니다.");
 	}
 }
