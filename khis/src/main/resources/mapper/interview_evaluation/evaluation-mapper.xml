@@ -102,7 +102,7 @@
   		i.interview_no,
         ie.evaluate_value,
         ie.evaluate_no,
-        ie.evaluate_comment,
+        nvl(ie.evaluate_comment, '평가 내용 없음') as evaluate_comment,
         pa.passcheck
 	from 
 		interview i left join interview_evaluate ie 

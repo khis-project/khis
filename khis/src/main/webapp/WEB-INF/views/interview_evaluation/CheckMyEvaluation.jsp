@@ -104,11 +104,11 @@ h2 {
 									평가중
 								</c:if>
 							</td>
-							<td style="text-align: center;" width="200px;">
+							<td style="text-align: center;" width="200px;" class="checkedresults_I">
 								<c:if test="${item.final_pass_check != 'null'}">
-									<form action="${pageContext.request.contextPath}/info/checkDetail.do" name="detailFrm" method="POST">
+									<form action="${pageContext.request.contextPath}/info/checkDetail.do" name="detailFrm" method="POST" style="margin: auto;">
 										<input type="hidden" name="passcheck" value="${item.final_pass_check}"/>		
-										<input type="submit" class="checkedresults_I" value="상세 결과 확인" ${premium eq 'n'? '': 'disabled'}/><!-- 프리미엄 회원만 이용 -->
+										<input type="submit" class="checkedresults_II" value="상세 결과 확인" ${premium eq 'n'? '': 'disabled'}/><!-- 프리미엄 회원만 이용 -->
 									</form>
 									<span class="checkedresults">프리미엄 회원만 이용가능합니다.</span>
 								</c:if>
