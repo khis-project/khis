@@ -61,35 +61,46 @@ public class EvaluationController {
 		else {
 			// 1. 전체 면접자 목록
 			System.out.println("member = " + member);
-			int assigned_interviewer = member.getMemberInfoNo();
-//			int assigned_interviewer = 43;			
-			List<Interviewer> list = evaluationService.selectMemberList(offset, limit, assigned_interviewer);
-			log.debug("list = {}", list);
-			model.addAttribute("list", list);
-//			System.out.println("list1 = " + list.get(0));
-//			model.addAttribute("list1", list.get(0)); 
-			
-			// 2. 전체 면접자 수
-			int totalCount = evaluationService.selectMemberCount(assigned_interviewer);
-			int notcomeCount = 0;
-			log.debug("totalCount = {}", totalCount);
-			model.addAttribute("totalCount", totalCount);
-			for(Interviewer i : list) {
-				notcomeCount += (i.getMember_no() == 0 ? 1 : 0);
+			if(member.getMemberInfoNo() == null) {
+				redirectAttr.addFlashAttribute("evmsg", "올바르지 않은 회원입니다.");
+				return "redirect:/member/irSMyPage.do";
 			}
-			model.addAttribute("notcomeCount", notcomeCount);
-			// 3. pagebar
-			String url = request.getRequestURI();
-			String pagebar = HiSpringUtils2.getPagebar(cPage, limit, totalCount, url);
-			log.debug("pagebar = {}", pagebar);
-			model.addAttribute("pagebar", pagebar);
-			/* } */
-			/*
-			 * else if (member == null){ String msg = "로그인 후 이용해주세요.";
-			 * request.setAttribute("loginmsg", msg); }
-			 */
-			System.out.println("loginMember = " + assigned_interviewer);
-			return "interview_evaluation/Evaluation";
+			else {
+				int assigned_interviewer = member.getMemberInfoNo();
+				List<Interviewer> list = evaluationService.selectMemberList(offset, limit, assigned_interviewer);
+				if(list == null) {
+					redirectAttr.addFlashAttribute("msg", "배정된 면접관이 없습니다.");
+					return "redirect:/member/irSMyPage.do";
+				}
+				else {
+				log.debug("list = {}", list);
+				model.addAttribute("list", list);
+	//			System.out.println("list1 = " + list.get(0));
+	//			model.addAttribute("list1", list.get(0)); 
+				
+				// 2. 전체 면접자 수
+				int totalCount = evaluationService.selectMemberCount(assigned_interviewer);
+				int notcomeCount = 0;
+				log.debug("totalCount = {}", totalCount);
+				model.addAttribute("totalCount", totalCount);
+				for(Interviewer i : list) {
+					notcomeCount += (i.getMember_no() == 0 ? 1 : 0);
+				}
+				model.addAttribute("notcomeCount", notcomeCount);
+				// 3. pagebar
+				String url = request.getRequestURI();
+				String pagebar = HiSpringUtils2.getPagebar(cPage, limit, totalCount, url);
+				log.debug("pagebar = {}", pagebar);
+				model.addAttribute("pagebar", pagebar);
+				/* } */
+				/*
+				 * else if (member == null){ String msg = "로그인 후 이용해주세요.";
+				 * request.setAttribute("loginmsg", msg); }
+				 */
+				System.out.println("loginMember = " + assigned_interviewer);
+				return "interview_evaluation/Evaluation";
+				}
+			}
 		}
 	}
 	

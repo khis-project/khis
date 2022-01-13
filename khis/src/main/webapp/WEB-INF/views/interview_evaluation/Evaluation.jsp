@@ -229,6 +229,9 @@ h3 {
 <c:if test="${not empty loginMsg}">
 alert("${loginMsg}");
 </c:if>
+<c:if test="${not empty evmsg}">
+alert("${evmsg}");
+</c:if>
 </script>
 <a href="" id = "startChat"><img src="https://i.ibb.co/wskkRmQ/speech-bubble.png" alt=""></a>
 <div id="evaluation">
