@@ -104,6 +104,7 @@ public class InterviewPracticeController{
 			return "redirect:/member/loginForm.do";
 		}else {
 			log.debug("{}", "practice.do 요청!");
+			log.debug("end = {}", loginMember.getEndYN());
 			model.addAttribute("premium", loginMember.getEndYN());
 			return "untact_interview_statistics_practice/interview_practice/interviewPractice";
 		}

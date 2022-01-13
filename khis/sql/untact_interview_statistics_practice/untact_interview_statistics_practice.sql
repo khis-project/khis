@@ -688,9 +688,12 @@ ALTER TABLE  premium  ADD CONSTRAINT  PK_premium  PRIMARY KEY (
 create or replace procedure update_premium_procedure
 is
 begin
-    update premium set end_yn = 'n' where ADD_MONTHS(reg_date, month) <= sysdate;
+    update premium set end_yn = 'n' where ADD_MONTHS(reg_date, month) <= systimestamp;
     commit;
 end;
+
+
+
 --
 --begin
 --dbms_scheduler.create_job(
@@ -729,15 +732,7 @@ where ii.member_info_no = 21;
 
 
 /* 제품 삭제시 판매제품 글의 게시글 삭제여부 변경 트리거 product_writing_yn = 'y' */
-create or replace trigger trg_member_del
-    after
-        delete on member /*member에서 데이터가 삭제된 후에 실행*/
-        for each row
-begin
-    update product_writing 
-    set product_writing_yn = 'y' 
-    where id = :old.id;
-end;
+
 
 /* 후기삭제시 pass_yn의 후기 작성한 부분 다시 작성 가능하게 여부 변경 트리거 board_write_yn = 'n' */
 --drop trigger trg_board_del;
@@ -960,3 +955,5 @@ member_info_no = 96
 
 delete from interview_evaluate where evaluate_no = 45;
 commit;
+
+delete from premium where member_no = 108
