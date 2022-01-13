@@ -44,7 +44,7 @@
         it.job_posting_name
 	from
 	    ir_info ir left join interviewer_info ii
-        on ir.member_info_no = ii.interviewer_info_no
+        on ir.interviewer_info_no = ii.interviewer_info_no
         left join interview_time it on ir.member_info_no = it.member_info_no
 	where
 		ir.member_info_no = #{interviewer_info_no}
