@@ -25,7 +25,7 @@ public class HomeController {
 		logger.debug("HomeController ---- forward ----> index.jsp");
 		
 		// welcompage를 직접가지 않고, handler를 거쳐가는 설정
-		return "forward:/index.jsp";
+		return "forward:/WEB-INF/index.jsp";
 	}
 	
 }
