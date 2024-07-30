@@ -70,63 +70,7 @@
 			startFunc();
 				
 		});
-			<%
-/* 				List<InterviewQuesionPractice> interviewQuestion = (List<InterviewQuesionPractice>) request.getAttribute("selectPractice");
-				InterviewQuesionPractice ip = (InterviewQuesionPractice)request.getAttribute("selectPracticeRandom");
-				int listSize = (int)request.getAttribute("listSize");
-				System.out.println(interviewQuestion);
-				System.out.println(ip);
-				System.out.println(listSize);
-				if((int)request.getAttribute("listSize") != interviewQuestion.size()){
-						
-					System.out.println("여기도착을 안하니");
-					for(int a = 0; a < interviewQuestion.size(); a++){
-						if(interviewQuestion.get(a).getQuestion_no() == ip.getQuestion_no())
-							interviewQuestion.remove(a);				
-					}
-					
-					int randoms = (int)(Math.random() * interviewQuestion.size()-1);
-					
-					InterviewQuesionPractice ip_again = interviewQuestion.get(randoms);
-					String[] splits = ip_again.getAnswer().split(",");
-					String answer = "";
-					for(int a = 0; a < splits.length; a++)
-						answer += splits[a] + (a!=splits.length -1 ? "<br>" : "");
-					ip_again.setAnswer(answer);
-					request.setAttribute("selectPracticeRandom", ip_again);
-					request.setAttribute("selectPractice", interviewQuestion);		
-				}else{
-					request.setAttribute("listSize", listSize -interviewQuestion.size());
-
-				} */
-			%>
 			
-			
-/*  			 $.ajax({
-				type : 'POST',
-				url : '${pageContext.request.contextPath}/interviewPractice/interviewPracticeDev.do',
-				contentType : 'application/json; charset=UTF-8',
-				traditional: true ,
-				dataType : "json"
-				data : {'question_no' : ${selectPracticeRandom.getQuestion_no()}},
-				success(data){
-					console.log(data);
-					$("#Answer").remove();
-					$("#divQuestion").after(`<table id = "Answer" class="display-none margin-auto-basic"><tr><th style="width:50px;">설명</th><td><lable class=".divQuestionAK">`+`${data.answer}`+`</label></td></tr><tr><th>키워드</th><td><label class=".divQuestionAK" id = "divQuestionK">`+`${data.answer_keyword}`+`</label><td/></tr></table>`)
-					$("#textMessage").val(data.question);
-					$("#Quesion1").text(data.question);
-					startFunc();
-				},
-				error : console.log	
-			});   
- 			$("#divQuestion").after().remove();
-			$("#divQuestion").after(`<table id = "Answer" class="display-none"><tr><th style="width:50px;">설명</th><td><lable class=".divQuestionAK">`+`${selectPracticeRandom.answer}`+`</label></td></tr><tr><th>키워드</th><td><label class=".divQuestionAK" id = "divQuestionK">`+`${selectPracticeRandom.answer_keyword}`+`</label><td/></tr></table>`)
-			$("#textMessage").val(`${selectPracticeRandom.question}`);
-			$("#Quesion1").text(`${selectPracticeRandom.question}`);
-			startFunc();
-		}); */
-		
-		
 		function startFunc(){
 			$("#startMessage").css("display", "block");
 			setTimeout(function() {
@@ -206,7 +150,6 @@
 		
 		//음성 인식 speech -> text
 		function SeechR(){
-			console.log("speech 시작");
 			window.SpeechRecognition =
 				  window.SpeechRecognition || window.webkitSpeechRecognition;
 			
@@ -238,7 +181,7 @@
 				  let interimTranscript = "";
 				  for (let i = e.resultIndex, len = e.results.length; i < len; i++) {
 				    let transcript = e.results[i][0].transcript;
-				    console.log(transcript);
+
 				    if (e.results[i].isFinal) {
 				      speechToText += transcript;
 				    } else {
@@ -270,13 +213,11 @@
 	 					if($("[name=kind]").val() == 'D'){
 	 				
 		 					var divQuestionK = ("${selectPracticeRandom.answer_keyword}").split(',');
-		 					console.log("키워드 : "+divQuestionK);
-		 					var para = $(".para").text();
+							var para = $(".para").text();
 		 					var Quesions = "";
-		 					console.log(divQuestionK.length);
 		 					for(var a = 0; a < divQuestionK.length ; a++){	 		
 		 						var indexofs = para.indexOf(divQuestionK[a]);
-		 						console.log("포함여부 : " + indexofs);
+		 						
 		 						if(indexofs >= 0)
 		 							Quesions += divQuestionK[a] + (a != divQuestionK.length -1 ? ", " : "");
 		 						else

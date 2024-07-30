@@ -40,7 +40,7 @@ $(document).ready(function(){
         for (var i in res.data) {
           var co = res.data[i];
           if (co.b_no == coCode){
-        	console.log(co);
+
             alert(co.tax_type);
             if (co.b_stt == "계속사업자") {
               var $tmpCo = $(opener.document).find("input#tmpCoCode");
@@ -54,9 +54,6 @@ $(document).ready(function(){
         }
       },
       error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어온다.
-        console.log(textStatus)
-        console.log(XMLHttpRequest)
-        console.log(errorThrown)
         alert("통신 실패.")
       }
     });

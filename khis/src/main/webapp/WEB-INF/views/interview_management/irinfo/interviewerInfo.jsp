@@ -133,8 +133,6 @@ div.photo{
 		</div>
 		<h3>자 기 소 개 서</h3>
 		<div class="selfIntroduction" style = "margin-bottom: 50px; text-align: center;">
-		<input class = "btn btn-outline-primary btn-sm" type="button" value="등록" style = "float:right; margin-bottom: 10px;" onclick="window.open('${pageContext.request.contextPath}/selfIntroduce/selfIntroduce.do','_blank','height=700px, width=500px',)"/>
-		
 			<div class="form-floating">
   				<textarea class="form-control" placeholder="자신을 소개할 수 있는 말을 적어주세요. (500자 이내)" id = "selfIntroduction" name = "selfIntroduction" style="height: 250px;"></textarea>
 			</div>
@@ -212,7 +210,6 @@ div.photo{
 				type : 'post',
 				data : formData,
 				success : function(data) {
-					console.log(data);
 					if(data > 0) {
 						$('#interviewerInfoNo', opener.document).val(data);
 						$('#btn-add', opener.document).val("등록 완료");
@@ -221,9 +218,7 @@ div.photo{
 					} else {
 						alert('등록 오류!');
 					}
-				}, error : function() {
-					console.log(error);
-				}
+				}, error : console.log
 			});
 		}
 	});

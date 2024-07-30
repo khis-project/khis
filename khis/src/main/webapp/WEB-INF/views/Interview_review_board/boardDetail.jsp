@@ -263,8 +263,8 @@
         $comment.find('.cmt-dt').text(comment.commentDate.split(' ')[0]);
         $comment.find('.cmt-up').show();
         $comment.find('.cmt-del').show();
-        console.log("봐봐 -> " + comment.writerNo + " ::: " + ${loginMember.memberNo})
-        if (comment.writerNo == ${loginMember.memberNo}) {
+
+		if (comment.writerNo == ${loginMember.memberNo}) {
           $comment.find('.cmt-up').show();
           $comment.find('.cmt-del').show();
                             

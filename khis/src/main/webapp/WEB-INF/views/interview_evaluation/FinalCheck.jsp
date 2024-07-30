@@ -18,7 +18,7 @@
 </jsp:include>
 <jsp:include page="/WEB-INF/views/interview_management/common/interviewSidebar.jsp"></jsp:include>
 
-<div id="final">
+<div id="final" style="height:900px">
 	<h3>최종 평가</h3>
 	<div class="interviewer inlinediv">
 		<p>총 면접자 수 : ${iTotalCount}</p>
@@ -78,8 +78,7 @@ $("#interviewer td").click((e) => {
 						</tr>`;
 				value += (item.passcheck == '미평가' ? 1 : 0);
 			});
-			console.log("pass = " + pass);
-			console.log("value = " + value);
+
 			html +=	`<tr>
 						<td id="totalradio" colspan='3'>
 							<input type="radio" id="pass" name="results" value="y" `+((value > 0) ? `disabled` : ``)+` `+((pass != null) ? `disabled` : ``)+` `+((pass == 'y' ? `checked` : ``))+`><label style="color: blue" for="pass">합격</label>
@@ -90,11 +89,11 @@ $("#interviewer td").click((e) => {
 						<td colspan='3'><input type="button" class="btn btn-outline-success" id="complete" style="width: 100%;" value="`+((value == 0) ? '평가 완료' : '평가 불가능')+`" `+((value > 0) ? `disabled` : ``)+` `+((pass != null) ? `disabled` : ``)+`/></td>
 					 </tr>
 					 </table>`;
-			console.log("value = " + value);
+
 			$("#interviewer-info").html(html);
 			(value > 0) ? $("#complete").removeClass("btn-outline-success") : '';
 			(value > 0) ? $("#complete").toggleClass("btn btn btn-danger") : '';
-			console.log("pass : " + ("" == pass));
+
 			$("#complete").val(((pass != null && pass != "") ? '평가가 완료된 면접자입니다.' : $("#complete").val()));
 			$("#complete").click((e) => {
 				if(confirm("최종 평가를 완료하시겠습니까?")){

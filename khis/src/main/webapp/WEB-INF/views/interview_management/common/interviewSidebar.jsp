@@ -33,7 +33,7 @@
 	color : white;
 	}
 </style>
-<div id="sidebar" style="height: 100%;">
+<div id="sidebar" style="height: 900px;">
 	<ul style="margin-top: 70px;">
 		<li>
 			면접 정보 추가 관련

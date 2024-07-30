@@ -16,7 +16,6 @@
 <c:if test="${not empty msg}">
 <script>
 	alert("${msg}");
-	console.log("${msg}");
 	<% // session.removeAttribute("msg"); %>
 </script>
 <c:remove var="msg" />
@@ -133,7 +132,6 @@ $(document).ready(function() {
   $('#kind').change(function() {
     //var result = $('#kind option:selected').val();
     var result = this.value;
-    console.log('selected value:', result);
     if (result == 'IR_HAED') {
       $('#interviewerNo').hide();
       $('#coName').show();
@@ -299,9 +297,6 @@ $(document).ready(function(){
 	         }     
 	      },
 	      error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어온다.
-	        console.log(textStatus)
-	        console.log(XMLHttpRequest)
-	        console.log(errorThrown)
 	        alert("통신 실패.")
 	      }
 	    });

@@ -55,15 +55,6 @@
 </div>
 <script>
 //firebase api
-const firebaseConfig = {
-	    apiKey: "AIzaSyCvgu1J_0_DLUd6iffPB8MXkA-8N_yz7-U",
-	    authDomain: "khis-project.firebaseapp.com",
-	    projectId: "khis-project",
-	    storageBucket: "khis-project.appspot.com",
-	    messagingSenderId: "134181816355",
-	    appId: "1:134181816355:web:87222bd120c351363b0996",
-	    measurementId: "G-F2LSTP2YBZ"
-		};
 
 // firebase 초기화
 firebase.initializeApp(firebaseConfig);
@@ -80,17 +71,14 @@ function getfile()
 
        // 파일선택을 해서 파일을 업로드 하면 firebase에 저장하는 id='submit_link' 활성화
        let pic_name = pic.value.split("\\");
-       console.log(pic_name);
-       console.log($("[name=filebox]").val() +"뭐죠");
+
        $("[name=filebox]").val(pic_name[pic_name.length-1]);
       if($("[name=filebox]").val() == null || $("[name=filebox]").val() == ""){
-    	  console.log("미도착");
 	      document.getElementById('submit_link').setAttribute('disabled', 'true');    	  
 	      document.getElementById('submit_link').style.opacity = "0.5";    	  
 	      document.getElementById('Extraction').setAttribute('disabled', 'true');    	  
 	      document.getElementById('Extraction').style.opacity = "0.5";    	  
       }else{
-    	  console.log("도착");
     	  document.getElementById('submit_link').removeAttribute('disabled');     	  
 	      document.getElementById('submit_link').style.opacity = "1";    	  
       }
@@ -131,11 +119,8 @@ function getfile()
             function(downloadURL) {
 
            // 다운로드 된 url -> downloadURL 변수에 저장
-            console.log('File available at', downloadURL);
             $("[name=file_url]").val(downloadURL);
             
-           // url 주소 출력
-           console.log(downloadURL);
            // 텍스트 추출 버튼 활성화
      	  document.getElementById('Extraction').removeAttribute('disabled');     	  
 	      document.getElementById('Extraction').style.opacity = "1";   

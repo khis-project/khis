@@ -13,7 +13,6 @@
 <c:if test="${not empty msg}">
 <script>
   alert("${msg}");
-  console.log("${msg}");
   <%session.removeAttribute("msg"); %>
 </script>
 <c:remove var="msg" />

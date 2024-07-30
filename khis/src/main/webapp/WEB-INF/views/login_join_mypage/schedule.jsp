@@ -12,7 +12,6 @@
 <c:if test="${not empty msg}">
 	<script>
 		alert("${msg}");
-		console.log("${msg}");
 	<%session.removeAttribute("msg");%>
 	</script>
 	<c:remove var="msg" />
@@ -55,7 +54,6 @@
 		$(function() {
 			$.get(`${pageContext.request.contextPath}/member/scheduleList.do`,
 					function(data) {
-						console.log(data);
 						initCalendar(data);
 					})
 		})

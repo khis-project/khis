@@ -142,7 +142,6 @@ $(id).keyup((e) => {
 			id: $id.val()
 		},
 		success(data){
-			console.log(data);
 			const {available} = data;
 			if(available){
 				$ok.show();
@@ -195,7 +194,6 @@ function a(){
 $(document).ready(function() {
   $('#kind').change(function() {
     var result = this.value;
-    console.log('selected value:', result);
     if (result == 'IR_HAED') {
       $('#interviewerNo').hide();
       $('#coName').show();
