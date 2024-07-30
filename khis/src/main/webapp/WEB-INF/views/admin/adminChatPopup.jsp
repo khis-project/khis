@@ -79,13 +79,10 @@ span{
 		setInterval(chatLogUpdate, 15000);
 		// 구독신청 및 핸들러 등록
 		stompClient.subscribe("/chat/${chatId}", (message) => {
-			console.log("message : ", message);
+
 			const {memberId, msg} = JSON.parse(message.body);
-			console.log(memberId);
-			console.log("${loginMember.id}");
+
 			const loginMember = "${loginMember.id}";
-				console.log(loginMember == memberId);
-				console.log(loginMember == memberId ? `style = "text-align:right;">` : `>`);
 				$(data).append(`<div class = "mt-2 mb-2 messageFrm"  `+(loginMember == memberId ? `style = "text-align:right;">` : `>`) +
 				(`<p style ="margin-bottom: 0;"> \${memberId} <span>님</span></p>`) +
 				(`<div class="message"><label class = "messageLabel" `+(loginMember == memberId ? `style = "background-color:lightyellow;">` : `>`) + `\${msg }</label></div>`) + 
@@ -104,7 +101,6 @@ span{
 	 * 팝업창이 활성화(focus)되면 chat_member.last_check컬럼을 update한다.
 	 */
 	$(window).focus((e) => {
-		console.log("WINDOW FOCUS");
 		lastCheck();
 	});
 	
@@ -151,7 +147,6 @@ span{
 			},
 			success : function(chatLog) {
 				const data = document.getElementById('data');
-				console.log("채팅창 초기화");
 				$(data).empty();
 
 				$.each(chatLog, function(i, content) {
@@ -165,9 +160,7 @@ span{
 				$('#chatForm').scrollTop($('#chatForm')[0].scrollHeight);
 				
 			}, 
-			error : function() {
-				console.log(error);
-			}
+			error : console.log
 			
 		});
 	};

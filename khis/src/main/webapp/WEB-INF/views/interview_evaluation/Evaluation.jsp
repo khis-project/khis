@@ -340,8 +340,6 @@ $("#person td").click((e) => {
 			member_no : $(e.target).attr('id')
 		},
 		success(data) {
-			console.log(data);
-			console.log(data.certificate);
 			let certificatesDetail = `<table id="certificatetable" class="table table-sm table-borderless" style="text-align: center;">
 										<thead class="btn-light">
 										<tr>
@@ -367,7 +365,6 @@ $("#person td").click((e) => {
 										</thead>	
 								`;
 			$.each(data.certificate, function(index, item){
-				console.log(item);
 				certificatesDetail += `	
 										<tr>
 											<td>`+item.certificate_name+`</td>
@@ -391,7 +388,6 @@ $("#person td").click((e) => {
 			careerDetail += ((data.career.length == 0) ? `<tr><td colspan='4'>보유한 경력이 없습니다.</td></tr>` : ``);
 			careerDetail += `</table>`;
 			
-			console.log(certificatesDetail);
 			let html = `<br/><br/><table class="interviews" style="width:100%;">
 							<tr>
 								<td width="200px;" rowspan="8">
@@ -441,7 +437,7 @@ $("#person td").click((e) => {
 		}); */
 		$("#member_info_no_hidden").val(data.interviewer.member_info_no);
 		$("#co_code_hidden").val(data.interviewer.co_code);
-		console.log(data.interviewer.member_info_no);
+
 		},
 		error: console.log
 	});
@@ -468,7 +464,6 @@ $("#person td").click((e) => {
 	$("#applyList").css({
 		"display":"none"
 	});
-	console.log('${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=R&member_info_no='+ $("#member_info_no_hidden").val());
 	$("#zoomIframeConnect").attr('src', '${pageContext.request.contextPath}/untactInterview/zoomMeetingConnect.do?kind=R&member_info_no='+$("#member_info_no_hidden").val());
 	
 });
@@ -515,7 +510,6 @@ $("#btn2").click((e) => {
 		success(data){
 			let html = `<table id="applytable" class="table table-sm"><thead class="thead-dark"><tr><th colspan="2">면접 날짜</th><th>공고 유형</th></tr></thead>`;
 			$.each(data, function(index, item){
-				console.log(item);
 				html += `<tr><td>`+item.start_time+`~`+item.end_time+`</td><td colspan="2" width="200px;">`+item.job_posting_name+`</td></tr>`;	
 			});
 			html += (data.length == 0) ? `<tr><td colspan='3'>지원 이력이 없습니다.</td></tr>` : `</table>`;
@@ -568,7 +562,6 @@ $("#btn3").click((e) => {
 		"display":"inline"
 	});
 	let pass = '';
-	console.log("pass3 = " + pass);
 	$.ajax({
 		url: `${pageContext.request.contextPath}/evaluation/evaluationQuestion.do`,
 		method: "GET",
@@ -583,19 +576,13 @@ $("#btn3").click((e) => {
 			<tr>
 				<td colspan="2"><hr /></td>
 			</tr></table>`;
-			console.log(data);
 			let testvalue = 0;
 			let sum = 0;
 			$.each(data, function(index, item){
 				pass = item.passcheck;
-				console.log("pass2 = " + pass);
 				sum += item.evaluate_value;
-				console.log(data.length);
-				console.log(item.evaluate_no);
 				$("#evaluate_no_hidden").val($("#evaluate_no_hidden").val() + item.evaluate_no + (index != data.length - 1 ? "," : ""));
-				console.log(item.interview_no);
-				console.log(item.evaluate_value);
-				console.log(item.evaluate_value==4);
+
 				testvalue = item.evaluate_value + "";
 				$("#interview_no_hidden").val($("#interview_no_hidden").val() + item.interview_no + (index != data.length - 1 ? "," : ""));
 				html += `<form
@@ -629,9 +616,8 @@ $("#btn3").click((e) => {
 			<tr>
 				<td style="height: 10px;"></td>
 			</tr></table></form>`;
-				console.log(item.evaluate_value);
 			});
-			console.log(data.length == 0);
+			
 			html +=
 			((data.length == 0) ? `<table><tr><td>등록된 면접 질문이 없습니다. <br>면접 관리자에게 문의하세요.</td></tr></table>` :
 			`<table>
@@ -694,7 +680,6 @@ $("#btn3").click((e) => {
 					success(data){
 						$("#sumValue").text(data);
 						$("#averageValue").text(Math.round((Number($("#sumValue").text()) / (Number($("#totalValue").text())/5)) * 100) / 100);
-						console.log($("#averageValue").text());
 						$("#averageValue").text() > 3 ? $("#pass").prop('checked', true) : $("#nonpass").prop('checked', true);
 						$("#averageValue").text() > 3 ? $("input:radio[name=results]").attr('disabled', false) : $("input:radio[name=results]").attr('disabled', true);
 					},
@@ -706,7 +691,7 @@ $("#btn3").click((e) => {
 				
 			}
 		});
-		console.log($("input[name=results]:checked").val());
+		
 		$("#complete").click((e) => {
 			if(confirm("평가 결과를 제출하시겠습니까?")){
 				$.ajax({
@@ -734,15 +719,6 @@ $("#btn3").click((e) => {
 				
 			}
 		});
-	/* console.log($(".evaluation-insert"));
-	$(".evaluation-insert").hover(function(){
-		$(this).removeClass("btn-link");
-		$(this).toggleClass("btn-primary");
-	}, function(){
-		$(this).toggleClass("btn-link");
-		$(this).removeClass("btn-primary");
-	});
-		 */
 		},
 		error: console.log
 	});
@@ -788,7 +764,6 @@ $("#btn4").click((e) => {
 		success(data){
 			let html = `<table id="Assignedtable" class="table table-sm"><tr><thead class="thead-dark"><th>배정 번호</th><th>면접관 번호</th></thead></tr>`;
 			$.each(data, function(index, item){
-				console.log(item);
 				html += `<tr><td>`+item.assigned_no+`</td><td>`+`<input type="button" class="assignedbtn btn btn-outline-secondary" value="`+item.assigned_interviewer+`"/>`+`</td></tr>`;	
 			});
 			html += (data.length == 0) ? `<tr><td style="text-align: center;" colspan='2'>다른 면접관의 평가 자료가 없습니다.</td></tr>` : `</table>`;
@@ -836,7 +811,6 @@ $("#btn4").click((e) => {
 						<tr>
 							<td style="height: 10px;"></td>
 						</tr></table></form>`;
-							console.log(item.evaluate_value);
 						});
 					html+= (data.length == 0) ? `<table><th><td>해당 면접관은 현재 평가중입니다.</td></th></table>` : `<input type="hidden" class="member_info_no" value=`+$("#member_info_no_hidden").val()+`>`;
 					$("#anotherInterview").html(html);
@@ -857,9 +831,6 @@ $("#btn4").click((e) => {
 
 $(document).on("click", ".evaluation-insert", function(){
 	let form = $(this).attr("id");
-	console.log(form);
-	console.log($("[name=finishFrm"+form+"]").serialize());
-	console.log($(this).val());
 	if($(this).val() == "저장"){
 		
 		 $.ajax({

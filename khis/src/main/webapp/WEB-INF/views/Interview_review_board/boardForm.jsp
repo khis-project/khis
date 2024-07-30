@@ -317,10 +317,7 @@ $(document).ready(function(){
             	 
                }
 
-            }, error : function(data) {
-                console.log('오류다');
-                
-            }
+            }, error : console.log
 	    });
 	    
 	});
@@ -351,9 +348,6 @@ $(document).on('click', '.tb2 tbody tr', function(){
 		$("#co_name").val(coName);
 		$("#co_code").val(coCode);
 		$("#co_addr").val(coAddr);
- 		console.log("coCode = " + coCode);
- 		console.log("coName = " + coName);
- 		console.log("coAddr = " + coAddr);
 	});
 
 //전송하기 전에 확인 작업하는 코드
@@ -369,8 +363,7 @@ $(document).on('click', '.tb2 tbody tr', function(){
 	$("[name=co_code]").on("change", function () { 
 		var value = $(this).val(); 
 		var subValue = $(this).find("option:selected").data("sub").split(","); 
-		console.log(subValue[0]);
-		console.log(subValue[1]);
+
 		$("[name=co_addr]").val(subValue[0] == "" ? "회사주소가 없습니다." : subValue[0]);
 		$("[name=pass_no]").val(subValue[1]);
 	});

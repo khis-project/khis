@@ -120,14 +120,6 @@ $("#returnBtn").click((e) => {
 	history.back();
 });
 
-/* $('#submitBtn').click((e) => {
-	console.log("버튼 클릭");
-	$('[name=updateInterviewerFrm]').submit();
-	
-}); */
-
-
-
 $('[name=updateInterviewerFrm]').submit(function() {
 	const name = $('#name').val();
 	const email = $('#email').val();

@@ -78,10 +78,6 @@
 		const title = $("#title").val();
 		const content = $("#contentt").val();
 		
-		console.log(title);
-		console.log(content);
-
-		
 		if(title == '') {
 			$('#titleMsg').text("제목은 필수입력값입니다.").css("color", "red").focus();
 			return false;

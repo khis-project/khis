@@ -20,5 +20,6 @@
 		to_char(((p.reg_date +((INTERVAL '1' month) * p.month))),'YYYY-MM-DD HH24:MI:SS') leftDate 
 	from member m left join premium p on m.member_no = p.member_no 
 	where p.end_yn = 'n' and m.member_no = #{member_no}
+	and p.reg_date > sysdate
 	</select>
 </mapper>

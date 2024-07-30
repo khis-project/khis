@@ -90,7 +90,6 @@ var confirmPassword_data = document.getElementById("confirmPassword").value;
 				email: email_data
 			},
 			success(data){
-				console.log(data);
 				if(data == "??"){
 					alert("해당 유저가 존재하지 않습니다.")
 				}
@@ -134,7 +133,6 @@ var confirmPassword_data = document.getElementById("confirmPassword").value;
 				confirmPassword: confirmPassword_data
 			},
 			success(data){
-				console.log(data);
 				if(data == "fail") {
 					alert("인증코드가 일치하지 않습니다.")
 				}

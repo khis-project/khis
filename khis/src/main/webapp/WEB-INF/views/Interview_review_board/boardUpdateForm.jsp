@@ -301,10 +301,7 @@ $(document).ready(function(){
                }
 
              
-            }, error : function(data) {
-                console.log('오류다');
-                
-            }
+            }, error : console.log
             
 	    });
 	    
@@ -343,9 +340,6 @@ $(document).on('click', '.tb2 tbody tr', function(){
 		$("#co_name").val(coName);
 		$("#co_code").val(coCode);
 		$("#co_addr").val(coAddr);
- 		console.log("coCode = " + coCode);
- 		console.log("coName = " + coName);
- 		console.log("coAddr = " + coAddr);
 	});
 
   

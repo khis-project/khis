@@ -66,11 +66,10 @@
 	stompClient.connect({}, (frame) => {
 		// 구독신청 및 핸들러 등록
 		stompClient.subscribe("/chat/admin", (message) => {
-			console.log("message : ", message);
 			
 			// type속성으로  MESSAGE(chatLog), LAST_CHECK을 구분한다.
 			const obj = JSON.parse(message.body);
-			console.log(obj);
+
 			const {chatId, memberId, msg, type} = obj;
 			
 			const $tr = $(`#\${chatId}`);
@@ -104,7 +103,6 @@
 		const $tr = $(e.target).parent("tr");
 		const chatId = $tr.attr("id");
 		const memberId = $tr.data("memberId"); // getter camelcasing으로 참조하기
-		console.log(chatId, memberId);
 		
 		
 		// 팝업요청

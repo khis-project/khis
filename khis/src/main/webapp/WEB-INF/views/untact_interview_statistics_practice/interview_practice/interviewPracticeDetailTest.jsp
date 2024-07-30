@@ -201,7 +201,7 @@
 				  let interimTranscript = "";
 				  for (let i = e.resultIndex, len = e.results.length; i < len; i++) {
 				    let transcript = e.results[i][0].transcript;
-				    console.log(transcript);
+
 				    if (e.results[i].isFinal) {
 				      speechToText += transcript;
 				    } else {
@@ -223,14 +223,13 @@
 	 				else{
 	 					recognition.stop();
 	 					var divQuesionK = $("#divQuesionK").text().split(',');
-	 					console.log("키워드 : "+divQuesionK);
 	 					var para = $(".para").text();
 	 					var Quesions = "";
-	 					console.log(divQuesionK.length);
+	 					
 	 					for(var a = 0; a < divQuesionK.length ; a++){	 		
 	 						var indexofs = para.indexOf(divQuesionK[a]);
-	 						console.log("포함여부 : " + indexofs);
-	 						if(indexofs >= 0)
+
+							if(indexofs >= 0)
 	 							Quesions += divQuesionK[a] + (a != divQuesionK.length -1 ? ", " : "");
 	 						else
 	 							Quesions += "<label style='color:red'>"+divQuesionK[a] + "</label>" + (a !=divQuesionK.length -1 ? ", " : "");
@@ -245,7 +244,6 @@
 		
 		$("#practicestartDevBtn").on("click",function(){
 			$("[name=inputForm]").css("display","none");
-			console.log("${interviewQuestion.size()}");
 			<%
 				int randomss = (int)(Math.random() * interviewQuestion.size()-1);
 				request.setAttribute("randomss", randomss);
@@ -254,12 +252,6 @@
 			var QuestionQ = `${interviewQuestion.get(randomss).interviewQ}`;
 			var QuestionA = `${interviewQuestion.get(randomss).interviewA}`;
 			var QuestionK = `${String.join(",",interviewQuestion.get(randomss).interviewK)}`;
-			console.log("randomss : "+<%=randomss%>);
-			console.log("Questions : "+Questions);
-			console.log("QuestionQ : "+QuestionQ);
-			console.log("QuestionA : "+QuestionA);
-			console.log("QuestionK : "+ typeof QuestionK);
-			console.log("QuestionK : "+ QuestionK);
 
 			// 3초 뒤에 실행
  			
@@ -269,8 +261,6 @@
 			
 			
 			// random 값을 어떻게 처리할지 고민해야된다.★★★
-			
-			
 			$("#divQuesion").after(`<table id = "Answer" class="display-none"><tr><th style="width:50px;">설명</th><td><lable class=".divQuesionAK">`+QuestionA+`</label></td></tr><tr><th>키워드</th><td><label class=".divQuesionAK" id = "divQuesionK">`+QuestionK+`</label><td/></tr></table>`)
 			$(".divQuesionAK").css("display","none");
 			$("#divQuesion").css('display','block');

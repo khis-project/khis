@@ -4,11 +4,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +35,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.khis.untact_interview_statistics_practice.untact_interview.model.service.UntactInterviewService;
+import com.kh.khis.untact_interview_statistics_practice.untact_interview.model.vo.ClassVo;
 import com.kh.khis.untact_interview_statistics_practice.untact_interview.model.vo.Zoom;
 import com.kh.khis.login_join_mypage.model.vo.Member;
 import com.kh.khis.untact_interview_statistics_practice.common.HiSpringUtils;
@@ -57,6 +61,49 @@ public class UntactInterviewController {
 	@Autowired
 	ResourceLoader resourceLoader;
 
+	public void Classes1() {
+      List<ClassVo> allMenuList = null;
+      
+      Map<String, List<String>> map = new HashMap<String, List<String>>();
+      for(ClassVo item : allMenuList){
+    	  String upmenuid = item.upMenuId;
+    	  String menuid = item.menuId;
+         if(menuid != null) { // parent
+        	 map.put(menuid, null);	        	 
+         }else { // child
+        	 List<String> list = map.get(menuid);
+        	 list.add(upmenuid);
+        	 map.put(menuid, list);      	 
+         }
+      }      
+   }
+
+	public void Classes2() {
+		List<ClassVo> allMenuList = null;
+	  
+		Map<String, List<ClassVo>> map = new HashMap<String, List<ClassVo>>();
+		for(ClassVo item : allMenuList){
+			String menuid = item.menuId;
+			List<ClassVo> list = null;
+			if(menuid != null) { // parent
+				
+				list.add(item);
+				map.put(item.orderSeq+"", list);	        	 
+			}else { // child
+				list = map.get(menuid);
+				
+				//sub menu 정렬 코드
+				for(int i = 0; i < list.size(); i++) {
+					if(item.grpLevel < list.get(i).grpLevel)
+						list.add(i, item);
+	        	}
+	        	map.put(menuid, list);      	 
+	        }
+		} 
+		//main menu 정렬 코드
+		Map<String, List<ClassVo>> sortedmap = new TreeMap<>(map);
+	}
+	
 	@GetMapping("/zoom.do")
 	public String Zoom(@RequestParam(defaultValue = "1") int cPage, 
 						Model model,

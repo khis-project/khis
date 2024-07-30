@@ -12,7 +12,6 @@
 <c:if test="${not empty msg}">
 <script>
 	alert("${msg}");
-	console.log("${msg}");
 	<%session.removeAttribute("msg"); %>
 </script>
 <c:remove var="msg" />
@@ -70,7 +69,6 @@ var args = {
 	url: `${pageContext.request.contextPath}/join/memberDelete.do`,
 	type: 'DELETE',
 	success: function (data){
-		console.log(data);
 		const {success} = data;
 		if(success == true){
 			alert('그동안 khis를 이용해 주셔서 감사합니다:)');
